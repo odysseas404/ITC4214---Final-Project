@@ -66,3 +66,17 @@ class Camera(models.Model):
 
     def __str__(self):
         return self.name
+
+class CameraImage(models.Model):
+    camera = models.ForeignKey(
+        Camera,
+        on_delete=models.CASCADE,
+        related_name="gallery_images"
+    )
+
+    image = models.ImageField(
+        upload_to="camera_gallery/"
+    )
+
+    def __str__(self):
+        return f"{self.camera.name} Image"
