@@ -35,11 +35,13 @@ def home(request):
         cameras = cameras.filter(recommended_trip_type=trip_type)
 
     categories = Category.objects.all()
+    parent_categories = Category.objects.filter(parent__isnull=True)
     manufacturers = Manufacturer.objects.all()
 
     return render(request, "catalogue/home.html", {
         "cameras": cameras,
         "categories": categories,
+        "parent_categories": parent_categories,
         "manufacturers": manufacturers,
         "film_format_choices": Camera.FILM_FORMAT_CHOICES,
         "condition_choices": Camera.CONDITION_CHOICES,
@@ -260,4 +262,17 @@ def borrow_checkout(request):
     return render(request, "catalogue/borrow_checkout.html", {
         "form": form,
         "cameras": cameras
+    })
+
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    cameras = Camera.objects.filter(
+        category=category,
+        available=True
+    ).select_related("manufacturer", "category")
+
+    return render(request, "catalogue/category_detail.html", {
+        "category": category,
+        "cameras": cameras,
     })

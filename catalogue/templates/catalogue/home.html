@@ -4,6 +4,32 @@
 
 <h1>Camera Catalogue</h1>
 
+<h2>Browse by Category</h2>
+
+{% for parent in parent_categories %}
+
+    <h3>{{ parent.name }}</h3>
+
+    {% if parent.subcategories.all %}
+
+        <ul>
+            {% for subcategory in parent.subcategories.all %}
+                <li>
+                    <a href="{% url 'catalogue:category_detail' subcategory.id %}">
+                        {{ subcategory.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <p>No subcategories available.</p>
+
+    {% endif %}
+
+{% endfor %}
+
 <form method="get">
 
     <label>Search by camera name:</label>

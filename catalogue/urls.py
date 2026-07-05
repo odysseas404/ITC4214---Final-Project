@@ -17,4 +17,5 @@ urlpatterns = [
     path("basket/add/<int:camera_id>/", views.add_to_borrow_basket, name="add_to_borrow_basket"),
     path("basket/remove/<int:camera_id>/", views.remove_from_borrow_basket, name="remove_from_borrow_basket"),
     path("basket/checkout/", views.borrow_checkout, name="borrow_checkout"),
+    path("category/<int:category_id>/", views.category_detail, name="category_detail"),
 ]
