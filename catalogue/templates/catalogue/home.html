@@ -62,7 +62,7 @@
             <h2>{{ camera.name }}</h2>
 
             {% if camera.main_image %}
-                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" width="250">
+                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
             {% endif %}
 
             <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+
+<link rel="stylesheet" href="{% static 'catalogue/css/catalogue.css' %}">
 
 <section>
     {% block catalogue_content %}

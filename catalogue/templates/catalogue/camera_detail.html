@@ -17,7 +17,7 @@
 <h2>Main Image</h2>
 
 {% if camera.main_image %}
-    <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" width="400">
+    <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-detail-image">
 {% endif %}
 
 <h2>Gallery</h2>
@@ -25,7 +25,7 @@
 {% if camera.gallery_images.all %}
 
     {% for image in camera.gallery_images.all %}
-        <img src="{{ image.image.url }}" alt="{{ camera.name }}" width="250">
+        <img src="{{ image.image.url }}" alt="{{ camera.name }}" class="gallery-image">
     {% endfor %}
 
 {% else %}
