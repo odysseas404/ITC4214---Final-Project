@@ -1,10 +1,21 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="subcategories"
+    )
+
     def __str__(self):
+        if self.parent:
+            return f"{self.parent.name} - {self.name}"
         return self.name
 
     class Meta:
@@ -47,6 +58,21 @@ class Camera(models.Model):
         choices=FILM_FORMAT_CHOICES
     )
 
+    TRIP_TYPE_CHOICES = [
+    ("City", "City"),
+    ("Nature", "Nature"),
+    ("Beach", "Beach"),
+    ("Road Trip", "Road Trip"),
+    ("Beginner Friendly", "Beginner Friendly"),
+    ("Low Light", "Low Light"),
+    ]
+
+    recommended_trip_type = models.CharField(
+    max_length=50,
+    choices=TRIP_TYPE_CHOICES,
+    default="Beginner Friendly"
+    )
+
     condition = models.CharField(
         max_length=20,
         choices=CONDITION_CHOICES,
@@ -80,3 +106,43 @@ class CameraImage(models.Model):
 
     def __str__(self):
         return f"{self.camera.name} Image"
+    
+class BorrowRequest(models.Model):
+
+    STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("Approved", "Approved"),
+        ("Borrowed", "Borrowed"),
+        ("Returned", "Returned"),
+        ("Completed", "Completed"),
+        ("Rejected", "Rejected"),
+    ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    camera = models.ForeignKey(
+        Camera,
+        on_delete=models.PROTECT
+    )
+
+    trip_destination = models.CharField(max_length=150)
+
+    trip_start_date = models.DateField()
+
+    trip_end_date = models.DateField()
+
+    shipping_address = models.TextField()
+
+    status = models.CharField(
+        max_length=30,
+        choices=STATUS_CHOICES,
+        default="Pending"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.camera.name} - {self.status}"
