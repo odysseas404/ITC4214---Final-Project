@@ -1,0 +1,23 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>Edit Profile</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save changes
+    </button>
+</form>
+
+<p>
+    <a href="{% url 'catalogue:profile' %}">
+        Back to profile
+    </a>
+</p>
+
+{% endblock %}
