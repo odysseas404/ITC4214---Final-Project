@@ -1,0 +1,27 @@
+.camera-list {
+    margin-top: 20px;
+}
+
+.camera-card {
+    margin-bottom: 25px;
+}
+
+.camera-card-image {
+    width: 250px;
+    height: auto;
+}
+
+.camera-detail-image {
+    width: 400px;
+    height: auto;
+}
+
+.gallery-image {
+    width: 250px;
+    height: auto;
+    margin: 10px;
+}
+
+.inline-form {
+    display: inline;
+}
