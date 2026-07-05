@@ -1,9 +1,37 @@
-{% extends "base.html" %}
+{% extends "catalogue/base_catalogue.html" %}
 
-{% block content %}
+{% block catalogue_content %}
 
-<h1>Welcome to Escapism</h1>
+<h1>Camera Catalogue</h1>
 
-<p>Borrow analogue film cameras for your next adventure.</p>
+<div>
+    {% for camera in cameras %}
+
+        <div>
+            <h2>{{ camera.name }}</h2>
+
+            {% if camera.main_image %}
+                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" width="250">
+            {% endif %}
+
+            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
+            <p><strong>Year:</strong> {{ camera.year }}</p>
+            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
+            <p><strong>Condition:</strong> {{ camera.condition }}</p>
+            <p><strong>Category:</strong> {{ camera.category }}</p>
+
+            <a href="{% url 'catalogue:camera_detail' camera.id %}">
+                View details
+            </a>
+        </div>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No cameras available.</p>
+
+    {% endfor %}
+</div>
 
 {% endblock %}
