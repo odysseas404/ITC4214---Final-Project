@@ -2,114 +2,144 @@
 
 {% block catalogue_content %}
 
-<h1>Camera Catalogue</h1>
+<h1 class="page-title">Camera Catalogue</h1>
 
-<h2>Browse by Category</h2>
+<div class="category-box">
+    <h2>Browse by Category</h2>
 
-{% for parent in parent_categories %}
+    {% for parent in parent_categories %}
 
-    <h3>{{ parent.name }}</h3>
+        <h4>{{ parent.name }}</h4>
 
-    {% if parent.subcategories.all %}
+        {% if parent.subcategories.all %}
 
-        <ul>
-            {% for subcategory in parent.subcategories.all %}
-                <li>
-                    <a href="{% url 'catalogue:category_detail' subcategory.id %}">
+            <div class="mb-3">
+                {% for subcategory in parent.subcategories.all %}
+                    <a 
+                        href="{% url 'catalogue:category_detail' subcategory.id %}" 
+                        class="btn btn-outline-dark btn-sm me-2 mb-2">
                         {{ subcategory.name }}
                     </a>
-                </li>
-            {% endfor %}
-        </ul>
+                {% endfor %}
+            </div>
 
-    {% else %}
+        {% else %}
 
-        <p>No subcategories available.</p>
+            <p>No subcategories available.</p>
 
-    {% endif %}
+        {% endif %}
 
-{% endfor %}
+    {% endfor %}
+</div>
 
-<form method="get">
+<div class="filter-box">
+    <h2>Search and Filter</h2>
 
-    <label>Search by camera name:</label>
-    <input type="text" name="search" placeholder="Example: Canon">
+    <form method="get" class="row g-3">
 
-    <label>Manufacturer:</label>
-    <select name="manufacturer">
-        <option value="">All manufacturers</option>
+        <div class="col-md-4">
+            <label class="form-label">Search by camera name</label>
+            <input 
+                type="text" 
+                name="search" 
+                class="form-control" 
+                placeholder="Example: Canon">
+        </div>
 
-        {% for manufacturer in manufacturers %}
-            <option value="{{ manufacturer.id }}">
-                {{ manufacturer.name }}
-            </option>
-        {% endfor %}
-    </select>
+        <div class="col-md-4">
+            <label class="form-label">Manufacturer</label>
+            <select name="manufacturer" class="form-select">
+                <option value="">All manufacturers</option>
 
-    <label>Film format:</label>
-    <select name="film_format">
-        <option value="">All formats</option>
+                {% for manufacturer in manufacturers %}
+                    <option value="{{ manufacturer.id }}">
+                        {{ manufacturer.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
 
-        {% for value, label in film_format_choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
+        <div class="col-md-4">
+            <label class="form-label">Film format</label>
+            <select name="film_format" class="form-select">
+                <option value="">All formats</option>
 
-    <label>Condition:</label>
-    <select name="condition">
-        <option value="">All conditions</option>
+                {% for value, label in film_format_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-        {% for value, label in condition_choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
+        <div class="col-md-4">
+            <label class="form-label">Condition</label>
+            <select name="condition" class="form-select">
+                <option value="">All conditions</option>
 
-    <label>Trip type:</label>
-    <select name="trip_type">
-        <option value="">All trip types</option>
+                {% for value, label in condition_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-        {% for value, label in trip_type_choices %}
-            <option value="{{ value }}">{{ label }}</option>
-        {% endfor %}
-    </select>
+        <div class="col-md-4">
+            <label class="form-label">Trip type</label>
+            <select name="trip_type" class="form-select">
+                <option value="">All trip types</option>
 
-    <button type="submit">Search</button>
+                {% for value, label in trip_type_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-    <a href="{% url 'catalogue:home' %}">Clear filters</a>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-dark me-2">
+                Search
+            </button>
 
-</form>
-
-<hr>
-
-<div>
-    {% for camera in cameras %}
-
-        <div>
-            <h2>{{ camera.name }}</h2>
-
-            {% if camera.main_image %}
-                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
-            {% endif %}
-
-            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
-            <p><strong>Year:</strong> {{ camera.year }}</p>
-            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
-            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
-            <p><strong>Condition:</strong> {{ camera.condition }}</p>
-            <p><strong>Category:</strong> {{ camera.category }}</p>
-
-            <a href="{% url 'catalogue:camera_detail' camera.id %}">
-                View details
+            <a href="{% url 'catalogue:home' %}" class="btn btn-outline-secondary">
+                Clear
             </a>
         </div>
 
-        <hr>
+    </form>
+</div>
+
+<div class="camera-grid">
+
+    {% for camera in cameras %}
+
+        <div class="camera-card">
+
+            {% if camera.main_image %}
+                <img 
+                    src="{{ camera.main_image.url }}" 
+                    alt="{{ camera.name }}" 
+                    class="camera-card-image">
+            {% endif %}
+
+            <h3>{{ camera.name }}</h3>
+
+            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
+            <p><strong>Year:</strong> {{ camera.year }}</p>
+            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
+            <p><strong>Condition:</strong> {{ camera.condition }}</p>
+            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
+
+            <a 
+                href="{% url 'catalogue:camera_detail' camera.id %}" 
+                class="btn btn-dark">
+                View details
+            </a>
+
+        </div>
 
     {% empty %}
 
-        <p>No cameras available.</p>
+        <p>No cameras found.</p>
 
     {% endfor %}
+
 </div>
 
 {% endblock %}
