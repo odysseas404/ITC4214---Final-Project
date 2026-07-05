@@ -1,0 +1,15 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>Create Traveller Account</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}

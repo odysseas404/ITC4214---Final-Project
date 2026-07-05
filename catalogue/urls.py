@@ -9,4 +9,5 @@ urlpatterns = [
     path("camera/<int:camera_id>/borrow/", views.borrow_camera, name="borrow_camera"),
     path("borrow/success/", views.borrow_success, name="borrow_success"),
     path("dashboard/", views.dashboard, name="dashboard"),
+    path("register/", views.register, name="register"),
 ]
