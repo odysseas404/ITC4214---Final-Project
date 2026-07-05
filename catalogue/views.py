@@ -64,9 +64,18 @@ def camera_detail(request, camera_id):
             camera=camera
         ).exists()
 
+    recommended_cameras = Camera.objects.filter(
+        available=True
+    ).exclude(
+        id=camera.id
+    ).filter(
+        film_format=camera.film_format
+    )[:3]
+
     return render(request, "catalogue/camera_detail.html", {
         "camera": camera,
         "user_liked": user_liked,
+        "recommended_cameras": recommended_cameras,
     })
 
 @login_required
