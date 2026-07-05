@@ -124,8 +124,13 @@ def dashboard(request):
         user=request.user
     ).select_related("camera").order_by("-created_at")
 
+    liked_cameras = Camera.objects.filter(
+        likes__user=request.user
+    )
+
     return render(request, "catalogue/dashboard.html", {
         "borrow_requests": borrow_requests,
+        "liked_cameras": liked_cameras,
     })
 
 def register(request):

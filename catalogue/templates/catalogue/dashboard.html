@@ -30,4 +30,24 @@
 
 {% endif %}
 
+<h2>Liked Cameras</h2>
+
+{% if liked_cameras %}
+
+    {% for camera in liked_cameras %}
+
+        <p>
+            <a href="{% url 'catalogue:camera_detail' camera.id %}">
+                {{ camera.name }}
+            </a>
+        </p>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>You have not liked any cameras yet.</p>
+
+{% endif %}
+
 {% endblock %}
