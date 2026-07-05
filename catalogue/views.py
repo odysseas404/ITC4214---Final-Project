@@ -72,6 +72,15 @@ def camera_detail(request, camera_id):
         film_format=camera.film_format
     )[:3]
 
+    if not recommended_cameras:
+        recommended_cameras = Camera.objects.filter(
+        available=True
+    ).exclude(
+        id=camera.id
+    ).filter(
+        recommended_trip_type=camera.recommended_trip_type
+    )[:3]
+
     return render(request, "catalogue/camera_detail.html", {
         "camera": camera,
         "user_liked": user_liked,
