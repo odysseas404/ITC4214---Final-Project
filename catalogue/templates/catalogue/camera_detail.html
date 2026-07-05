@@ -67,6 +67,39 @@
     <p>This camera is currently unavailable.</p>
 {% endif %}
 
+<h2>Recommended Cameras</h2>
+
+{% if recommended_cameras %}
+
+    {% for recommended_camera in recommended_cameras %}
+
+        <div class="camera-card">
+            <h3>{{ recommended_camera.name }}</h3>
+
+            {% if recommended_camera.main_image %}
+                <img 
+                    src="{{ recommended_camera.main_image.url }}" 
+                    alt="{{ recommended_camera.name }}" 
+                    class="camera-card-image">
+            {% endif %}
+
+            <p><strong>Manufacturer:</strong> {{ recommended_camera.manufacturer }}</p>
+            <p><strong>Film format:</strong> {{ recommended_camera.film_format }}</p>
+            <p><strong>Recommended for:</strong> {{ recommended_camera.recommended_trip_type }}</p>
+
+            <a href="{% url 'catalogue:camera_detail' recommended_camera.id %}">
+                View details
+            </a>
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No similar cameras available at the moment.</p>
+
+{% endif %}
+
 <p>
     <a href="{% url 'catalogue:home' %}">Back to catalogue</a>
 </p>
