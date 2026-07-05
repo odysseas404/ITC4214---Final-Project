@@ -12,4 +12,5 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("profile/", views.profile, name="profile"),
     path("profile/edit/", views.edit_profile, name="edit_profile"),
+    path("camera/<int:camera_id>/toggle_like/", views.toggle_like, name="toggle_like"),
 ]

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Camera, Category, Manufacturer, BorrowRequest
+from .models import Camera, Category, Manufacturer, BorrowRequest, CameraLike 
 from .forms import BorrowRequestForm, UserUpdateForm
 
 def home(request):
@@ -55,8 +55,17 @@ def camera_detail(request, camera_id):
         id=camera_id
     )
 
+    user_liked = False
+
+    if request.user.is_authenticated:
+        user_liked = CameraLike.objects.filter(
+            user=request.user,
+            camera=camera
+        ).exists()
+
     return render(request, "catalogue/camera_detail.html", {
-        "camera": camera
+        "camera": camera,
+        "user_liked": user_liked,
     })
 
 @login_required
@@ -134,3 +143,26 @@ def edit_profile(request):
     return render(request, "catalogue/edit_profile.html", {
         "form": form
     })
+
+@login_required
+def toggle_like(request, camera_id):
+    if request.method == "POST":
+        camera = get_object_or_404(Camera, id=camera_id)
+
+        like, created = CameraLike.objects.get_or_create(
+            user=request.user,
+            camera=camera
+        )
+
+        if not created:
+            like.delete()
+            liked = False
+        else:
+            liked = True
+
+        like_count = camera.likes.count()
+
+        return JsonResponse({
+            "liked": liked,
+            "like_count": like_count
+        })

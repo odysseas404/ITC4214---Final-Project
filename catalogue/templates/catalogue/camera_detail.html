@@ -32,6 +32,28 @@
 
 {% endif %}
 
+{% if user.is_authenticated %}
+
+    <button id="like-button" data-camera-id="{{ camera.id }}">
+        {% if user_liked %}
+            Unlike
+        {% else %}
+            Like
+        {% endif %}
+    </button>
+
+    <p>
+        Likes: <span id="like-count">{{ camera.likes.count }}</span>
+    </p>
+
+{% else %}
+
+    <p>
+        <a href="{% url 'login' %}">Login</a> to like this camera.
+    </p>
+
+{% endif %}
+
 {% if camera.available %}
     <p>
         <a href="{% url 'catalogue:borrow_camera' camera.id %}">
@@ -45,5 +67,51 @@
 <p>
     <a href="{% url 'catalogue:home' %}">Back to catalogue</a>
 </p>
+
+<script>
+    const likeButton = document.getElementById("like-button");
+
+    if (likeButton) {
+        likeButton.addEventListener("click", function () {
+            const cameraId = this.dataset.cameraId;
+
+            fetch(`/camera/${cameraId}/like/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken"),
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.liked) {
+                    likeButton.textContent = "Unlike";
+                } else {
+                    likeButton.textContent = "Like";
+                }
+
+                document.getElementById("like-count").textContent = data.like_count;
+            });
+        });
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+
+        return cookieValue;
+    }
+</script>
 
 {% endblock %}
