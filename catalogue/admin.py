@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Manufacturer, Camera, CameraImage, BorrowRequest 
+from .models import Category, Manufacturer, Camera, CameraImage, BorrowRequest, CameraLike 
 
 
 class CameraImageInline(admin.TabularInline):
@@ -16,3 +16,4 @@ admin.site.register(Manufacturer)
 admin.site.register(Camera, CameraAdmin)
 admin.site.register(CameraImage)
 admin.site.register(BorrowRequest)
+admin.site.register(CameraLike)
