@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Camera, Category, Manufacturer, BorrowRequest
-from .forms import BorrowRequestForm
+from .forms import BorrowRequestForm, UserUpdateForm
 
 def home(request):
     cameras = Camera.objects.select_related(
@@ -111,5 +111,26 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, "catalogue/register.html", {
+        "form": form
+    })
+
+@login_required
+def profile(request):
+    return render(request, "catalogue/profile.html")
+
+
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        form = UserUpdateForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect("catalogue:profile")
+
+    else:
+        form = UserUpdateForm(instance=request.user)
+
+    return render(request, "catalogue/edit_profile.html", {
         "form": form
     })

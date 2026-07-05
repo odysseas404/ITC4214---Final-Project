@@ -1,5 +1,6 @@
 from django import forms
 from .models import BorrowRequest
+from django.contrib.auth.models import User 
 
 
 class BorrowRequestForm(forms.ModelForm):
@@ -43,3 +44,27 @@ class BorrowRequestForm(forms.ModelForm):
             )
 
         return cleaned_data
+    
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+            "email",
+        ]
+
+        widgets = {
+            "first_name": forms.TextInput(attrs={
+                "placeholder": "First name",
+                "required": True,
+            }),
+            "last_name": forms.TextInput(attrs={
+                "placeholder": "Last name",
+                "required": True,
+            }),
+            "email": forms.EmailInput(attrs={
+                "placeholder": "Email address",
+                "required": True,
+            }),
+        }

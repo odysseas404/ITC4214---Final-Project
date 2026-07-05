@@ -10,4 +10,6 @@ urlpatterns = [
     path("borrow/success/", views.borrow_success, name="borrow_success"),
     path("dashboard/", views.dashboard, name="dashboard"),
     path("register/", views.register, name="register"),
+    path("profile/", views.profile, name="profile"),
+    path("profile/edit/", views.edit_profile, name="edit_profile"),
 ]
