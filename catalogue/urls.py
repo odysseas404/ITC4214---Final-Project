@@ -13,4 +13,8 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("profile/edit/", views.edit_profile, name="edit_profile"),
     path("camera/<int:camera_id>/toggle_like/", views.toggle_like, name="toggle_like"),
+    path("basket/", views.borrow_basket, name="borrow_basket"),
+    path("basket/add/<int:camera_id>/", views.add_to_borrow_basket, name="add_to_borrow_basket"),
+    path("basket/remove/<int:camera_id>/", views.remove_from_borrow_basket, name="remove_from_borrow_basket"),
+    path("basket/checkout/", views.borrow_checkout, name="borrow_checkout"),
 ]
