@@ -10,6 +10,27 @@ def home(request):
         "manufacturer"
     ).filter(available=True)
 
+    search_query = request.GET.get("search")
+    manufacturer_id = request.GET.get("manufacturer")
+    film_format = request.GET.get("film_format")
+    condition = request.GET.get("condition")
+    trip_type = request.GET.get("trip_type")
+
+    if search_query:
+        cameras = cameras.filter(name__icontains=search_query)
+
+    if manufacturer_id:
+        cameras = cameras.filter(manufacturer_id=manufacturer_id)
+
+    if film_format:
+        cameras = cameras.filter(film_format=film_format)
+
+    if condition:
+        cameras = cameras.filter(condition=condition)
+
+    if trip_type:
+        cameras = cameras.filter(recommended_trip_type=trip_type)
+
     categories = Category.objects.all()
     manufacturers = Manufacturer.objects.all()
 
@@ -17,6 +38,9 @@ def home(request):
         "cameras": cameras,
         "categories": categories,
         "manufacturers": manufacturers,
+        "film_format_choices": Camera.FILM_FORMAT_CHOICES,
+        "condition_choices": Camera.CONDITION_CHOICES,
+        "trip_type_choices": Camera.TRIP_TYPE_CHOICES,
     })
 
 

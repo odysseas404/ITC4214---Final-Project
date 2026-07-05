@@ -4,6 +4,57 @@
 
 <h1>Camera Catalogue</h1>
 
+<form method="get">
+
+    <label>Search by camera name:</label>
+    <input type="text" name="search" placeholder="Example: Canon">
+
+    <label>Manufacturer:</label>
+    <select name="manufacturer">
+        <option value="">All manufacturers</option>
+
+        {% for manufacturer in manufacturers %}
+            <option value="{{ manufacturer.id }}">
+                {{ manufacturer.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label>Film format:</label>
+    <select name="film_format">
+        <option value="">All formats</option>
+
+        {% for value, label in film_format_choices %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Condition:</label>
+    <select name="condition">
+        <option value="">All conditions</option>
+
+        {% for value, label in condition_choices %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Trip type:</label>
+    <select name="trip_type">
+        <option value="">All trip types</option>
+
+        {% for value, label in trip_type_choices %}
+            <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Search</button>
+
+    <a href="{% url 'catalogue:home' %}">Clear filters</a>
+
+</form>
+
+<hr>
+
 <div>
     {% for camera in cameras %}
 
@@ -16,6 +67,7 @@
 
             <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
             <p><strong>Year:</strong> {{ camera.year }}</p>
+            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
             <p><strong>Film format:</strong> {{ camera.film_format }}</p>
             <p><strong>Condition:</strong> {{ camera.condition }}</p>
             <p><strong>Category:</strong> {{ camera.category }}</p>
