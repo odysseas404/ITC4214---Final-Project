@@ -7,7 +7,15 @@
 
     <div class="col-md-6">
 
-        <h1>{{ camera.name }}</h1>
+        <p class="text-uppercase text-muted mb-1">
+    {{ camera.manufacturer }}
+</p>
+
+<h1>{{ camera.name }}</h1>
+
+<p class="lead">
+    Recommended for {{ camera.recommended_trip_type }} trips.
+</p>
 
         {% if camera.main_image %}
             <img 

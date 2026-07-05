@@ -2,7 +2,18 @@
 
 {% block catalogue_content %}
 
-<h1 class="page-title">Camera Catalogue</h1>
+<div class="hero-section">
+    <h1>Borrow a Film Camera for Your Next Trip</h1>
+
+    <p>
+        Escapism lets travellers borrow analogue cameras for free,
+        take them on real journeys, and return them with stories captured on film.
+    </p>
+
+    <a href="#camera-list" class="btn btn-light mt-3">
+        Browse Cameras
+    </a>
+</div>
 
 <div class="category-box">
     <h2>Browse by Category</h2>
@@ -105,7 +116,7 @@
     </form>
 </div>
 
-<div class="camera-grid">
+<div id="camera-list" class="camera-grid">
 
     {% for camera in cameras %}
 
@@ -120,11 +131,11 @@
 
             <h3>{{ camera.name }}</h3>
 
-            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
-            <p><strong>Year:</strong> {{ camera.year }}</p>
-            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
-            <p><strong>Condition:</strong> {{ camera.condition }}</p>
-            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
+            <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
+<p><span class="info-label">Year:</span> {{ camera.year }}</p>
+<p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+<p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
+<p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
 
             <a 
                 href="{% url 'catalogue:camera_detail' camera.id %}" 

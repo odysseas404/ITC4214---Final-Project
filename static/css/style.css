@@ -1,43 +1,87 @@
 body {
-    background-color: #f8f7f3;
-    color: #222222;
+    background-color: #f4efe7;
+    color: #2b2b2b;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
     min-height: 75vh;
 }
 
-h1, h2, h3 {
-    margin-bottom: 20px;
+/* Headings */
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 25px;
 }
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+/* Links */
 
 a {
     text-decoration: none;
 }
 
-.form-control,
-.form-select {
-    margin-bottom: 15px;
+/* Navbar */
+
+.navbar {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
 }
 
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+
 .btn {
-    border-radius: 6px;
+    border-radius: 25px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.btn-dark {
+    background-color: #2f2a25;
+    border-color: #2f2a25;
+}
+
+.btn-dark:hover {
+    background-color: #5a4636;
+    border-color: #5a4636;
+}
+
+.btn-outline-dark:hover {
+    background-color: #2f2a25;
+}
+
+/* General boxes */
+
+.section-box {
+    background-color: #fffaf2;
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 30px;
+    border: 1px solid #e2d6c5;
+    box-shadow: 0 4px 16px rgba(80, 60, 40, 0.08);
 }
 
 .page-title {
     margin-bottom: 30px;
 }
 
-.section-box {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #dddddd;
-}
+/* Forms */
 
 .form-box {
-    max-width: 600px;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -50,7 +94,23 @@ form input,
 form select,
 form textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #c9bba8;
+    border-radius: 8px;
+    background-color: #fffdf8;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #7b6048;
+    box-shadow: 0 0 0 3px rgba(123, 96, 72, 0.15);
+}
+
+/* Footer */
+
+footer {
+    background-color: #2f2a25;
+    color: #f4efe7;
 }
