@@ -1,0 +1,55 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>Borrow Basket</h1>
+
+{% if cameras %}
+
+    {% for camera in cameras %}
+
+        <div class="camera-card">
+
+            <h2>{{ camera.name }}</h2>
+
+            {% if camera.main_image %}
+                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
+            {% endif %}
+
+            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
+            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
+            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
+
+            <form method="post" action="{% url 'catalogue:remove_from_borrow_basket' camera.id %}">
+                {% csrf_token %}
+
+                <button type="submit">
+                    Remove
+                </button>
+            </form>
+
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+    <p>
+        <a href="{% url 'catalogue:borrow_checkout' %}">
+            Continue to Borrow Request
+        </a>
+    </p>
+
+{% else %}
+
+    <p>Your borrow basket is empty.</p>
+
+    <p>
+        <a href="{% url 'catalogue:home' %}">
+            Browse cameras
+        </a>
+    </p>
+
+{% endif %}
+
+{% endblock %}

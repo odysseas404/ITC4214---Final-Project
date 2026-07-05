@@ -57,14 +57,22 @@
 
 {% endif %}
 
+<h2>Borrow Camera</h2>
+
 {% if camera.available %}
-    <p>
-        <a href="{% url 'catalogue:borrow_camera' camera.id %}">
-            Borrow this camera
-        </a>
-    </p>
+
+    <form method="post" action="{% url 'catalogue:add_to_borrow_basket' camera.id %}">
+        {% csrf_token %}
+
+        <button type="submit">
+            Add to Borrow Basket
+        </button>
+    </form>
+
 {% else %}
+
     <p>This camera is currently unavailable.</p>
+
 {% endif %}
 
 <h2>Recommended Cameras</h2>
