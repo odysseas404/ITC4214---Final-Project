@@ -1,0 +1,33 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>My Dashboard</h1>
+
+<h2>My Borrow Requests</h2>
+
+{% if borrow_requests %}
+
+    {% for request_item in borrow_requests %}
+
+        <div>
+            <h3>{{ request_item.camera.name }}</h3>
+
+            <p><strong>Destination:</strong> {{ request_item.trip_destination }}</p>
+            <p><strong>Trip start:</strong> {{ request_item.trip_start_date }}</p>
+            <p><strong>Trip end:</strong> {{ request_item.trip_end_date }}</p>
+            <p><strong>Status:</strong> {{ request_item.status }}</p>
+            <p><strong>Submitted:</strong> {{ request_item.created_at }}</p>
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>You have not submitted any borrow requests yet.</p>
+
+{% endif %}
+
+{% endblock %}

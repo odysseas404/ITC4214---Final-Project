@@ -1,0 +1,27 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>Borrow {{ camera.name }}</h1>
+
+<p>
+    Complete the form below to request this camera for your trip.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Submit Borrow Request
+    </button>
+</form>
+
+<p>
+    <a href="{% url 'catalogue:camera_detail' camera.id %}">
+        Back to camera
+    </a>
+</p>
+
+{% endblock %}

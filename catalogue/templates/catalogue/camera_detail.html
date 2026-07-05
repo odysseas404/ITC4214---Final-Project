@@ -32,6 +32,16 @@
 
 {% endif %}
 
+{% if camera.available %}
+    <p>
+        <a href="{% url 'catalogue:borrow_camera' camera.id %}">
+            Borrow this camera
+        </a>
+    </p>
+{% else %}
+    <p>This camera is currently unavailable.</p>
+{% endif %}
+
 <p>
     <a href="{% url 'catalogue:home' %}">Back to catalogue</a>
 </p>

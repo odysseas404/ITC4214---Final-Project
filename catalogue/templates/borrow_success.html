@@ -1,0 +1,24 @@
+{% extends "catalogue/base_catalogue.html" %}
+
+{% block catalogue_content %}
+
+<h1>Borrow Request Submitted</h1>
+
+<p>
+    Your camera borrow request has been submitted successfully.
+    An administrator will review it.
+</p>
+
+<p>
+    <a href="{% url 'catalogue:dashboard' %}">
+        View my dashboard
+    </a>
+</p>
+
+<p>
+    <a href="{% url 'catalogue:home' %}">
+        Back to catalogue
+    </a>
+</p>
+
+{% endblock %}
