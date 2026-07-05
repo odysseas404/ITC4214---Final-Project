@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
@@ -154,11 +155,11 @@ def toggle_like(request, camera_id):
             camera=camera
         )
 
-        if not created:
+        if created:
+            liked = True
+        else:
             like.delete()
             liked = False
-        else:
-            liked = True
 
         like_count = camera.likes.count()
 
@@ -166,3 +167,7 @@ def toggle_like(request, camera_id):
             "liked": liked,
             "like_count": like_count
         })
+
+    return JsonResponse({
+        "error": "Invalid request"
+    }, status=400)

@@ -34,7 +34,9 @@
 
 {% if user.is_authenticated %}
 
-    <button id="like-button" data-camera-id="{{ camera.id }}">
+    <button 
+        id="like-button" 
+        data-like-url="{% url 'catalogue:toggle_like' camera.id %}">
         {% if user_liked %}
             Unlike
         {% else %}
@@ -73,13 +75,14 @@
 
     if (likeButton) {
         likeButton.addEventListener("click", function () {
-            const cameraId = this.dataset.cameraId;
+            const likeUrl = this.dataset.likeUrl;
 
-            fetch(`/camera/${cameraId}/like/`, {
+            fetch(likeUrl, {
                 method: "POST",
                 headers: {
                     "X-CSRFToken": getCookie("csrftoken"),
-                },
+                    "X-Requested-With": "XMLHttpRequest"
+                }
             })
             .then(response => response.json())
             .then(data => {
@@ -104,7 +107,9 @@
                 const cookie = cookies[i].trim();
 
                 if (cookie.substring(0, name.length + 1) === (name + "=")) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    cookieValue = decodeURIComponent(
+                        cookie.substring(name.length + 1)
+                    );
                     break;
                 }
             }
