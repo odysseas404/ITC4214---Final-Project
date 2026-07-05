@@ -2,48 +2,49 @@
 
 .hero-section {
     background: linear-gradient(
-        rgba(47, 42, 37, 0.65),
-        rgba(47, 42, 37, 0.65)
+        rgba(10, 10, 10, 0.55),
+        rgba(10, 10, 10, 0.55)
     ),
     url("/static/images/hero-camera.webp");
 
     background-size: cover;
     background-position: center;
-    color: white;
-    padding: 70px 35px;
-    border-radius: 22px;
+    color: #ffffff;
+    padding: 80px 40px;
+    border-radius: 24px;
     margin-bottom: 35px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
 }
 
 .hero-section h1 {
-    font-size: 42px;
+    font-size: 44px;
     margin-bottom: 15px;
+    color: #ffffff;
 }
 
 .hero-section p {
     font-size: 18px;
-    max-width: 700px;
+    max-width: 720px;
+    color: #f4efe7;
 }
 
-
-/* Category and filter boxes */
+/* Category, filters, recommendation sections */
 
 .category-box,
 .filter-box,
 .recommendation-section {
-    background-color: #fffaf2;
-    border: 1px solid #e2d6c5;
+    background-color: rgba(20, 20, 20, 0.88);
+    border: 1px solid rgba(255, 250, 242, 0.14);
     padding: 25px;
     border-radius: 18px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 16px rgba(80, 60, 40, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 
 .category-box h4 {
-    color: #5a4636;
+    color: #c8a97e;
     margin-bottom: 12px;
 }
-
 
 /* Camera cards */
 
@@ -54,18 +55,18 @@
 }
 
 .camera-card {
-    background-color: #fffaf2;
-    border: 1px solid #e2d6c5;
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 250, 242, 0.14);
     border-radius: 18px;
     padding: 18px;
     height: 100%;
-    box-shadow: 0 4px 16px rgba(80, 60, 40, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .camera-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(80, 60, 40, 0.16);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.48);
 }
 
 .camera-card-image {
@@ -78,13 +79,13 @@
 
 .camera-card h2,
 .camera-card h3 {
-    color: #2f2a25;
+    color: #fffaf2;
 }
 
 .camera-card p {
+    color: #e8ded0;
     margin-bottom: 8px;
 }
-
 
 /* Camera detail page */
 
@@ -93,10 +94,10 @@
 }
 
 .camera-carousel {
-    background-color: #fffaf2;
+    background-color: rgba(20, 20, 20, 0.88);
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 6px 22px rgba(80, 60, 40, 0.16);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
 }
 
 .camera-carousel-image {
@@ -106,26 +107,25 @@
 }
 
 .camera-actions {
-    background-color: #fffaf2;
-    border: 1px solid #e2d6c5;
+    background-color: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(255, 250, 242, 0.14);
     border-radius: 18px;
     padding: 16px 20px;
     margin-top: 15px;
-    box-shadow: 0 4px 16px rgba(80, 60, 40, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-
 /* Like button */
 
 .heart-button {
     border: none;
     background-color: transparent;
-    color: #9d2f2f;
-    font-size: 32px;
+    color: #e63946;
+    font-size: 34px;
     line-height: 1;
     cursor: pointer;
     padding: 0;
@@ -139,24 +139,23 @@
 .like-count {
     font-size: 18px;
     font-weight: 700;
-    color: #2f2a25;
+    color: #fffaf2;
 }
-
 
 /* Labels and messages */
 
 .info-label {
-    color: #7b6048;
+    color: #c8a97e;
     font-weight: 700;
 }
 
 .empty-message {
-    background-color: #fffaf2;
-    border: 1px dashed #c9bba8;
+    background-color: rgba(20, 20, 20, 0.88);
+    border: 1px dashed rgba(255, 250, 242, 0.25);
+    color: #e8ded0;
     padding: 20px;
     border-radius: 14px;
 }
-
 
 /* Back button spacing */
 

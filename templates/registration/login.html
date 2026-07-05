@@ -2,18 +2,27 @@
 
 {% block content %}
 
-<h1>Login</h1>
+<div class="section-box form-box dark-card">
 
-<form method="post">
-    {% csrf_token %}
+    <h1>Login</h1>
 
-    {{ form.as_p }}
+    <form method="post">
+        {% csrf_token %}
 
-    <button type="submit">Login</button>
-</form>
+        {{ form.as_p }}
 
-<p>
-    <a href="{% url 'catalogue:home' %}">Back to home</a>
-</p>
+        <div class="button-row">
+            <button type="submit" class="btn btn-dark rounded-button">
+                Login
+            </button>
+
+            <a href="{% url 'catalogue:home' %}" class="btn btn-dark rounded-button">
+                Back to home
+            </a>
+        </div>
+
+    </form>
+
+</div>
 
 {% endblock %}

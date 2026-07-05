@@ -2,17 +2,40 @@
 
 {% block catalogue_content %}
 
-<h1>About Escapism</h1>
+<div class="about-wrapper">
 
-<p>
-    Escapism is a film camera borrowing platform for travellers.
-    Users can browse available analogue cameras, add cameras to their Borrow Basket,
-    and submit a request to borrow them for a trip.
-</p>
+    <div class="card about-card">
 
-<p>
-    After the trip, users return the camera by post. Selected travel photos can later
-    be displayed on the website as part of a shared travel gallery.
-</p>
+        <div class="card-body">
+
+            <p class="about-label">About the project</p>
+
+            <h1 class="card-title">About Escapism</h1>
+
+            <p class="card-text">
+                Escapism is a film camera borrowing platform created for travellers
+                who want to experience analogue photography during their trips.
+            </p>
+
+            <p class="card-text">
+                Users can browse available film cameras, add them to a Borrow Basket,
+                and submit a request to borrow them for a journey. The service is free
+                and focuses on travel, creativity, and shared visual storytelling.
+            </p>
+
+            <p class="card-text">
+                After the trip, users return the camera by post. Selected travel photos
+                can later be displayed on the website as part of a shared travel gallery.
+            </p>
+
+            <a href="{% url 'catalogue:home' %}" class="btn btn-dark rounded-button mt-3">
+                Browse cameras
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
