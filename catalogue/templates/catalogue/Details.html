@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1>{{ camera.name }}</h1>
+
+    <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
+    <p><strong>Year:</strong> {{ camera.year }}</p>
+    <p><strong>Film format:</strong> {{ camera.film_format }}</p>
+    <p><strong>Condition:</strong> {{ camera.condition }}</p>
+    <p><strong>Category:</strong> {{ camera.category }}</p>
+
+    <p>{{ camera.description }}</p>
+
+    <hr>
+
+    <h3>Main Image</h3>
+
+    {% if camera.main_image %}
+        <img src="{{ camera.main_image.url }}" class="img-fluid mb-4" alt="{{ camera.name }}">
+    {% endif %}
+
+    <h3>Gallery</h3>
+
+    {% if camera.gallery_images.all %}
+        <div class="row">
+            {% for image in camera.gallery_images.all %}
+                <div class="col-md-4 mb-3">
+                    <img src="{{ image.image.url }}" class="img-fluid rounded" alt="{{ camera.name }}">
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No extra images available for this camera.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
