@@ -133,6 +133,9 @@ def dashboard(request):
         "liked_cameras": liked_cameras,
     })
 
+def about(request):
+    return render(request, "catalogue/about.html")
+
 def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
