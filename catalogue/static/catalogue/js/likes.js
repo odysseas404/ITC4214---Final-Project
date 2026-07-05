@@ -16,10 +16,10 @@ if (likeButton) {
         })
         .then(function (data) {
             if (data.liked) {
-                likeButton.textContent = "Unlike";
-            } else {
-                likeButton.textContent = "Like";
-            }
+    likeButton.textContent = "♥";
+} else {
+    likeButton.textContent = "♡";
+}
 
             document.getElementById("like-count").textContent = data.like_count;
         });

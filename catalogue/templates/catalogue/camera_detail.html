@@ -3,119 +3,135 @@
 
 {% block catalogue_content %}
 
-<div class="row">
+<div class="row g-4 camera-detail-top">
 
     <div class="col-md-6">
 
-        <p class="text-uppercase text-muted mb-1">
-    {{ camera.manufacturer }}
-</p>
+        <div id="cameraImageCarousel" class="carousel slide camera-carousel" data-bs-ride="carousel">
 
-<h1>{{ camera.name }}</h1>
+            <div class="carousel-inner">
 
-<p class="lead">
-    Recommended for {{ camera.recommended_trip_type }} trips.
-</p>
+                {% if camera.main_image %}
+                    <div class="carousel-item active">
+                        <img 
+                            src="{{ camera.main_image.url }}" 
+                            class="d-block w-100 camera-carousel-image" 
+                            alt="{{ camera.name }}">
+                    </div>
+                {% endif %}
 
-        {% if camera.main_image %}
-            <img 
-                src="{{ camera.main_image.url }}" 
-                alt="{{ camera.name }}" 
-                class="camera-detail-image">
-        {% endif %}
+                {% for image in camera.gallery_images.all %}
+                    <div class="carousel-item {% if not camera.main_image and forloop.first %}active{% endif %}">
+                        <img 
+                            src="{{ image.image.url }}" 
+                            class="d-block w-100 camera-carousel-image" 
+                            alt="{{ camera.name }}">
+                    </div>
+                {% endfor %}
 
-    </div>
+            </div>
 
-    <div class="col-md-6">
+            {% if camera.gallery_images.all %}
+                <button 
+                    class="carousel-control-prev" 
+                    type="button" 
+                    data-bs-target="#cameraImageCarousel" 
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
 
-        <div class="section-box">
-            <h2>Camera Details</h2>
-
-            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
-            <p><strong>Year:</strong> {{ camera.year }}</p>
-            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
-            <p><strong>Condition:</strong> {{ camera.condition }}</p>
-            <p><strong>Category:</strong> {{ camera.category }}</p>
-            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
-
-            <p>{{ camera.description }}</p>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="section-box">
-    <h2>Gallery</h2>
-
-    {% if camera.gallery_images.all %}
-
-        <div class="gallery-row">
-            {% for image in camera.gallery_images.all %}
-                <img 
-                    src="{{ image.image.url }}" 
-                    alt="{{ camera.name }}" 
-                    class="gallery-image">
-            {% endfor %}
-        </div>
-
-    {% else %}
-
-        <p>No extra images available for this camera.</p>
-
-    {% endif %}
-</div>
-
-<div class="like-section">
-    <h2>Likes</h2>
-
-    {% if user.is_authenticated %}
-
-        <button 
-            id="like-button" 
-            class="btn btn-outline-danger"
-            data-like-url="{% url 'catalogue:toggle_like' camera.id %}">
-            {% if user_liked %}
-                Unlike
-            {% else %}
-                Like
+                <button 
+                    class="carousel-control-next" 
+                    type="button" 
+                    data-bs-target="#cameraImageCarousel" 
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             {% endif %}
-        </button>
 
-        <p class="mt-2">
-            Likes: <span id="like-count">{{ camera.likes.count }}</span>
-        </p>
+        </div>
 
-    {% else %}
+        <div class="camera-actions mt-3">
 
-        <p>
-            <a href="{% url 'login' %}">Login</a> to like this camera.
-        </p>
+            {% if user.is_authenticated %}
 
-    {% endif %}
+                <button 
+                    id="like-button" 
+                    class="heart-button"
+                    data-like-url="{% url 'catalogue:toggle_like' camera.id %}">
+                    {% if user_liked %}
+                        ♥
+                    {% else %}
+                        ♡
+                    {% endif %}
+                </button>
+
+                <span id="like-count" class="like-count">
+                    {{ camera.likes.count }}
+                </span>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="btn btn-outline-dark btn-sm">
+                    Login to like
+                </a>
+
+            {% endif %}
+
+            {% if camera.available %}
+
+                <form method="post" action="{% url 'catalogue:add_to_borrow_basket' camera.id %}" class="d-inline">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn btn-dark ms-3">
+                        Add to Borrow Basket
+                    </button>
+                </form>
+
+            {% else %}
+
+                <span class="text-muted ms-3">
+                    Currently unavailable
+                </span>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="section-box h-100">
+
+            <p class="text-uppercase text-muted mb-1">
+                {{ camera.manufacturer }}
+            </p>
+
+            <h1>{{ camera.name }}</h1>
+
+            <p class="lead">
+                Recommended for {{ camera.recommended_trip_type }} trips.
+            </p>
+
+            <hr>
+
+            <p><span class="info-label">Year:</span> {{ camera.year }}</p>
+            <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+            <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
+            <p><span class="info-label">Category:</span> {{ camera.category }}</p>
+
+            <p class="mt-4">
+                {{ camera.description }}
+            </p>
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="borrow-section">
-    <h2>Borrow Camera</h2>
-
-    {% if camera.available %}
-
-        <form method="post" action="{% url 'catalogue:add_to_borrow_basket' camera.id %}">
-            {% csrf_token %}
-
-            <button type="submit" class="btn btn-dark">
-                Add to Borrow Basket
-            </button>
-        </form>
-
-    {% else %}
-
-        <p>This camera is currently unavailable.</p>
-
-    {% endif %}
-</div>
-
-<div class="recommendation-section">
+<div class="recommendation-section mt-5">
     <h2>Recommended Cameras</h2>
 
     {% if recommended_cameras %}
@@ -135,9 +151,9 @@
 
                     <h3>{{ recommended_camera.name }}</h3>
 
-                    <p><strong>Manufacturer:</strong> {{ recommended_camera.manufacturer }}</p>
-                    <p><strong>Film format:</strong> {{ recommended_camera.film_format }}</p>
-                    <p><strong>Recommended for:</strong> {{ recommended_camera.recommended_trip_type }}</p>
+                    <p><span class="info-label">Manufacturer:</span> {{ recommended_camera.manufacturer }}</p>
+                    <p><span class="info-label">Film format:</span> {{ recommended_camera.film_format }}</p>
+                    <p><span class="info-label">Recommended for:</span> {{ recommended_camera.recommended_trip_type }}</p>
 
                     <a 
                         href="{% url 'catalogue:camera_detail' recommended_camera.id %}" 
@@ -158,11 +174,11 @@
     {% endif %}
 </div>
 
-<p>
+<div class="back-button-wrapper">
     <a href="{% url 'catalogue:home' %}" class="btn btn-secondary">
         Back to catalogue
     </a>
-</p>
+</div>
 
 <script src="{% static 'catalogue/js/likes.js' %}"></script>
 

@@ -1,11 +1,11 @@
-/* Homepage hero */
+/* Hero section */
 
 .hero-section {
     background: linear-gradient(
         rgba(47, 42, 37, 0.65),
         rgba(47, 42, 37, 0.65)
     ),
-    url("/static/images/hero-camera.jpg");
+    url("/static/images/hero-camera.webp");
 
     background-size: cover;
     background-position: center;
@@ -25,10 +25,12 @@
     max-width: 700px;
 }
 
-/* Category and filters */
+
+/* Category and filter boxes */
 
 .category-box,
-.filter-box {
+.filter-box,
+.recommendation-section {
     background-color: #fffaf2;
     border: 1px solid #e2d6c5;
     padding: 25px;
@@ -42,7 +44,8 @@
     margin-bottom: 12px;
 }
 
-/* Camera grid */
+
+/* Camera cards */
 
 .camera-grid {
     display: grid;
@@ -73,8 +76,8 @@
     margin-bottom: 15px;
 }
 
-.camera-card h3,
-.camera-card h2 {
+.camera-card h2,
+.camera-card h3 {
     color: #2f2a25;
 }
 
@@ -82,56 +85,82 @@
     margin-bottom: 8px;
 }
 
+
 /* Camera detail page */
 
-.camera-detail-image {
-    width: 100%;
-    max-width: 560px;
-    height: auto;
+.camera-detail-top {
+    margin-bottom: 40px;
+}
+
+.camera-carousel {
+    background-color: #fffaf2;
     border-radius: 18px;
+    overflow: hidden;
     box-shadow: 0 6px 22px rgba(80, 60, 40, 0.16);
-    margin-bottom: 20px;
 }
 
-.gallery-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.gallery-image {
-    width: 220px;
-    height: 160px;
+.camera-carousel-image {
+    width: 100%;
+    height: 480px;
     object-fit: cover;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(80, 60, 40, 0.12);
 }
 
-/* Feature sections */
-
-.like-section,
-.borrow-section,
-.recommendation-section {
+.camera-actions {
     background-color: #fffaf2;
     border: 1px solid #e2d6c5;
-    padding: 25px;
     border-radius: 18px;
-    margin-top: 25px;
+    padding: 16px 20px;
+    margin-top: 15px;
     box-shadow: 0 4px 16px rgba(80, 60, 40, 0.08);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* Small labels */
+
+/* Like button */
+
+.heart-button {
+    border: none;
+    background-color: transparent;
+    color: #9d2f2f;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.heart-button:hover {
+    transform: scale(1.1);
+}
+
+.like-count {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2f2a25;
+}
+
+
+/* Labels and messages */
 
 .info-label {
     color: #7b6048;
     font-weight: 700;
 }
 
-/* Empty messages */
-
 .empty-message {
     background-color: #fffaf2;
     border: 1px dashed #c9bba8;
     padding: 20px;
     border-radius: 14px;
+}
+
+
+/* Back button spacing */
+
+.back-button-wrapper {
+    margin-top: 45px;
+    margin-bottom: 30px;
 }
