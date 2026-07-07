@@ -20,7 +20,7 @@
             <p><strong>Condition:</strong> {{ camera.condition }}</p>
             <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
 
-            <a href="{% url 'catalogue:camera_detail' camera.id %}">
+            <a href="{% url 'catalogue:camera_detail' camera.id %}" class="btn">
                 View details
             </a>
         </div>
@@ -36,7 +36,7 @@
 {% endif %}
 
 <p>
-    <a href="{% url 'catalogue:home' %}">Back to catalogue</a>
+    <a href="{% url 'catalogue:home' %}" class="btn">Back to catalogue</a>
 </p>
 
 {% endblock %}

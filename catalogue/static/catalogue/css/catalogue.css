@@ -2,10 +2,10 @@
 
 .hero-section {
     background: linear-gradient(
-        rgba(10, 10, 10, 0.55),
-        rgba(10, 10, 10, 0.55)
+    rgba(10, 10, 10, 0.35),
+    rgba(10, 10, 10, 0.35)
     ),
-    url("/static/images/hero-camera1.webp");
+    url("/static/images/hero-camera.webp");
 
     background-size: cover;
     background-position: center;
@@ -32,9 +32,12 @@
 
 .category-box,
 .filter-box,
-.recommendation-section {
-    background-color: rgba(20, 20, 20, 0.88);
-    border: 1px solid rgba(255, 250, 242, 0.14);
+.recommendation-section,
+.section-box,
+.about-card,
+.dark-card {
+    background-color: rgba(55, 55, 55, 0.88);
+    border: 1px solid rgba(255, 250, 242, 0.16);
     padding: 25px;
     border-radius: 18px;
     margin-bottom: 30px;
@@ -55,11 +58,12 @@
 }
 
 .camera-card {
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(55, 55, 55, 0.88);
     border: 1px solid rgba(255, 250, 242, 0.14);
     border-radius: 18px;
     padding: 18px;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -71,10 +75,12 @@
 
 .camera-card-image {
     width: 100%;
-    height: 230px;
-    object-fit: cover;
+    height: 260px;
+    object-fit: contain;
+    background-color: rgba(20, 20, 20, 0.95);
     border-radius: 14px;
     margin-bottom: 15px;
+    padding: 8px;
 }
 
 .camera-card h2,
@@ -94,16 +100,36 @@
 }
 
 .camera-carousel {
-    background-color: rgba(20, 20, 20, 0.88);
+    background-color: rgba(45, 45, 45, 0.88);
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 250, 242, 0.12);
 }
 
 .camera-carousel-image {
     width: 100%;
-    height: 480px;
-    object-fit: cover;
+    height: 520px;
+    object-fit: contain;
+    background-color: rgba(20, 20, 20, 0.95);
+}
+
+/* Keep arrows visible but remove ugly Bootstrap side backgrounds */
+.carousel-control-prev,
+.carousel-control-next {
+    background: transparent;
+    border: none;
+    width: 10%;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: transparent;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: brightness(0) invert(1);
 }
 
 .camera-actions {

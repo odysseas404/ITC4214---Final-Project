@@ -37,7 +37,7 @@
     {% for camera in liked_cameras %}
 
         <p>
-            <a href="{% url 'catalogue:camera_detail' camera.id %}">
+            <a href="{% url 'catalogue:camera_detail' camera.id %}" class="btn">
                 {{ camera.name }}
             </a>
         </p>

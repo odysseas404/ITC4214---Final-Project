@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="section-box form-box dark-card">
+<div class="section-box form-box">
 
     <h1>Login</h1>
 
@@ -12,11 +12,11 @@
         {{ form.as_p }}
 
         <div class="button-row">
-            <button type="submit" class="btn btn-dark rounded-button">
+            <button type="submit" class="btn">
                 Login
             </button>
 
-            <a href="{% url 'catalogue:home' %}" class="btn btn-dark rounded-button">
+            <a href="{% url 'catalogue:home' %}" class="btn">
                 Back to home
             </a>
         </div>

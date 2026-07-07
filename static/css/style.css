@@ -4,8 +4,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 
     background: linear-gradient(
-        rgba(10, 10, 10, 0.78),
-        rgba(10, 10, 10, 0.78)
+    rgba(10, 10, 10, 0.45),
+    rgba(10, 10, 10, 0.45)
     ),
     url("/static/images/site-background.webp");
 
@@ -190,4 +190,95 @@ form textarea:focus {
 footer {
     background-color: rgba(15, 15, 15, 0.95);
     color: #f4efe7;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Global button style */
+
+.btn,
+button,
+input[type="submit"] {
+    background-color: #d8b45a;
+    color: #000000;
+    border: 2px solid #000000;
+    border-radius: 28px;
+    padding: 10px 24px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: #f0cc70;
+    color: #000000;
+    border-color: #000000;
+}
+
+/* Keep buttons next to each other */
+
+.button-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.site-logo {
+    height: 48px;
+    width: auto;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.field-help {
+    display: none;
+    color: #d8b45a;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.form-group:focus-within .field-help {
+    display: block;
+}
+
+.errorlist {
+    color: #ffb3b3;
+    margin-top: 8px;
+}
+
+.btn,
+.btn-dark,
+.btn-secondary,
+.btn-outline-dark,
+button,
+input[type="submit"] {
+    background-color: #d8b45a !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 28px !important;
+    padding: 10px 24px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+.btn:hover,
+.btn-dark:hover,
+.btn-secondary:hover,
+.btn-outline-dark:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: #f0cc70 !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+.card {
+    background-color: rgba(55, 55, 55, 0.88);
+    color: #f4efe7;
+    border: 1px solid rgba(255, 250, 242, 0.16);
 }

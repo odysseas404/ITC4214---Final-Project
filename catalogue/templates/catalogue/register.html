@@ -2,14 +2,58 @@
 
 {% block catalogue_content %}
 
-<h1>Create Traveller Account</h1>
+<div class="section-box form-box">
 
-<form method="post">
-    {% csrf_token %}
+    <h1>Create Your Traveller Account</h1>
 
-    {{ form.as_p }}
+    <form method="post">
+        {% csrf_token %}
 
-    <button type="submit">Register</button>
-</form>
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+
+            <small class="field-help">
+                Maximum 15 characters.
+            </small>
+
+            {{ form.username.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+
+            <small class="field-help">
+                Your password must contain at least 8 characters.
+            </small>
+
+            {{ form.password1.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+
+            <small class="field-help">
+                Enter the same password again for confirmation.
+            </small>
+
+            {{ form.password2.errors }}
+        </div>
+
+        <div class="button-row">
+            <button type="submit" class="btn">
+                Register
+            </button>
+
+            <a href="{% url 'catalogue:home' %}" class="btn">
+                Back to home
+            </a>
+        </div>
+
+    </form>
+
+</div>
 
 {% endblock %}

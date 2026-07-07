@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import BorrowRequest
-from django.contrib.auth.models import User 
 
 
 class BorrowRequestForm(forms.ModelForm):
@@ -14,16 +16,16 @@ class BorrowRequestForm(forms.ModelForm):
         ]
 
         widgets = {
+            "trip_destination": forms.TextInput(attrs={
+                "placeholder": "Example: Paris, Rome, Athens",
+                "required": True,
+            }),
             "trip_start_date": forms.DateInput(attrs={
                 "type": "date",
                 "required": True,
             }),
             "trip_end_date": forms.DateInput(attrs={
                 "type": "date",
-                "required": True,
-            }),
-            "trip_destination": forms.TextInput(attrs={
-                "placeholder": "Example: Paris, Rome, Athens",
                 "required": True,
             }),
             "shipping_address": forms.Textarea(attrs={
@@ -44,7 +46,8 @@ class BorrowRequestForm(forms.ModelForm):
             )
 
         return cleaned_data
-    
+
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -68,3 +71,32 @@ class UserUpdateForm(forms.ModelForm):
                 "required": True,
             }),
         }
+
+
+class TravellerRegistrationForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=15,
+        help_text="Maximum 15 characters.",
+        widget=forms.TextInput(attrs={
+            "placeholder": "Choose a username",
+            "maxlength": "15",
+        })
+    )
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "password1",
+            "password2",
+        ]
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+
+        if username and len(username) > 15:
+            raise forms.ValidationError(
+                "Username must be 15 characters or fewer."
+            )
+
+        return username

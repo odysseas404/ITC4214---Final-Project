@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.http import JsonResponse
 
-from .models import Camera, Category, Manufacturer, BorrowRequest, CameraLike 
-from .forms import BorrowRequestForm, UserUpdateForm
+from .models import Camera, Category, Manufacturer, BorrowRequest, CameraLike
+from .forms import BorrowRequestForm, UserUpdateForm, TravellerRegistrationForm
 
 def home(request):
     cameras = Camera.objects.select_related(
@@ -138,7 +137,7 @@ def about(request):
 
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = TravellerRegistrationForm(request.POST)
 
         if form.is_valid():
             user = form.save()
@@ -146,7 +145,7 @@ def register(request):
             return redirect("catalogue:dashboard")
 
     else:
-        form = UserCreationForm()
+        form = TravellerRegistrationForm()
 
     return render(request, "catalogue/register.html", {
         "form": form
