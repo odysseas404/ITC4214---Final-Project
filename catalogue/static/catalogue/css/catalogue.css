@@ -189,3 +189,84 @@
     margin-top: 45px;
     margin-bottom: 30px;
 }
+
+/* Fix camera cards on category/filter pages */
+
+.camera-card {
+    background-color: rgba(55, 55, 55, 0.88);
+    border: 1px solid rgba(255, 250, 242, 0.16);
+    border-radius: 18px;
+    padding: 22px;
+    height: auto;
+}
+
+.camera-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    background-color: rgba(245, 241, 232, 0.92);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+/* Fix Bootstrap carousel controls */
+
+.camera-carousel {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 250, 242, 0.14);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+}
+
+.camera-carousel-image {
+    width: 100%;
+    height: 520px;
+    object-fit: contain;
+    object-position: center;
+    background-color: rgba(245, 241, 232, 0.92);
+}
+
+/* Remove global button styling from carousel buttons */
+.camera-carousel .carousel-control-prev,
+.camera-carousel .carousel-control-next {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    width: 12%;
+    opacity: 1;
+}
+
+/* No yellow hover effect */
+.camera-carousel .carousel-control-prev:hover,
+.camera-carousel .carousel-control-next:hover {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Make arrows visible */
+.camera-carousel .carousel-control-prev-icon,
+.camera-carousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    padding: 22px;
+    background-size: 55%;
+}
+
+/* Smaller product images inside camera cards */
+
+.camera-card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    background-color: rgba(245, 241, 232, 0.92);
+    border-radius: 14px;
+    padding: 35px;
+    margin-bottom: 18px;
+}

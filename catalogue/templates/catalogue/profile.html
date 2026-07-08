@@ -2,7 +2,7 @@
 
 {% block catalogue_content %}
 
-<h1>My Profile</h1>
+<h1>Profile Details</h1>
 
 <p><strong>Username:</strong> {{ user.username }}</p>
 <p><strong>First name:</strong> {{ user.first_name }}</p>
@@ -11,14 +11,8 @@
 <p><strong>Date joined:</strong> {{ user.date_joined }}</p>
 
 <p>
-    <a href="{% url 'catalogue:edit_profile' %}">
+    <a href="{% url 'catalogue:edit_profile' %}" class="btn">
         Edit profile
-    </a>
-</p>
-
-<p>
-    <a href="{% url 'catalogue:dashboard' %}">
-        Back to dashboard
     </a>
 </p>
 
