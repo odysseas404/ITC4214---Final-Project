@@ -2,32 +2,24 @@
 
 {% block catalogue_content %}
 
-<div class="about-wrapper">
+<div class="glass-card about-wrapper">
 
-    <div class="card about-card">
+    <h1>About Escapism</h1>
 
-        <div class="card-body">
+    <p>
+        Escapism is a film camera borrowing platform for travellers.
+        Users can browse available analogue cameras, add cameras to their
+        Borrow Basket, and submit a request to borrow them for a trip.
+    </p>
 
-            <h1 class="card-title">About Escapism</h1>
+    <p>
+        After the trip, users return the camera by post. Selected travel photos
+        can later be displayed on the website as part of a shared travel gallery.
+    </p>
 
-            <p class="card-text">
-                Escapism is a film camera borrowing platform for travellers.
-                Users can browse available analogue cameras, add cameras to their
-                Borrow Basket, and submit a request to borrow them for a trip.
-            </p>
-
-            <p class="card-text">
-                After the trip, users return the camera by post. Selected travel photos
-                can later be displayed on the website as part of a shared travel gallery.
-            </p>
-
-            <a href="{% url 'catalogue:home' %}" class="btn">
-                Browse cameras
-            </a>
-
-        </div>
-
-    </div>
+    <a href="{% url 'catalogue:home' %}" class="btn">
+        Browse cameras
+    </a>
 
 </div>
 

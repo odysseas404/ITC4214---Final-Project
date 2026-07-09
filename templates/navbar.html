@@ -18,13 +18,13 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'catalogue:home' %}">
+                    <a class="btn nav-button" href="{% url 'catalogue:home' %}">
                         Home
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'catalogue:about' %}">
+                    <a class="btn nav-button" href="{% url 'catalogue:about' %}">
                         About
                     </a>
                 </li>
@@ -32,19 +32,19 @@
                 {% if user.is_authenticated %}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'catalogue:dashboard' %}">
+                        <a class="btn nav-button" href="{% url 'catalogue:dashboard' %}">
                             Dashboard
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'catalogue:profile' %}">
+                        <a class="btn nav-button" href="{% url 'catalogue:profile' %}">
                             Profile
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'catalogue:borrow_basket' %}">
+                        <a class="btn nav-button" href="{% url 'catalogue:borrow_basket' %}">
                             Borrow Basket
                         </a>
                     </li>
@@ -52,7 +52,7 @@
                     <li class="nav-item">
                         <form method="post" action="{% url 'logout' %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-light btn-sm ms-2">
+                            <button type="submit" class="btn ms-2">
                                 Logout
                             </button>
                         </form>
@@ -61,13 +61,13 @@
                 {% else %}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">
+                        <a class="btn nav-button" href="{% url 'login' %}">
                             Login
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'catalogue:register' %}">
+                        <a class="btn nav-button" href="{% url 'catalogue:register' %}">
                             Register
                         </a>
                     </li>

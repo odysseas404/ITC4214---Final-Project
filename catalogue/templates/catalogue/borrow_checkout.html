@@ -2,34 +2,38 @@
 
 {% block catalogue_content %}
 
-<h1>Confirm Borrow Request</h1>
+<div class="glass-card">
 
-<h2>Cameras in your basket</h2>
+    <h1>Confirm Borrow Request</h1>
 
-{% for camera in cameras %}
+    <h2>Cameras in your basket</h2>
 
-    <p>
-        <strong>{{ camera.name }}</strong> — {{ camera.manufacturer }}
-    </p>
+    {% for camera in cameras %}
+        <p>
+            <span class="info-label">{{ camera.name }}</span> — {{ camera.manufacturer }}
+        </p>
+    {% endfor %}
 
-{% endfor %}
+    <hr>
 
-<h2>Trip Information</h2>
+    <h2>Trip Information</h2>
 
-<form method="post">
-    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.as_p }}
 
-    <button type="submit">
-        Submit Borrow Request
-    </button>
-</form>
+        <div class="button-row">
+            <button type="submit" class="btn">
+                Submit Borrow Request
+            </button>
 
-<p>
-    <a href="{% url 'catalogue:borrow_basket' %}">
-        Back to basket
-    </a>
-</p>
+            <a href="{% url 'catalogue:borrow_basket' %}" class="btn">
+                Back to basket
+            </a>
+        </div>
+    </form>
+
+</div>
 
 {% endblock %}

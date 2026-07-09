@@ -2,54 +2,62 @@
 
 {% block catalogue_content %}
 
-<h1>Borrow Basket</h1>
+<div class="glass-card">
 
-{% if cameras %}
+    <h1>Borrow Basket</h1>
 
-    {% for camera in cameras %}
+    {% if cameras %}
 
-        <div class="camera-card">
+        <div class="camera-grid">
 
-            <h2>{{ camera.name }}</h2>
+            {% for camera in cameras %}
 
-            {% if camera.main_image %}
-                <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
-            {% endif %}
+                <div class="camera-card">
 
-            <p><strong>Manufacturer:</strong> {{ camera.manufacturer }}</p>
-            <p><strong>Film format:</strong> {{ camera.film_format }}</p>
-            <p><strong>Recommended for:</strong> {{ camera.recommended_trip_type }}</p>
+                    {% if camera.main_image %}
+                        <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
+                    {% endif %}
 
-            <form method="post" action="{% url 'catalogue:remove_from_borrow_basket' camera.id %}">
-                {% csrf_token %}
+                    <h2>{{ camera.name }}</h2>
 
-                <button type="submit">
-                    Remove
-                </button>
-            </form>
+                    <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
+                    <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+                    <p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
+
+                    <form method="post" action="{% url 'catalogue:remove_from_borrow_basket' camera.id %}">
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn">
+                            Remove
+                        </button>
+                    </form>
+
+                </div>
+
+            {% endfor %}
 
         </div>
 
-        <hr>
+        <div class="button-row mt-4">
+            <a href="{% url 'catalogue:borrow_checkout' %}" class="btn">
+                Continue to Borrow Request
+            </a>
 
-    {% endfor %}
+            <a href="{% url 'catalogue:home' %}" class="btn">
+                Browse more cameras
+            </a>
+        </div>
 
-    <p>
-        <a href="{% url 'catalogue:borrow_checkout' %}" class="btn">
-            Continue to Borrow Request
-        </a>
-    </p>
+    {% else %}
 
-{% else %}
+        <p>Your borrow basket is empty.</p>
 
-    <p>Your borrow basket is empty.</p>
-
-    <p>
         <a href="{% url 'catalogue:home' %}" class="btn">
             Browse cameras
         </a>
-    </p>
 
-{% endif %}
+    {% endif %}
+
+</div>
 
 {% endblock %}

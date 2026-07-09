@@ -3,15 +3,18 @@ body {
     color: #f4efe7;
     font-family: Arial, Helvetica, sans-serif;
 
-    background: linear-gradient(
-    rgba(10, 10, 10, 0.45),
-    rgba(10, 10, 10, 0.45)
-    ),
-    url("/static/images/site-background.webp");
+    background-image:
+        linear-gradient(
+            rgba(10, 10, 10, 0.35),
+            rgba(10, 10, 10, 0.35)
+        ),
+        url("/static/images/site-background.webp");
 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-size: 100% auto;
+    background-position: center -100px;
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    background-color: #000000;
 }
 
 main {
@@ -285,4 +288,223 @@ input[type="submit"]:hover {
 
 .profile-button-row {
     margin-top: 35px;
+}
+
+/* Reusable glass-style card */
+
+.glass-card {
+    background: linear-gradient(
+    rgba(10, 10, 10, 0.35),
+    rgba(10, 10, 10, 0.35)
+    );
+    padding: 80px 40px;
+    border-radius: 24px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+}
+
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4 {
+    color: #ffffff;
+}
+
+.glass-card p,
+.glass-card li {
+    color: #f1e9dc;
+}
+
+.glass-card .info-label {
+    color: #d8b45a;
+    font-weight: 700;
+}
+
+.dashboard-inner-card {
+    background-color: rgba(40, 40, 40, 0.76);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Final global button override */
+
+.btn,
+.btn-dark,
+.btn-secondary,
+.btn-outline-dark,
+button,
+input[type="submit"] {
+    background-color: #d8b45a !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 28px !important;
+    padding: 10px 24px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+.btn:hover,
+.btn-dark:hover,
+.btn-secondary:hover,
+.btn-outline-dark:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: #f0cc70 !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Navbar links should also look consistent when styled as buttons */
+
+.navbar .btn,
+.navbar button {
+    background-color: #d8b45a !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+.navbar .btn:hover,
+.navbar button:hover {
+    background-color: #f0cc70 !important;
+    color: #000000 !important;
+}
+.nav-button {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 30px;
+}
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Smaller centered navbar buttons */
+
+.navbar .container {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 30px;
+}
+
+.navbar-collapse {
+    justify-content: center;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+
+/* Smaller navbar buttons only */
+
+.navbar .nav-button,
+.navbar .btn,
+.navbar button {
+    padding: 7px 18px !important;
+    font-size: 15px !important;
+    border-radius: 22px !important;
+    min-width: auto !important;
+}
+
+/* Logo size */
+
+.site-logo {
+    height: 42px;
+    width: auto;
+}
+
+/* Navbar layout: logo left, menu right */
+
+.navbar .container {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Logo stays left */
+
+.navbar-brand {
+    position: static;
+    margin-right: auto;
+}
+
+/* Sandwich menu goes right */
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+/* Desktop menu aligns right */
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+/* Navbar buttons align right */
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+}
+
+/* Smaller navbar buttons */
+
+.navbar .nav-button,
+.navbar .btn,
+.navbar button {
+    padding: 7px 18px !important;
+    font-size: 15px !important;
+    border-radius: 22px !important;
+    min-width: auto !important;
+}
+
+/* Mobile dropdown menu aligned right */
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        text-align: right;
+        margin-top: 15px;
+    }
+
+    .navbar-nav {
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .navbar .nav-item {
+        width: auto;
+    }
 }

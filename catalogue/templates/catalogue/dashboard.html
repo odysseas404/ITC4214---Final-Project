@@ -2,50 +2,66 @@
 
 {% block catalogue_content %}
 
-<h1>Borrow Requests</h1>
+<div class="glass-card">
 
-{% if borrow_requests %}
+    <h2>Borrow Requests</h2>
 
-    {% for request_item in borrow_requests %}
+    {% if borrow_requests %}
 
-        <div>
-            <h3>{{ request_item.camera.name }}</h3>
+        {% for request_item in borrow_requests %}
 
-            <p><strong>Destination:</strong> {{ request_item.trip_destination }}</p>
-            <p><strong>Trip start:</strong> {{ request_item.trip_start_date }}</p>
-            <p><strong>Trip end:</strong> {{ request_item.trip_end_date }}</p>
-            <p><strong>Status:</strong> {{ request_item.status }}</p>
-            <p><strong>Submitted:</strong> {{ request_item.created_at }}</p>
+                <h3>{{ request_item.camera.name }}</h3>
+
+                <p><span class="info-label">Destination:</span> {{ request_item.trip_destination }}</p>
+                <p><span class="info-label">Trip start:</span> {{ request_item.trip_start_date }}</p>
+                <p><span class="info-label">Trip end:</span> {{ request_item.trip_end_date }}</p>
+                <p><span class="info-label">Status:</span> {{ request_item.status }}</p>
+                <p><span class="info-label">Submitted:</span> {{ request_item.created_at }}</p>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>You have not submitted any borrow requests yet.</p>
+
+    {% endif %}
+
+</div>
+
+<div class="glass-card">
+
+    <h2>Liked Cameras</h2>
+
+    {% if liked_cameras %}
+
+        <div class="camera-grid">
+
+            {% for camera in liked_cameras %}
+
+                <div class="camera-card">
+
+                    {% if camera.main_image %}
+                        <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
+                    {% endif %}
+
+                    <h3>{{ camera.name }}</h3>
+
+                    <a href="{% url 'catalogue:camera_detail' camera.id %}" class="btn">
+                        View details
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
         </div>
 
-        <hr>
+    {% else %}
 
-    {% endfor %}
+        <p>You have not liked any cameras yet.</p>
 
-{% else %}
+    {% endif %}
 
-    <p>You have not submitted any borrow requests yet.</p>
-
-{% endif %}
-
-<h2>Liked Cameras</h2>
-
-{% if liked_cameras %}
-
-    {% for camera in liked_cameras %}
-
-        <p>
-            <a href="{% url 'catalogue:camera_detail' camera.id %}" class="btn">
-                {{ camera.name }}
-            </a>
-        </p>
-
-    {% endfor %}
-
-{% else %}
-
-    <p>You have not liked any cameras yet.</p>
-
-{% endif %}
+</div>
 
 {% endblock %}

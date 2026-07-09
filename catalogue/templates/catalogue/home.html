@@ -3,11 +3,10 @@
 {% block catalogue_content %}
 
 <div class="hero-section">
-    <h1>Borrow a Film Camera for Your Next Trip</h1>
+    <h1>Welcome to Escapism</h1>
 
     <p>
-        Escapism lets travellers borrow analogue cameras for free,
-        take them on real journeys, and return them with stories captured on film.
+        Escapism is a platform that allows you to explore and borrow a wide range of cameras for your photography adventures. Whether you're a professional photographer or an enthusiast, we have the perfect camera for you.
     </p>
 
     <a href="#camera-list" class="btn btn-light mt-3">
@@ -15,7 +14,7 @@
     </a>
 </div>
 
-<div class="category-box">
+<div class="glass-card category-section">
     <h2>Browse by Category</h2>
 
     {% for parent in parent_categories %}
@@ -43,7 +42,7 @@
     {% endfor %}
 </div>
 
-<div class="filter-box">
+<div class="glass-card filter-section">
     <h2>Search and Filter</h2>
 
     <form method="get" class="row g-3">
@@ -137,11 +136,13 @@
 <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
 <p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
 
+            <div class="card-button-row">
             <a 
                 href="{% url 'catalogue:camera_detail' camera.id %}" 
                 class="btn btn-dark">
                 View details
             </a>
+        </div>
 
         </div>
 

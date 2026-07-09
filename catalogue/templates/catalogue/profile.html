@@ -2,18 +2,23 @@
 
 {% block catalogue_content %}
 
-<h1>Profile Details</h1>
+<div class="glass-card">
 
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>First name:</strong> {{ user.first_name }}</p>
-<p><strong>Last name:</strong> {{ user.last_name }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Date joined:</strong> {{ user.date_joined }}</p>
+    <h1>My Profile</h1>
 
-<p>
-    <a href="{% url 'catalogue:edit_profile' %}" class="btn mt-4">
-        Edit profile
-    </a>
-</p>
+    <p><span class="info-label">Username:</span> {{ user.username }}</p>
+    <p><span class="info-label">First name:</span> {{ user.first_name }}</p>
+    <p><span class="info-label">Last name:</span> {{ user.last_name }}</p>
+    <p><span class="info-label">Email:</span> {{ user.email }}</p>
+    <p><span class="info-label">Date joined:</span> {{ user.date_joined }}</p>
+
+    <div class="button-row">
+        <a href="{% url 'catalogue:edit_profile' %}" class="btn mt-4">
+            Edit profile
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}
