@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
-
-<link rel="stylesheet" href="{% static 'catalogue/css/catalogue.css' %}">
-
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'catalogue/css/catalogue.css' %}">
 {% endblock %}
 
+{% block content %}
+    {% block catalogue_content %}
+    {% endblock %}
 {% endblock %}

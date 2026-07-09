@@ -1,0 +1,27 @@
+/* =========================
+   Engagement like button
+========================= */
+
+.heart-button {
+    border: none !important;
+    background-color: transparent !important;
+    color: #e63946 !important;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transition: transform 0.2s ease;
+}
+
+.heart-button:hover {
+    background-color: transparent !important;
+    color: #e63946 !important;
+    transform: scale(1.1);
+}
+
+.like-count {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fffaf2;
+}

@@ -1,11 +1,14 @@
-/* Hero section */
+/* =========================
+   Catalogue hero section
+========================= */
 
 .hero-section {
-    background: linear-gradient(
-    rgba(10, 10, 10, 0.35),
-    rgba(10, 10, 10, 0.35)
-    ),
-    url("/static/images/hero-camera.webp");
+    background:
+        linear-gradient(
+            rgba(10, 10, 10, 0.35),
+            rgba(10, 10, 10, 0.35)
+        ),
+        url("/static/images/hero-camera.webp");
 
     background-size: cover;
     background-position: center;
@@ -28,14 +31,14 @@
     color: #f4efe7;
 }
 
-/* Category, filters, recommendation sections */
+
+/* =========================
+   Catalogue sections
+========================= */
 
 .category-box,
 .filter-box,
-.recommendation-section,
-.section-box,
-.about-card,
-.dark-card {
+.recommendation-section {
     background-color: rgba(25, 25, 25, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 24px;
@@ -55,63 +58,18 @@
     color: #d8b45a;
 }
 
-/* Camera cards */
-
-.camera-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 26px;
-}
-
-.camera-card {
-    background-color: rgba(55, 55, 55, 0.88);
-    border: 1px solid rgba(255, 250, 242, 0.14);
-    border-radius: 18px;
-    padding: 18px;
-    height: auto;
-    min-height: 100%;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.camera-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.48);
-}
-
-.camera-card-image {
-    width: 100%;
-    height: 260px;
-    object-fit: contain;
-    background-color: rgba(20, 20, 20, 0.95);
-    border-radius: 14px;
-    margin-bottom: 15px;
-    padding: 8px;
-}
-
-.camera-card h2,
-.camera-card h3 {
-    color: #fffaf2;
-}
-
-.camera-card p {
-    color: #e8ded0;
-    margin-bottom: 8px;
-}
-
-/* Camera detail page */
+/* =========================
+   Camera detail page
+========================= */
 
 .camera-detail-top {
     margin-bottom: 40px;
 }
 
 .camera-carousel {
-    background-color: rgba(25, 25, 25, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 24px;
+    background-color: rgba(20, 20, 20, 0.95);
     overflow: hidden;
     box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(4px);
 }
 
 .camera-carousel-image {
@@ -122,7 +80,11 @@
     background-color: rgba(245, 241, 232, 0.92);
 }
 
-/* Keep arrows, remove button styling */
+
+/* =========================
+   Bootstrap carousel controls
+========================= */
+
 .camera-carousel .carousel-control-prev,
 .camera-carousel .carousel-control-next {
     background: transparent !important;
@@ -133,19 +95,10 @@
     opacity: 1;
 }
 
-.camera-carousel .carousel-control-prev:hover,
-.camera-carousel .carousel-control-next:hover {
-    background: transparent !important;
-    border: none !important;
-}
+/* =========================
+   Camera detail actions area
+========================= */
 
-.camera-carousel .carousel-control-prev-icon,
-.camera-carousel .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.55);
-    border-radius: 50%;
-    padding: 22px;
-    background-size: 55%;
-}
 .camera-actions {
     background-color: rgba(20, 20, 20, 0.9);
     border: 1px solid rgba(255, 250, 242, 0.14);
@@ -159,35 +112,10 @@
     gap: 10px;
 }
 
-/* Like button */
 
-.heart-button {
-    border: none;
-    background-color: transparent;
-    color: #e63946;
-    font-size: 34px;
-    line-height: 1;
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.2s ease;
-}
-
-.heart-button:hover {
-    transform: scale(1.1);
-}
-
-.like-count {
-    font-size: 18px;
-    font-weight: 700;
-    color: #fffaf2;
-}
-
-/* Labels and messages */
-
-.info-label {
-    color: #c8a97e;
-    font-weight: 700;
-}
+/* =========================
+   Catalogue messages / spacing
+========================= */
 
 .empty-message {
     background-color: rgba(20, 20, 20, 0.88);
@@ -197,126 +125,92 @@
     border-radius: 14px;
 }
 
-/* Back button spacing */
-
 .back-button-wrapper {
     margin-top: 45px;
     margin-bottom: 30px;
 }
 
-/* Fix camera cards on category/filter pages */
+/* =========================
+   Final camera card layout
+========================= */
 
-.camera-card {
-    background-color: rgba(25, 25, 25, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 24px;
-    padding: 28px;
-    height: auto;
-    min-height: 100%;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(4px);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.camera-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 26px !important;
+    align-items: stretch !important;
+    width: 100% !important;
 }
 
-.camera-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+.camera-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 520px !important;
+    height: 100% !important;
+
+    background-color: rgba(25, 25, 25, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 24px !important;
+    padding: 22px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(4px);
+}
+
+.camera-card-image {
+    width: 100% !important;
+    height: 190px !important;
+    max-height: 190px !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    background-color: rgb(255, 255, 255) !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    margin-bottom: 18px !important;
+
+    display: block !important;
 }
 
 .camera-card h2,
 .camera-card h3 {
-    color: #ffffff;
+    font-size: 21px !important;
+    color: #ffffff !important;
+    margin-bottom: 12px !important;
 }
 
 .camera-card p {
-    color: #f1e9dc;
-}
-
-.camera-card-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    height: auto;
-    object-fit: contain;
-    object-position: center;
-    background-color: rgba(245, 241, 232, 0.92);
-    border-radius: 18px;
-    padding: 45px;
-    margin-bottom: 20px;
-}
-
-/* Fix Bootstrap carousel controls */
-
-.camera-carousel {
-    background-color: rgba(20, 20, 20, 0.95);
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 250, 242, 0.14);
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-}
-
-.camera-carousel-image {
-    width: 100%;
-    height: 520px;
-    object-fit: contain;
-    object-position: center;
-    background-color: rgba(245, 241, 232, 0.92);
-}
-
-/* Remove global button styling from carousel buttons */
-.camera-carousel .carousel-control-prev,
-.camera-carousel .carousel-control-next {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    width: 12%;
-    opacity: 1;
-}
-
-/* No yellow hover effect */
-.camera-carousel .carousel-control-prev:hover,
-.camera-carousel .carousel-control-next:hover {
-    background: transparent !important;
-    border: none !important;
-}
-
-/* Make arrows visible */
-.camera-carousel .carousel-control-prev-icon,
-.camera-carousel .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.55);
-    border-radius: 50%;
-    padding: 22px;
-    background-size: 55%;
-}
-
-/* Smaller product images inside camera cards */
-
-.camera-card-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    height: auto;
-    object-fit: contain;
-    object-position: center;
-    background-color: rgba(245, 241, 232, 0.92);
-    border-radius: 14px;
-    padding: 35px;
-    margin-bottom: 18px;
-}
-
-.card-button-row {
-    margin-top: auto;
-    padding-top: 20px;
-}
-
-.camera-card {
-    height: 100%;
-    min-height: 550px;
-    display: flex;
-    flex-direction: column;
+    font-size: 15px !important;
+    color: #f1e9dc !important;
+    margin-bottom: 8px !important;
 }
 
 .camera-card .btn {
-    margin-top: auto;
-    align-self: flex-start;
-    margin-bottom: 10px;
+    margin-top: auto !important;
+    align-self: flex-start !important;
+}
+
+
+/* Tablet: 2 cards per row */
+@media (max-width: 991px) {
+    .camera-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+
+/* Mobile: 1 card per row */
+@media (max-width: 575px) {
+    .camera-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .camera-card-image {
+        height: 170px !important;
+        max-height: 170px !important;
+    }
 }

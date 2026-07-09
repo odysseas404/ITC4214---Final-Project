@@ -1,6 +1,6 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
 
-{% block catalogue_content %}
+{% block content %}
 
 <div class="glass-card">
 
@@ -13,10 +13,13 @@
     <p><span class="info-label">Date joined:</span> {{ user.date_joined }}</p>
 
     <div class="button-row">
-        <a href="{% url 'catalogue:edit_profile' %}" class="btn mt-4">
+        <a href="{% url 'accounts_app:edit_profile' %}" class="btn">
             Edit profile
         </a>
 
+        <a href="{% url 'accounts_app:dashboard' %}" class="btn">
+            Back to dashboard
+        </a>
     </div>
 
 </div>

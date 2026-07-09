@@ -1,3 +1,7 @@
+/* =========================
+   Global layout / background
+========================= */
+
 body {
     min-height: 100vh;
     color: #f4efe7;
@@ -21,7 +25,10 @@ main {
     min-height: 75vh;
 }
 
-/* Typography */
+
+/* =========================
+   Typography
+========================= */
 
 h1,
 h2,
@@ -31,7 +38,8 @@ h4 {
     font-weight: 700;
 }
 
-p {
+p,
+li {
     color: #e8ded0;
 }
 
@@ -39,78 +47,175 @@ a {
     text-decoration: none;
 }
 
-/* Navbar */
+.info-label {
+    color: #d8b45a;
+    font-weight: 700;
+}
+
+
+/* =========================
+   Navbar
+========================= */
 
 .navbar {
     background-color: rgba(15, 15, 15, 0.95) !important;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
+.navbar .container {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .navbar-brand {
-    font-weight: 700;
-    letter-spacing: 1px;
+    position: static;
+    margin-right: auto;
 }
 
-.nav-link {
-    color: #e8ded0 !important;
+.site-logo {
+    height: 42px;
+    width: auto;
 }
 
-.nav-link:hover {
-    color: #ffffff !important;
+.navbar-toggler {
+    margin-left: auto;
 }
 
-/* Buttons */
-
-.btn {
-    border-radius: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
+.navbar-collapse {
+    justify-content: flex-end;
 }
 
+.navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+}
+
+.nav-button {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+.btn,
 .btn-dark,
-.rounded-button {
-    background-color: #000000;
-    border-color: #000000;
-    color: #ffffff;
-    border-radius: 25px;
+.btn-secondary,
+.btn-outline-dark,
+button,
+input[type="submit"] {
+    background-color: #d8b45a !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 28px !important;
+    padding: 10px 24px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    display: inline-block;
 }
 
+.btn:hover,
 .btn-dark:hover,
-.rounded-button:hover {
-    background-color: #2f2f2f;
-    border-color: #2f2f2f;
-    color: #ffffff;
+.btn-secondary:hover,
+.btn-outline-dark:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: #f0cc70 !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.btn-secondary {
-    background-color: #2f2f2f;
-    border-color: #2f2f2f;
-    color: #ffffff;
+.navbar .nav-button,
+.navbar .btn,
+.navbar button {
+    padding: 7px 18px !important;
+    font-size: 15px !important;
+    border-radius: 22px !important;
+    min-width: auto !important;
 }
 
-.btn-outline-dark {
-    color: #fffaf2;
-    border-color: #fffaf2;
+
+/* =========================
+   Button rows
+========================= */
+
+.button-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 18px;
 }
 
-.btn-outline-dark:hover {
-    background-color: #fffaf2;
-    color: #111111;
+.profile-button-row {
+    margin-top: 35px;
 }
 
-/* Layout boxes */
 
+/* =========================
+   Reusable cards
+========================= */
+
+.glass-card,
 .section-box,
 .dark-card {
-    background-color: rgba(20, 20, 20, 0.88);
-    border: 1px solid rgba(255, 250, 242, 0.14);
-    padding: 28px;
-    border-radius: 18px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    background-color: rgba(25, 25, 25, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
 }
 
-/* Forms */
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.section-box h1,
+.section-box h2,
+.section-box h3,
+.section-box h4 {
+    color: #ffffff;
+}
+
+.glass-card p,
+.glass-card li,
+.section-box p,
+.section-box li {
+    color: #f1e9dc;
+}
+
+.dashboard-inner-card {
+    background-color: rgba(40, 40, 40, 0.76);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   Bootstrap card override
+========================= */
+
+.card {
+    background-color: rgba(55, 55, 55, 0.88);
+    color: #f4efe7;
+    border: 1px solid rgba(255, 250, 242, 0.16);
+}
+
+
+/* =========================
+   Forms
+========================= */
 
 .form-box {
     max-width: 650px;
@@ -146,94 +251,6 @@ form textarea:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
 }
 
-.button-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 18px;
-}
-
-/* About page */
-
-.about-wrapper {
-    max-width: 900px;
-    margin: 40px auto;
-}
-
-.about-card {
-    background-color: rgba(20, 20, 20, 0.9);
-    border: 1px solid rgba(255, 250, 242, 0.14);
-    border-radius: 22px;
-    padding: 20px;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
-}
-
-.about-card .card-title {
-    color: #fffaf2;
-    font-size: 42px;
-    margin-bottom: 22px;
-}
-
-.about-card .card-text {
-    color: #e8ded0;
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-.about-label {
-    color: #c8a97e;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-/* Footer */
-
-footer {
-    background-color: rgba(15, 15, 15, 0.95);
-    color: #f4efe7;
-    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.45);
-}
-
-/* Global button style */
-
-.btn,
-button,
-input[type="submit"] {
-    background-color: #d8b45a;
-    color: #000000;
-    border: 2px solid #000000;
-    border-radius: 28px;
-    padding: 10px 24px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn:hover,
-button:hover,
-input[type="submit"]:hover {
-    background-color: #f0cc70;
-    color: #000000;
-    border-color: #000000;
-}
-
-/* Keep buttons next to each other */
-
-.button-row {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 18px;
-}
-
-.site-logo {
-    height: 48px;
-    width: auto;
-}
-
 .form-group {
     margin-bottom: 22px;
 }
@@ -254,244 +271,31 @@ input[type="submit"]:hover {
     margin-top: 8px;
 }
 
-.btn,
-.btn-dark,
-.btn-secondary,
-.btn-outline-dark,
-button,
-input[type="submit"] {
-    background-color: #d8b45a !important;
-    color: #000000 !important;
-    border: 2px solid #000000 !important;
-    border-radius: 28px !important;
-    padding: 10px 24px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
+
+/* =========================
+   About page
+========================= */
+
+.about-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
 }
 
-.btn:hover,
-.btn-dark:hover,
-.btn-secondary:hover,
-.btn-outline-dark:hover,
-button:hover,
-input[type="submit"]:hover {
-    background-color: #f0cc70 !important;
-    color: #000000 !important;
-    border-color: #000000 !important;
-}
 
-.card {
-    background-color: rgba(55, 55, 55, 0.88);
+/* =========================
+   Footer
+========================= */
+
+footer {
+    background-color: rgba(15, 15, 15, 0.95);
     color: #f4efe7;
-    border: 1px solid rgba(255, 250, 242, 0.16);
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.45);
 }
 
-.profile-button-row {
-    margin-top: 35px;
-}
 
-/* Reusable glass-style card */
-
-.glass-card {
-    background: linear-gradient(
-    rgba(10, 10, 10, 0.35),
-    rgba(10, 10, 10, 0.35)
-    );
-    padding: 80px 40px;
-    border-radius: 24px;
-    margin-bottom: 35px;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
-}
-
-.glass-card h1,
-.glass-card h2,
-.glass-card h3,
-.glass-card h4 {
-    color: #ffffff;
-}
-
-.glass-card p,
-.glass-card li {
-    color: #f1e9dc;
-}
-
-.glass-card .info-label {
-    color: #d8b45a;
-    font-weight: 700;
-}
-
-.dashboard-inner-card {
-    background-color: rgba(40, 40, 40, 0.76);
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-/* Final global button override */
-
-.btn,
-.btn-dark,
-.btn-secondary,
-.btn-outline-dark,
-button,
-input[type="submit"] {
-    background-color: #d8b45a !important;
-    color: #000000 !important;
-    border: none !important;
-    border-radius: 28px !important;
-    padding: 10px 24px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    box-shadow: none !important;
-}
-
-.btn:hover,
-.btn-dark:hover,
-.btn-secondary:hover,
-.btn-outline-dark:hover,
-button:hover,
-input[type="submit"]:hover {
-    background-color: #f0cc70 !important;
-    color: #000000 !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Navbar links should also look consistent when styled as buttons */
-
-.navbar .btn,
-.navbar button {
-    background-color: #d8b45a !important;
-    color: #000000 !important;
-    border: none !important;
-}
-
-.navbar .btn:hover,
-.navbar button:hover {
-    background-color: #f0cc70 !important;
-    color: #000000 !important;
-}
-.nav-button {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navbar-brand {
-    position: absolute;
-    left: 30px;
-}
-
-.navbar-collapse {
-    justify-content: center;
-}
-
-.navbar-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Smaller centered navbar buttons */
-
-.navbar .container {
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.navbar-brand {
-    position: absolute;
-    left: 30px;
-}
-
-.navbar-collapse {
-    justify-content: center;
-}
-
-.navbar-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-}
-
-/* Smaller navbar buttons only */
-
-.navbar .nav-button,
-.navbar .btn,
-.navbar button {
-    padding: 7px 18px !important;
-    font-size: 15px !important;
-    border-radius: 22px !important;
-    min-width: auto !important;
-}
-
-/* Logo size */
-
-.site-logo {
-    height: 42px;
-    width: auto;
-}
-
-/* Navbar layout: logo left, menu right */
-
-.navbar .container {
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-/* Logo stays left */
-
-.navbar-brand {
-    position: static;
-    margin-right: auto;
-}
-
-/* Sandwich menu goes right */
-
-.navbar-toggler {
-    margin-left: auto;
-}
-
-/* Desktop menu aligns right */
-
-.navbar-collapse {
-    justify-content: flex-end;
-}
-
-/* Navbar buttons align right */
-
-.navbar-nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
-    width: auto;
-}
-
-/* Smaller navbar buttons */
-
-.navbar .nav-button,
-.navbar .btn,
-.navbar button {
-    padding: 7px 18px !important;
-    font-size: 15px !important;
-    border-radius: 22px !important;
-    min-width: auto !important;
-}
-
-/* Mobile dropdown menu aligned right */
+/* =========================
+   Responsive navbar
+========================= */
 
 @media (max-width: 991px) {
     .navbar-collapse {
@@ -507,4 +311,89 @@ input[type="submit"]:hover {
     .navbar .nav-item {
         width: auto;
     }
+}
+
+/* =========================
+   Reusable glass cards
+========================= */
+
+.glass-card,
+.section-box,
+.dark-card,
+.about-card,
+.category-box,
+.filter-box,
+.recommendation-section {
+    background-color: rgba(25, 25, 25, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.section-box h1,
+.section-box h2,
+.section-box h3,
+.section-box h4,
+.dark-card h1,
+.dark-card h2,
+.dark-card h3,
+.dark-card h4,
+.about-card h1,
+.about-card h2,
+.about-card h3,
+.about-card h4,
+.category-box h1,
+.category-box h2,
+.category-box h3,
+.category-box h4,
+.filter-box h1,
+.filter-box h2,
+.filter-box h3,
+.filter-box h4,
+.recommendation-section h1,
+.recommendation-section h2,
+.recommendation-section h3,
+.recommendation-section h4 {
+    color: #ffffff;
+}
+
+.glass-card p,
+.glass-card li,
+.section-box p,
+.section-box li,
+.dark-card p,
+.dark-card li,
+.about-card p,
+.about-card li,
+.category-box p,
+.category-box li,
+.filter-box p,
+.filter-box li,
+.recommendation-section p,
+.recommendation-section li {
+    color: #f1e9dc;
+}
+
+.glass-card .info-label,
+.section-box .info-label,
+.dark-card .info-label,
+.about-card .info-label,
+.category-box .info-label,
+.filter-box .info-label,
+.recommendation-section .info-label {
+    color: #d8b45a;
+    font-weight: 700;
+}
+
+.dashboard-inner-card {
+    background-color: rgba(40, 40, 40, 0.76);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

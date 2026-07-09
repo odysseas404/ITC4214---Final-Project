@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'borrowing',
     'custom_admin_panel',
     'engagement',
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,6 +128,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-LOGIN_REDIRECT_URL = "catalogue:dashboard"
+LOGIN_REDIRECT_URL = "accounts_app:dashboard"
 LOGOUT_REDIRECT_URL = "catalogue:home"
-LOGIN_URL = "login"
+LOGIN_URL = "accounts_app:login"

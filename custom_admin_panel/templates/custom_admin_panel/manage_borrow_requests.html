@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h1>Manage Borrow Requests</h1>
+
+    {% for borrow_request in borrow_requests %}
+
+        <div class="glass-card dashboard-inner-card">
+
+            <h2>{{ borrow_request.camera.name }}</h2>
+
+            <p><span class="info-label">User:</span> {{ borrow_request.user.username }}</p>
+            <p><span class="info-label">Destination:</span> {{ borrow_request.trip_destination }}</p>
+            <p><span class="info-label">Trip start:</span> {{ borrow_request.trip_start_date }}</p>
+            <p><span class="info-label">Trip end:</span> {{ borrow_request.trip_end_date }}</p>
+            <p><span class="info-label">Status:</span> {{ borrow_request.status }}</p>
+
+            <div class="button-row">
+                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Approved' %}" class="btn">
+                    Approve
+                </a>
+
+                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Rejected' %}" class="btn">
+                    Reject
+                </a>
+
+                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Borrowed' %}" class="btn">
+                    Mark Borrowed
+                </a>
+
+                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Returned' %}" class="btn">
+                    Mark Returned
+                </a>
+
+                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Completed' %}" class="btn">
+                    Complete
+                </a>
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <p>No borrow requests found.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,6 +1,7 @@
-const likeButton = document.getElementById("like-button");
+const likeButton = document.querySelector("#like-button");
+const likeCount = document.querySelector("#like-count");
 
-if (likeButton) {
+if (likeButton && likeCount) {
     likeButton.addEventListener("click", function () {
         const likeUrl = this.dataset.likeUrl;
 
@@ -16,12 +17,12 @@ if (likeButton) {
         })
         .then(function (data) {
             if (data.liked) {
-    likeButton.textContent = "♥";
-} else {
-    likeButton.textContent = "♡";
-}
+                likeButton.textContent = "♥";
+            } else {
+                likeButton.textContent = "♡";
+            }
 
-            document.getElementById("like-count").textContent = data.like_count;
+            likeCount.textContent = data.like_count;
         });
     });
 }

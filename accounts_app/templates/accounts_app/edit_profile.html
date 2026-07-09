@@ -1,6 +1,6 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
 
-{% block catalogue_content %}
+{% block content %}
 
 <div class="glass-card form-box">
 
@@ -16,7 +16,7 @@
                 Save changes
             </button>
 
-            <a href="{% url 'catalogue:profile' %}" class="btn">
+            <a href="{% url 'accounts_app:profile' %}" class="btn">
                 Back to profile
             </a>
         </div>

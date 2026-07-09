@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h1>Manage Cameras</h1>
+
+    {% for camera in cameras %}
+
+        <div class="glass-card dashboard-inner-card">
+            <h2>{{ camera.name }}</h2>
+
+            <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
+            <p><span class="info-label">Category:</span> {{ camera.category }}</p>
+            <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+            <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
+            <p><span class="info-label">Available:</span> {{ camera.available }}</p>
+        </div>
+
+    {% empty %}
+
+        <p>No cameras found.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

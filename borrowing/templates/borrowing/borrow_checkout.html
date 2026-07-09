@@ -4,9 +4,9 @@
 
 <div class="glass-card">
 
-    <h1>Confirm Borrow Request</h1>
+    <h1>Place your Borrow Request</h1>
 
-    <h2>Cameras in your basket</h2>
+    <p>An administrator will review your request and contact you regarding the next steps.</p>
 
     {% for camera in cameras %}
         <p>
@@ -25,10 +25,10 @@
 
         <div class="button-row">
             <button type="submit" class="btn">
-                Submit Borrow Request
+                Submit
             </button>
 
-            <a href="{% url 'catalogue:borrow_basket' %}" class="btn">
+            <a href="{% url 'borrowing:borrow_basket' %}" class="btn">
                 Back to basket
             </a>
         </div>

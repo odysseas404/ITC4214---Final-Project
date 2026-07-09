@@ -58,7 +58,7 @@
                 <button 
                     id="like-button" 
                     class="heart-button"
-                    data-like-url="{% url 'catalogue:toggle_like' camera.id %}">
+                    data-like-url="{% url 'engagement:toggle_like' camera.id %}">
                     {% if user_liked %}
                         ♥
                     {% else %}
@@ -80,7 +80,7 @@
 
             {% if camera.available %}
 
-                <form method="post" action="{% url 'catalogue:add_to_borrow_basket' camera.id %}" class="d-inline">
+                <form method="post" action="{% url 'borrowing:add_to_borrow_basket' camera.id %}" class="d-inline">
                     {% csrf_token %}
 
                     <button type="submit" class="btn btn-dark ms-3">
@@ -176,6 +176,6 @@
     </a>
 </div>
 
-<script src="{% static 'catalogue/js/likes.js' %}"></script>
+<script src="{% static 'engagement/js/likes.js' %}"></script>
 
 {% endblock %}
