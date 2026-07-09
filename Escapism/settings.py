@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'borrowing',
     'custom_admin_panel',
     'engagement',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

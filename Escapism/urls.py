@@ -6,7 +6,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+
     path("", include("catalogue.urls")),
+    path("borrow/", include("borrowing.urls")),
+    path("user/", include("accounts_app.urls")),
+    path("engagement/", include("engagement.urls")),
+    path("custom-admin/", include("custom_admin_panel.urls")),
+
     path("accounts/", include("django.contrib.auth.urls")),
 ]
 
