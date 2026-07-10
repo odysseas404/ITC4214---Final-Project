@@ -1,11 +1,20 @@
+<!--- This is the base template for the catalogue app. All catalogue templates extend this template. -->  
+<!--- Firstly, this file extends the global base template -->
 {% extends "base.html" %}
+
+<!--- Load the static files -->
 {% load static %}
 
+<!--- Additional CSS for the catalogue app -->
 {% block extra_css %}
+    <!--- Call the parent block to include any CSS defined in the base template -->
     {{ block.super }}
+    <!--- Catalogue-specific CSS -->
     <link rel="stylesheet" href="{% static 'catalogue/css/catalogue.css' %}">
+
 {% endblock %}
 
+<!--- Main content block for the catalogue app -->
 {% block content %}
     {% block catalogue_content %}
     {% endblock %}
