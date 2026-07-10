@@ -30,8 +30,8 @@ class UserUpdateForm(forms.ModelForm):
 
 class TravellerRegistrationForm(UserCreationForm):
     username = forms.CharField(
-        max_length=15,
-        help_text="Maximum 15 characters.",
+        max_length=150,
+        help_text="Maximum 150 characters.",
         widget=forms.TextInput(attrs={
             "placeholder": "Choose a username",
             "maxlength": "15",

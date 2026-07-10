@@ -12,7 +12,7 @@ body {
             rgba(10, 10, 10, 0.35),
             rgba(10, 10, 10, 0.35)
         ),
-        url("/static/images/site-background.webp");
+        url("/static/images/background.webp");
 
     background-size: 100% auto;
     background-position: center -100px;
@@ -58,7 +58,7 @@ a {
 ========================= */
 
 .navbar {
-    background-color: rgba(15, 15, 15, 0.95) !important;
+    background-color: rgb(0, 0, 0) !important;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
 }
 
@@ -111,8 +111,8 @@ a {
 .btn-outline-dark,
 button,
 input[type="submit"] {
-    background-color: #d8b45a !important;
-    color: #000000 !important;
+    background-color: #6a8445 !important;
+    color: #ffffff !important;
     border: none !important;
     border-radius: 28px !important;
     padding: 10px 24px !important;
@@ -128,8 +128,8 @@ input[type="submit"] {
 .btn-outline-dark:hover,
 button:hover,
 input[type="submit"]:hover {
-    background-color: #f0cc70 !important;
-    color: #000000 !important;
+    background-color: #8bad5b !important;
+    color: #ffffff !important;
     border: none !important;
     box-shadow: none !important;
 }
@@ -287,11 +287,10 @@ form textarea:focus {
 ========================= */
 
 footer {
-    background-color: rgba(15, 15, 15, 0.95);
-    color: #f4efe7;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
     box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.45);
 }
-
 
 /* =========================
    Responsive navbar

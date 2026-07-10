@@ -1,0 +1,201 @@
+/* =========================
+   Borrowing page wrapper
+========================= */
+
+.borrow-page {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+
+/* =========================
+   One main glass card
+========================= */
+
+.borrow-wrapper-card {
+    width: 100%;
+    background-color: rgba(25, 25, 25, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 28px;
+    padding: 42px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.borrow-header {
+    margin-bottom: 38px;
+}
+
+.borrow-header h1 {
+    color: #ffffff;
+    font-size: 52px;
+    margin-bottom: 16px;
+}
+
+.borrow-header p {
+    color: #f1e9dc;
+    font-size: 22px;
+}
+
+
+/* =========================
+   Borrow basket grid
+========================= */
+
+.borrow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+    align-items: stretch;
+    width: 100%;
+}
+
+
+/* =========================
+   Individual camera cards
+========================= */
+
+.borrow-card {
+    width: 100%;
+    min-height: 600px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 24px;
+
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.borrow-card-image {
+    width: 100%;
+    height: 190px;
+    max-height: 190px;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 28px;
+}
+
+.borrow-card h2 {
+    color: #ffffff;
+    font-size: 30px;
+    margin-bottom: 24px;
+}
+
+.borrow-card p {
+    color: #f1e9dc;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.borrow-remove-form {
+    margin-top: auto;
+}
+
+.borrow-remove-form .btn {
+    align-self: flex-start;
+    margin-top: 30px;
+}
+
+
+/* =========================
+   Bottom page buttons
+========================= */
+
+.borrow-bottom-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 36px;
+}
+
+.borrow-empty {
+    background-color: rgba(10, 10, 10, 0.4);
+    border-radius: 22px;
+    padding: 28px;
+    margin-top: 25px;
+}
+
+.borrow-empty p {
+    font-size: 20px;
+    color: #f1e9dc;
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   Checkout page
+========================= */
+
+.checkout-camera-list {
+    margin-bottom: 30px;
+}
+
+.checkout-camera-item {
+    background-color: rgba(40, 40, 40, 0.76);
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   Responsive layout
+========================= */
+
+@media (max-width: 991px) {
+    .borrow-wrapper-card {
+        padding: 32px;
+    }
+
+    .borrow-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .borrow-header h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 575px) {
+    .borrow-wrapper-card {
+        padding: 24px;
+    }
+
+    .borrow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .borrow-card {
+        min-height: 560px;
+    }
+
+    .borrow-card-image {
+        height: 170px;
+        max-height: 170px;
+    }
+
+    .borrow-header h1 {
+        font-size: 36px;
+    }
+
+    .borrow-header p {
+        font-size: 18px;
+    }
+
+    .borrow-bottom-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

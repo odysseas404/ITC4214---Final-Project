@@ -2,11 +2,11 @@
 
 {% block catalogue_content %}
 
-<div class="hero-section">
+<div class="glass-card">
     <h1>Welcome to Escapism</h1>
 
     <p>
-        Escapism is a platform that allows you to explore and borrow a wide range of cameras for your photography adventures. Whether you're a professional photographer or an enthusiast, we have the perfect camera for you.
+        Escapism is a platform that allows you to explore and borrow a wide range of cameras for your photography adventures. Whether you're a professional photographer or an enthusiast, we have the perfect camera for you. Our collection includes cameras from various manufacturers, film formats, and conditions to suit your needs. Browse our catalogue, select your desired cameras, and create a borrow request to embark on your next photography journey. Thank you for choosing Escapism, and we look forward to helping you capture unforgettable moments with our cameras!
     </p>
 
     <a href="#camera-list" class="btn btn-light mt-3">
@@ -18,8 +18,6 @@
     <h2>Browse by Category</h2>
 
     {% for parent in parent_categories %}
-
-        <h4>{{ parent.name }}</h4>
 
         {% if parent.subcategories.all %}
 

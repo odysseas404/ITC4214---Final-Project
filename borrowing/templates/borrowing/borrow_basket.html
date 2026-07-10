@@ -1,62 +1,83 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'borrowing/css/borrowing.css' %}">
+{% endblock %}
 
-<div class="glass-card">
+{% block content %}
 
-    <h1>Borrow Basket</h1>
+<div class="borrow-page">
 
-    {% if cameras %}
+    <div class="borrow-wrapper-card">
 
-        <div class="camera-grid">
-
-            {% for camera in cameras %}
-
-                <div class="camera-card">
-
-                    {% if camera.main_image %}
-                        <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
-                    {% endif %}
-
-                    <h2>{{ camera.name }}</h2>
-
-                    <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
-                    <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
-                    <p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
-
-                    <form method="post" action="{% url 'borrowing:remove_from_borrow_basket' camera.id %}">
-                        {% csrf_token %}
-
-                        <button type="submit" class="btn">
-                            Remove
-                        </button>
-                    </form>
-
-                </div>
-
-            {% endfor %}
-
+        <div class="borrow-header">
+            <h1>Borrow Basket</h1>
+            <p>These are the cameras you have selected for your trip.</p>
         </div>
 
-        <div class="button-row mt-4">
-            <a href="{% url 'borrowing:borrow_checkout' %}" class="btn">
-                Checkout
-            </a>
+        {% if cameras %}
 
-            <a href="{% url 'catalogue:home' %}" class="btn">
-                Browse more cameras
-            </a>
-        </div>
+            <div class="borrow-grid">
 
-    {% else %}
+                {% for camera in cameras %}
 
-        <p>Your borrow basket is empty.</p>
+                    <div class="borrow-card">
 
-        <a href="{% url 'catalogue:home' %}" class="btn">
-            Browse cameras
-        </a>
+                        {% if camera.main_image %}
+                            <img 
+                                src="{{ camera.main_image.url }}" 
+                                alt="{{ camera.name }}" 
+                                class="borrow-card-image">
+                        {% endif %}
 
-    {% endif %}
+                        <h2>{{ camera.name }}</h2>
+
+                        <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
+                        <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+                        <p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
+
+                        <form 
+                            method="post" 
+                            action="{% url 'borrowing:remove_from_borrow_basket' camera.id %}" 
+                            class="borrow-remove-form">
+                            {% csrf_token %}
+
+                            <button type="submit" class="btn">
+                                Remove
+                            </button>
+                        </form>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="borrow-bottom-buttons">
+                <a href="{% url 'borrowing:borrow_checkout' %}" class="btn">
+                    Continue to Borrow Request
+                </a>
+
+                <a href="{% url 'catalogue:home' %}" class="btn">
+                    Back to Catalogue
+                </a>
+            </div>
+
+        {% else %}
+
+            <div class="borrow-empty">
+                <p>Your Borrow Basket is empty.</p>
+
+                <a href="{% url 'catalogue:home' %}" class="btn">
+                    Back to Catalogue
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
 
 </div>
 
