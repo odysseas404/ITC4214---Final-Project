@@ -1,15 +1,15 @@
-//The extends tag is used to inherit from the base template, which contains the common structure and layout for the catalogue pages. The load static tag is used to load static files, such as CSS and JavaScript, that are needed for the page.
+<!--- The extends tag is used to inherit from the base template, which contains the common structure and layout for the catalogue pages. The load static tag is used to load static files, such as CSS and JavaScript, that are needed for the page. -->
 
 {% extends "catalogue/base_catalogue.html" %}
 {% load static %}
 
-//The block title tag is used to set the title of the page, which will be displayed in the browser tab. The block catalogue_content tag is used to define the main content of the page, which includes the hero section, search and filter form, and camera list.
+<!--- The block title tag is used to set the title of the page, which will be displayed in the browser tab. The block catalogue_content tag is used to define the main content of the page, which includes the hero section, search and filter form, and camera list. -->
 
 {% block title %}Escapism - Home{% endblock %}
 
 {% block catalogue_content %}
 
-//The hero section is a visually appealing area at the top of the page that welcomes users to the Escapism platform and provides a brief description of its purpose. It also includes a button that allows users to quickly navigate to the camera list section.
+<!--- The hero section is a visually appealing area at the top of the page that welcomes users to the Escapism platform and provides a brief description of its purpose. It also includes a button that allows users to quickly navigate to the camera list section. -->
 
 <div class="hero-section">
     <h1>Welcome to Escapism</h1>
@@ -23,11 +23,11 @@
     </a>
 </div>
 
-//The search and filter form allows users to search for cameras by name and apply various filters to narrow down the results. The form uses the GET method to submit the search query and filter parameters, which are then processed by the view to display the relevant camera listings.
+<!--- The search and filter form allows users to search for cameras by name and apply various filters to narrow down the results. The form uses the GET method to submit the search query and filter parameters, which are then processed by the view to display the relevant camera listings. -->
 
 <form method="get" action="{% url 'catalogue:home' %}#camera-list" class="search-filter-bar">
 
-    //The input field allows users to enter a search query for camera names. The value attribute is set to the current search query from the request.GET object, so that the input field retains the user's search term after submitting the form.
+    <!--- The input field allows users to enter a search query for camera names. The value attribute is set to the current search query from the request.GET object, so that the input field retains the user's search term after submitting the form. -->
 
     <input 
         type="text" 
@@ -44,7 +44,7 @@
         Filters
     </button>
 
-    //The filter panel contains various filter options that users can use to refine their search results. Each filter option is presented as a dropdown menu, allowing users to select specific criteria for manufacturer, film format, condition, and trip type.
+    <!--- The filter panel contains various filter options that users can use to refine their search results. Each filter option is presented as a dropdown menu, allowing users to select specific criteria for manufacturer, film format, condition, and trip type. -->
 
     <div class="filter-panel">
 
@@ -61,14 +61,14 @@
                 <select name="manufacturer">
                     <option value="">All manufacturers</option>
 
-                    //The for loop iterates over the list of manufacturers and generates an option element for each manufacturer. The value attribute is set to the manufacturer's ID, and the displayed text is the manufacturer's name. If the current manufacturer filter matches the selected manufacturer, the option is marked as selected.
+                    <!--- The for loop iterates over the list of manufacturers and generates an option element for each manufacturer. The value attribute is set to the manufacturer's ID, and the displayed text is the manufacturer's name. If the current manufacturer filter matches the selected manufacturer, the option is marked as selected. -->
 
                     {% for manufacturer in manufacturers %}
                         <option 
                             value="{{ manufacturer.id }}"
                             {% if request.GET.manufacturer == manufacturer.id|stringformat:"s" %}selected{% endif %}>
 
-                            //The manufacturer.name variable is used to display the name of the manufacturer in the dropdown menu. This allows users to easily identify and select the desired manufacturer when filtering the camera catalogue.
+                            <!--- The manufacturer.name variable is used to display the name of the manufacturer in the dropdown menu. This allows users to easily identify and select the desired manufacturer when filtering the camera catalogue. -->
                             
                             {{ manufacturer.name }}
                         </option>
@@ -82,7 +82,7 @@
                 <select name="film_format">
                     <option value="">All formats</option>
 
-                    //The for loop iterates over the list of film formats and generates an option element for each format. The value attribute is set to the format's value, and the displayed text is the format's label. If the current film format filter matches the selected format, the option is marked as selected.
+                    <!--- The for loop iterates over the list of film formats and generates an option element for each format. The value attribute is set to the format's value, and the displayed text is the format's label. If the current film format filter matches the selected format, the option is marked as selected. -->
 
                     {% for value, label in film_format_choices %}
                         <option 
@@ -100,7 +100,7 @@
                 <select name="condition">
                     <option value="">All conditions</option>
 
-                    //The for loop iterates over the list of conditions and generates an option element for each condition. The value attribute is set to the condition's value, and the displayed text is the condition's label. If the current condition filter matches the selected condition, the option is marked as selected.
+                    <!--- The for loop iterates over the list of conditions and generates an option element for each condition. The value attribute is set to the condition's value, and the displayed text is the condition's label. If the current condition filter matches the selected condition, the option is marked as selected. -->
 
                     {% for value, label in condition_choices %}
                         <option 
@@ -118,7 +118,7 @@
                 <select name="trip_type">
                     <option value="">All trip types</option>
 
-                    //The for loop iterates over the list of trip types and generates an option element for each type. The value attribute is set to the type's value, and the displayed text is the type's label. If the current trip type filter matches the selected type, the option is marked as selected.
+                    <!--- The for loop iterates over the list of trip types and generates an option element for each type. The value attribute is set to the type's value, and the displayed text is the type's label. If the current trip type filter matches the selected type, the option is marked as selected. -->
 
                     {% for value, label in trip_type_choices %}
                         <option 
@@ -132,7 +132,7 @@
 
         </div>
 
-        //The filter actions section contains buttons for applying the selected filters and clearing the filters. The "Apply filters" button submits the form, while the "Clear filters" button resets the filters by redirecting to the home page without any filter parameters.
+        <!--- The filter actions section contains buttons for applying the selected filters and clearing the filters. The "Apply filters" button submits the form, while the "Clear filters" button resets the filters by redirecting to the home page without any filter parameters. -->
 
         <div class="filter-actions">
             <button type="submit" class="btn">
@@ -148,17 +148,17 @@
 
 </form>
 
-//The camera list section displays the cameras that match the search query and applied filters. Each camera is presented as a card with its main image, name, manufacturer, year, film format, condition, and recommended trip type. Users can click on the "View details" button to navigate to the camera's detail page for more information.
+<!--- The camera list section displays the cameras that match the search query and applied filters. Each camera is presented as a card with its main image, name, manufacturer, year, film format, condition, and recommended trip type. Users can click on the "View details" button to navigate to the camera's detail page for more information. -->
 
 <div id="camera-list" class="camera-grid">
 
-    //The for loop iterates over the list of cameras and generates a camera card for each camera. If there are no cameras that match the search query and filters, an empty message is displayed instead.
+    <!--- The for loop iterates over the list of cameras and generates a camera card for each camera. If there are no cameras that match the search query and filters, an empty message is displayed instead. -->
 
     {% for camera in cameras %}
 
         <div class="camera-card">
 
-            //The if statement checks if the camera has a main image. If it does, an img element is generated with the image's URL and alt text set to the camera's name.
+            <!--- The if statement checks if the camera has a main image. If it does, an img element is generated with the image's URL and alt text set to the camera's name. -->
 
             {% if camera.main_image %}
                 <img 
@@ -167,7 +167,7 @@
                     class="camera-card-image">
             {% endif %}
 
-            //The camera-card-content div contains the camera's name and various details about the camera, such as manufacturer, year, film format, condition, and recommended trip type. Each detail is displayed in a paragraph element with a label for clarity.
+            <!--- The camera-card-content div contains the camera's name and various details about the camera, such as manufacturer, year, film format, condition, and recommended trip type. Each detail is displayed in a paragraph element with a label for clarity. -->
 
             <div class="camera-card-content">
                 <h3>{{ camera.name }}</h3>
@@ -189,7 +189,7 @@
 
         </div>
 
-    //The empty tag is used to handle the case when there are no cameras that match the search query and applied filters. In this case, a message is displayed to inform the user that no cameras were found.
+    <!--- The empty tag is used to handle the case when there are no cameras that match the search query and applied filters. In this case, a message is displayed to inform the user that no cameras were found. -->
     
     {% empty %}
 
