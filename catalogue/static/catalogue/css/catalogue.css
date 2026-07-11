@@ -153,10 +153,18 @@
 }
 
 .filter-actions .btn,
+.filter-actions a.btn,
 .filter-actions button {
+    height: 52px;
     min-height: 52px;
-    padding: 0 28px !important;
+    padding: 0 32px !important;
+    line-height: 1 !important;
     white-space: nowrap;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
 }
 
 /* The camera-grid and team-grid classes define the styling for the grid layouts used to display cameras, steps, and team members in the Escapism website. These grids use a CSS grid layout with a specified number of columns, a gap between items, and stretch alignment for the items. The width is set to 100% to make the grids responsive. */
@@ -473,10 +481,18 @@
         align-items: stretch;
     }
 
-    .filter-actions .btn,
+   .filter-actions .btn,
+    .filter-actions a.btn,
     .filter-actions button {
-        width: 100%;
-    }
+    width: 100%;
+    height: 52px;
+    line-height: 1 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
 
     .hero-section .btn,
     .about-section .btn{
