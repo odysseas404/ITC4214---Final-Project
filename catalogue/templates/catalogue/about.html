@@ -1,26 +1,84 @@
+<!--- About Page -->
+<!--- Extends base template -->
 {% extends "catalogue/base_catalogue.html" %}
+{% load static %}
 
 {% block catalogue_content %}
 
-<div class="glass-card about-wrapper">
+<!--- The hero section class is used to style the hero section of the about page, which includes a heading, a paragraph, and a call-to-action button. The about-hero class is used to apply specific styles to the hero section of the about page, such as background color, text color, and padding. The h1 tag is used for the main heading of the hero section, while the p tag is used for the paragraph text. The a tag is used for the call-to-action button, which links to the home page of the catalogue. -->
+<div class="hero-section about-hero">
 
     <h1>About Escapism</h1>
 
     <p>
-        Escapism is a film camera borrowing platform for travellers.
-        Users can browse available analogue cameras, add cameras to their
-        Borrow Basket, and submit a request to borrow them for a trip.
+        Escapism is a film camera borrowing platform created for travellers who want to document their journeys through analogue photography. The platform allows users to explore available film cameras, add selected cameras to their Borrow Basket, and submit a request to borrow them for an upcoming trip.
     </p>
 
     <p>
-        After the trip, users return the camera by post. Selected travel photos
-        can later be displayed on the website as part of a shared travel gallery.
+        After the trip, users return the camera by post. Selected travel photographs may later be displayed on the website, creating a shared visual archive of journeys, memories, and analogue photography experiences.
     </p>
 
+    <!--- Call to action -->
     <a href="{% url 'catalogue:home' %}" class="btn">
         Browse cameras
     </a>
 
 </div>
 
+<!--- Our Concept section -->
+<div class="about-section">
+
+    <h2>Our Concept</h2>
+
+    <p>
+        Escapism is based on a simple idea: photography should be accessible, creative, and connected to travel. Instead of purchasing a camera, users can borrow one, take it with them on a trip, and experience the process of shooting with film.
+    </p>
+
+    <p>
+        The platform focuses on analogue cameras, travel storytelling, and community participation. Each camera includes useful information such as manufacturer, film format, condition, and recommended trip type, helping users choose the right camera for their journey.
+    </p>
+
+</div>
+
+<div class="about-section">
+
+    <h2>Meet the Team</h2>
+
+    <p>
+        Our team is passionate about photography, travel, and creating meaningful experiences. We are dedicated to providing a platform that connects travellers with the joy of analogue photography, fostering a community of like-minded individuals who share a love for capturing moments on film.
+    </p>
+
+    <div class="team-grid">
+
+        <div class="team-card">
+            <img 
+                src="{% static 'catalogue/images/kokos.webp' %}" 
+                alt="Team member 1"
+                class="team-image">
+
+            <h3>John Papaioannou</h3>
+
+            <p>
+                Catalogue Manager. 
+            </p>
+        </div>
+
+        <div class="team-card">
+            <img 
+                src="{% static 'catalogue/images/suki.webp' %}" 
+                alt="Team member 2"
+                class="team-image">
+
+            <h3>Georgia Souridaki</h3>
+
+            <p>
+                Borrowing Manager.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!--- Endblock is used for closing the block of content that was defined in the base template. In this case, it closes the "catalogue_content" block, indicating that all the content for the about page has been defined and will be inserted into the base template at the appropriate location. -->
 {% endblock %}
