@@ -1,16 +1,33 @@
+<!--- The extends and load static tags are used to inherit the base template and load static files respectively. The extra_css block is used to include additional CSS files specific to this template. The catalogue_content block contains the main content of the camera detail page, including the camera image carousel, camera details, like button functionality, and recommended cameras section. -->
+
 {% extends "catalogue/base_catalogue.html" %}
 {% load static %}
 
+<!--- The extra_css block is used to include additional CSS files specific to this template. In this case, it includes the likes.css file for styling the like button and like count. -->
+
+{% block extra_css %}
+
+<!--- The block.super tag is used to include any CSS files defined in the parent template's extra_css block. This ensures that the base styles are applied along with the additional styles specific to this template. -->
+
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'engagement/css/likes.css' %}">
+
+{% endblock %}
+
+<!--- The catalogue_content block contains the main content of the camera detail page, including the camera image carousel, camera details, like button functionality, and recommended cameras section. -->
+
 {% block catalogue_content %}
+
+<!--- The camera detail section is structured using Bootstrap's grid system. It consists of two main columns: one for the camera image carousel and actions, and another for the camera details. -->
 
 <div class="row g-4 camera-detail-top">
 
     <div class="col-md-6">
-
+        <!--- The camera image carousel is implemented using Bootstrap's carousel component. It displays the main image of the camera and any additional gallery images. If there are no gallery images, only the main image will be shown. -->
         <div id="cameraImageCarousel" class="carousel slide camera-carousel" data-bs-ride="carousel">
 
             <div class="carousel-inner">
-
+                <!--- The first carousel item is the main image of the camera. If the camera has a main image, it will be displayed as the active item in the carousel. -->
                 {% if camera.main_image %}
                     <div class="carousel-item active">
                         <img 
@@ -31,6 +48,7 @@
 
             </div>
 
+            <!--- The carousel controls (previous and next buttons) are only displayed if there are gallery images available. This allows users to navigate through the images in the carousel. -->
             {% if camera.gallery_images.all %}
                 <button 
                     class="carousel-control-prev" 
@@ -51,7 +69,8 @@
 
         </div>
 
-        <div class="camera-actions mt-3">
+        <!--- The camera actions section includes the like button and the add to borrow basket button. The like button allows authenticated users to like or unlike the camera, while the add to borrow basket button allows users to add the camera to their borrowing basket if it is available. -->
+        <div class="camera-actions">
 
             {% if user.is_authenticated %}
 
@@ -66,6 +85,7 @@
                     {% endif %}
                 </button>
 
+                <!--- The like count is displayed next to the like button, showing the total number of likes for the camera. This count is updated dynamically when the user likes or unlikes the camera. -->
                 <span id="like-count" class="like-count">
                     {{ camera.likes.count }}
                 </span>
@@ -78,19 +98,21 @@
 
             {% endif %}
 
+            <!--- The add to borrow basket button is displayed only if the camera is available. If the camera is not available, a message indicating that it is currently unavailable will be shown instead. -->
             {% if camera.available %}
 
-                <form method="post" action="{% url 'borrowing:add_to_borrow_basket' camera.id %}" class="d-inline">
+                <!--- The form for adding the camera to the borrow basket is submitted via a POST request to the 'borrowing:add_to_borrow_basket' URL, passing the camera's ID as a parameter. The CSRF token is included for security purposes. When the user clicks the "Add to Borrow Basket" button, the camera will be added to their borrowing basket if it is available. -->
+                <form method="post" action="{% url 'borrowing:add_to_borrow_basket' camera.id %}">
                     {% csrf_token %}
 
-                    <button type="submit" class="btn btn-dark ms-3">
+                    <button type="submit" class="btn">
                         Add to Borrow Basket
                     </button>
                 </form>
 
             {% else %}
 
-                <span class="text-muted ms-3">
+                <span class="text-muted">
                     Currently unavailable
                 </span>
 
@@ -100,26 +122,30 @@
 
     </div>
 
+
     <div class="col-md-6">
 
-        <div class="section-box h-100">
+        <div class="camera-card h-100">
 
-            <h1>{{ camera.name }}</h1>
+            <div class="camera-card-content">
+                <!--- The camera details section displays various attributes of the camera, including its name, recommended trip type, manufacturer, year, film format, condition, category, and description. These details provide users with comprehensive information about the camera. -->
+                <h3>{{ camera.name }}</h3>
 
-            <p class="lead">
-                Recommended for {{ camera.recommended_trip_type }} trips.
-            </p>
+                <p>
+                    Recommended for {{ camera.recommended_trip_type }} trips.
+                </p>
 
-            <hr>
+                <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
+                <p><span class="info-label">Year:</span> {{ camera.year }}</p>
+                <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
+                <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
+                <p><span class="info-label">Category:</span> {{ camera.category }}</p>
 
-            <p><span class="info-label">Year:</span> {{ camera.year }}</p>
-            <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
-            <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
-            <p><span class="info-label">Category:</span> {{ camera.category }}</p>
+                <p>
+                    {{ camera.description }}
+                </p>
 
-            <p class="mt-4">
-                {{ camera.description }}
-            </p>
+            </div>
 
         </div>
 
@@ -127,23 +153,25 @@
 
 </div>
 
-<div class="recommendation-section mt-5">
-    <h2>Recommended Cameras</h2>
+<!--- The recommended cameras section displays a list of cameras that are similar to the current camera being viewed. If there are recommended cameras available, they will be displayed in a grid format. If there are no recommended cameras, a message indicating that no similar cameras are available will be shown instead. -->
+<h2 class="section-title">Recommended Cameras</h2>
 
-    {% if recommended_cameras %}
+{% if recommended_cameras %}
 
-        <div class="camera-grid">
+    <div class="camera-grid">
 
-            {% for recommended_camera in recommended_cameras %}
+        {% for recommended_camera in recommended_cameras %}
 
-                <div class="camera-card">
+            <div class="camera-card">
+                <!--- Each recommended camera card displays the main image of the camera (if available), along with its name, manufacturer, film format, and recommended trip type. Users can click on the "View details" button to navigate to the detail page of the recommended camera. -->
+                {% if recommended_camera.main_image %}
+                    <img 
+                        src="{{ recommended_camera.main_image.url }}" 
+                        alt="{{ recommended_camera.name }}" 
+                        class="camera-card-image">
+                {% endif %}
 
-                    {% if recommended_camera.main_image %}
-                        <img 
-                            src="{{ recommended_camera.main_image.url }}" 
-                            alt="{{ recommended_camera.name }}" 
-                            class="camera-card-image">
-                    {% endif %}
+                <div class="camera-card-content">
 
                     <h3>{{ recommended_camera.name }}</h3>
 
@@ -151,24 +179,30 @@
                     <p><span class="info-label">Film format:</span> {{ recommended_camera.film_format }}</p>
                     <p><span class="info-label">Recommended for:</span> {{ recommended_camera.recommended_trip_type }}</p>
 
-                    <a 
-                        href="{% url 'catalogue:camera_detail' recommended_camera.id %}" 
-                        class="btn btn-outline-dark">
-                        View details
-                    </a>
-
                 </div>
 
-            {% endfor %}
+                <div class="camera-card-actions">
+                    <a 
+                        href="{% url 'catalogue:camera_detail' recommended_camera.id %}" 
+                        class="btn">
+                        View details
+                    </a>
+                </div>
 
-        </div>
+            </div>
 
-    {% else %}
+        {% endfor %}
 
+    </div>
+
+{% else %}
+
+    <div class="empty-message">
         <p>No similar cameras available at the moment.</p>
+    </div>
 
-    {% endif %}
-</div>
+{% endif %}
+
 
 <div class="back-button-wrapper">
     <a href="{% url 'catalogue:home' %}" class="btn">
