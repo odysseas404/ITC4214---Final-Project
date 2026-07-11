@@ -1,62 +1,358 @@
-/* =========================
-   Catalogue hero section
-========================= */
+/* CSS Variables for Escapism Theme */
+/* The root selector defines custom properties (CSS variables) that can be reused throughout the stylesheet. These variables include colors, shadows, and border radii that are specific to the Escapism theme. */
+:root {
+    --esc-green: #53792d;
+    --esc-green-light: #6b923f;
+    --esc-dark-panel: rgba(5, 5, 5, 0.78);
+    --esc-dark-card: rgba(8, 8, 8, 0.72);
+    --esc-text: #f1e9dc;
+    --esc-white: #ffffff;
+    --esc-black: #111111;
+    --esc-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    --esc-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+    --esc-radius: 28px;
+    --esc-radius-small: 20px;
+}
 
-.hero-section {
-    background:
-        linear-gradient(
-            rgba(10, 10, 10, 0.35),
-            rgba(10, 10, 10, 0.35)
-        ),
-        url("/static/images/hero-camera.webp");
+.hero-section,
+.about-section,
+.filter-panel {
+    background-color: var(--esc-dark-panel);
+    border-left: 6px solid var(--esc-green);
+    border-radius: 0 var(--esc-radius) var(--esc-radius) 0;
+    padding: 42px 56px;
+    margin-bottom: 32px;
+    box-shadow: var(--esc-shadow);
+}
 
-    background-size: cover;
-    background-position: center;
-    color: #ffffff;
-    padding: 80px 40px;
-    border-radius: 24px;
-    margin-bottom: 35px;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35);
+.section-title,
+
+.hero-section h1,
+.about-section h2,
+.filter-header h2 {
+    color: var(--esc-white);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
 }
 
 .hero-section h1 {
-    font-size: 44px;
-    margin-bottom: 15px;
-    color: #ffffff;
+    font-size: 52px;
+}
+
+.about-section h2,
+.filter-header h2 {
+    font-size: 36px;
+}
+
+.section-text,
+.hero-section p,
+.about-section p,
+.filter-header p {
+    color: var(--esc-text);
+    font-size: 17px;
+    line-height: 1.75;
+    text-align: justify;
+    text-align-last: left;
 }
 
 .hero-section p {
-    font-size: 18px;
-    max-width: 720px;
-    color: #f4efe7;
+    font-size: 19px;
+    max-width: 1100px;
+    margin-bottom: 28px;
+}
+
+.filter-header {
+    margin-bottom: 28px;
+}
+
+.filter-header p {
+    font-size: 16px;
+    margin-bottom: 0;
 }
 
 
 /* =========================
-   Catalogue sections
+   Reusable buttons
 ========================= */
 
-.category-box,
-.filter-box,
-.recommendation-section {
-    background-color: rgba(25, 25, 25, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+.btn,
+button,
+input[type="submit"] {
+    background-color: var(--esc-green) !important;
+    color: var(--esc-white) !important;
+    border: none !important;
+    border-radius: 28px !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover {
+    background-color: var(--esc-green-light) !important;
+    color: var(--esc-white) !important;
+}
+
+
+/* =========================
+   Search and filter bar
+========================= */
+
+.search-filter-bar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 14px;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.simple-search-input {
+    min-width: 0;
+    height: 54px;
+    border-radius: 28px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.96);
+    color: var(--esc-black);
+    padding: 0 24px;
+    font-size: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.simple-search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(83, 121, 45, 0.32);
+}
+
+.search-filter-bar .btn,
+.search-filter-bar button {
+    height: 54px;
+    padding: 0 30px !important;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   Hidden filter panel
+========================= */
+
+.filter-panel {
+    grid-column: 1 / -1;
+    display: none;
+    margin-top: 10px;
+}
+
+.filter-panel-open {
+    display: block;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-field label {
+    color: var(--esc-text);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.filter-field select,
+.filter-field input {
+    height: 52px;
+    border-radius: 18px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.96);
+    color: var(--esc-black);
+    padding: 0 18px;
+    font-size: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.filter-field select:focus,
+.filter-field input:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(83, 121, 45, 0.32);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 26px;
+}
+
+.filter-actions .btn,
+.filter-actions button {
+    min-height: 52px;
+    padding: 0 28px !important;
+    white-space: nowrap;
+}
+
+
+/* =========================
+   Reusable grids
+========================= */
+
+.camera-grid,
+.steps-grid,
+.team-grid {
+    display: grid;
+    gap: 28px;
+    align-items: stretch;
+    width: 100%;
+}
+
+.camera-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    scroll-margin-top: 90px;
+}
+
+.steps-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 28px;
+}
+
+.team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 28px;
+}
+
+
+/* =========================
+   Reusable cards
+========================= */
+
+.camera-card,
+.step-card,
+.team-card {
+    background-color: var(--esc-dark-card);
+    border-radius: var(--esc-radius);
+    padding: 24px;
+    box-shadow: var(--esc-card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.camera-card:hover,
+.step-card:hover,
+.team-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--esc-green-light);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.48);
+}
+
+.camera-card {
+    min-height: 630px;
+    display: flex;
+    flex-direction: column;
+}
+
+.step-card,
+.team-card {
+    padding: 26px;
+}
+
+.camera-card h2,
+.camera-card h3,
+.step-card h3,
+.team-card h3 {
+    color: var(--esc-white);
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.camera-card h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.camera-card p,
+.step-card p,
+.team-card p {
+    color: var(--esc-white);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.step-card p,
+.team-card p {
+    color: var(--esc-text);
+    text-align: left;
+}
+
+.info-label,
+.camera-card .info-label {
+    color: var(--esc-green-light) !important;
+    font-weight: 800;
+}
+
+
+/* =========================
+   Reusable images
+========================= */
+
+.camera-card-image,
+.camera-card img,
+.card-img-top,
+.team-image {
+    width: 100%;
+    object-position: center;
+    display: block;
+    background-color: var(--esc-white);
+}
+
+.camera-card-image,
+.camera-card img,
+.card-img-top {
+    height: 190px;
+    max-height: 190px;
+    object-fit: contain;
     border-radius: 24px;
-    padding: 32px;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(4px);
-    margin-bottom: 35px;
+    padding: 24px;
+    margin-bottom: 24px;
 }
 
-.category-box h2,
-.filter-box h2,
-.recommendation-section h2 {
-    color: #ffffff;
+.team-image {
+    height: 320px;
+    object-fit: cover;
+    border-radius: 24px;
+    margin-bottom: 22px;
 }
 
-.category-box h4 {
-    color: #d8b45a;
+
+/* =========================
+   Camera card internal layout
+========================= */
+
+.camera-card-content {
+    flex: 1;
 }
+
+.camera-card-actions {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.camera-card-actions .btn,
+.camera-card .btn {
+    padding: 11px 28px !important;
+}
+
 
 /* =========================
    Camera detail page
@@ -66,10 +362,15 @@
     margin-bottom: 40px;
 }
 
+.camera-carousel,
+.camera-actions {
+    background-color: var(--esc-dark-panel);
+    border-radius: var(--esc-radius);
+    box-shadow: var(--esc-shadow);
+}
+
 .camera-carousel {
-    background-color: rgba(20, 20, 20, 0.95);
     overflow: hidden;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
 }
 
 .camera-carousel-image {
@@ -77,13 +378,8 @@
     height: 520px;
     object-fit: contain;
     object-position: center;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--esc-white);
 }
-
-
-/* =========================
-   Bootstrap carousel controls
-========================= */
 
 .camera-carousel .carousel-control-prev,
 .camera-carousel .carousel-control-next {
@@ -95,17 +391,23 @@
     opacity: 1;
 }
 
-/* =========================
-   Camera detail actions area
-========================= */
+.camera-carousel .carousel-control-prev:hover,
+.camera-carousel .carousel-control-next:hover {
+    background: transparent !important;
+    border: none !important;
+}
+
+.camera-carousel .carousel-control-prev-icon,
+.camera-carousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+    padding: 22px;
+    background-size: 55%;
+}
 
 .camera-actions {
-    background-color: rgba(20, 20, 20, 0.9);
-    border: 1px solid rgba(255, 250, 242, 0.14);
-    border-radius: 18px;
     padding: 16px 20px;
     margin-top: 15px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -114,15 +416,21 @@
 
 
 /* =========================
-   Catalogue messages / spacing
+   Empty message and spacing
 ========================= */
 
 .empty-message {
-    background-color: rgba(20, 20, 20, 0.88);
-    border: 1px dashed rgba(255, 250, 242, 0.25);
-    color: #e8ded0;
-    padding: 20px;
-    border-radius: 14px;
+    grid-column: 1 / -1;
+    background-color: var(--esc-dark-panel);
+    border: 3px solid rgba(83, 121, 45, 0.9);
+    border-radius: 24px;
+    padding: 28px;
+    color: var(--esc-text);
+}
+
+.empty-message p {
+    color: var(--esc-text);
+    margin-bottom: 0;
 }
 
 .back-button-wrapper {
@@ -130,87 +438,187 @@
     margin-bottom: 30px;
 }
 
+
 /* =========================
-   Final camera card layout
+   Tablet responsiveness
 ========================= */
 
-.camera-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 26px !important;
-    align-items: stretch !important;
-    width: 100% !important;
-}
-
-.camera-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 520px !important;
-    height: 100% !important;
-
-    background-color: rgba(25, 25, 25, 0.72) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    border-radius: 24px !important;
-    padding: 22px !important;
-
-    display: flex !important;
-    flex-direction: column !important;
-
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: blur(4px);
-}
-
-.camera-card-image {
-    width: 100% !important;
-    height: 190px !important;
-    max-height: 190px !important;
-
-    object-fit: contain !important;
-    object-position: center !important;
-
-    background-color: rgb(255, 255, 255) !important;
-    border-radius: 16px !important;
-    padding: 24px !important;
-    margin-bottom: 18px !important;
-
-    display: block !important;
-}
-
-.camera-card h2,
-.camera-card h3 {
-    font-size: 21px !important;
-    color: #ffffff !important;
-    margin-bottom: 12px !important;
-}
-
-.camera-card p {
-    font-size: 15px !important;
-    color: #f1e9dc !important;
-    margin-bottom: 8px !important;
-}
-
-.camera-card .btn {
-    margin-top: auto !important;
-    align-self: flex-start !important;
-}
-
-
-/* Tablet: 2 cards per row */
 @media (max-width: 991px) {
-    .camera-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    .search-filter-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .search-filter-bar .btn,
+    .search-filter-bar button {
+        width: 100%;
+    }
+
+    .hero-section,
+    .about-section,
+    .filter-panel {
+        padding: 34px;
+        border-left: 5px solid var(--esc-green);
+        border-radius: 0 24px 24px 0;
+    }
+
+    .hero-section h1 {
+        font-size: 42px;
+    }
+
+    .about-section h2,
+    .filter-header h2 {
+        font-size: 32px;
+    }
+
+    .hero-section p,
+    .about-section p,
+    .filter-header p {
+        font-size: 18px;
+        max-width: 100%;
+        line-height: 1.7;
+    }
+
+    .filter-form,
+    .camera-grid,
+    .steps-grid,
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .camera-card {
+        min-height: 610px;
+    }
+
+    .team-image {
+        height: 260px;
+    }
+
+    .camera-carousel-image {
+        height: 430px;
     }
 }
 
 
-/* Mobile: 1 card per row */
+/* =========================
+   Mobile responsiveness
+========================= */
+
 @media (max-width: 575px) {
-    .camera-grid {
-        grid-template-columns: 1fr !important;
+    .search-filter-bar {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
     }
 
-    .camera-card-image {
-        height: 170px !important;
-        max-height: 170px !important;
+    .simple-search-input {
+        height: 50px;
+        font-size: 15px;
+    }
+
+    .search-filter-bar .btn,
+    .search-filter-bar button {
+        height: 50px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-section,
+    .about-section,
+    .filter-panel {
+        padding: 26px 22px;
+        border-left: 4px solid var(--esc-green);
+        border-radius: 0 var(--esc-radius-small) var(--esc-radius-small) 0;
+        margin-bottom: 28px;
+    }
+
+    .hero-section h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    .about-section h2,
+    .filter-header h2 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .hero-section p,
+    .about-section p,
+    .filter-header p {
+        font-size: 16px;
+        line-height: 1.65;
+        text-align: left;
+    }
+
+    .filter-form,
+    .camera-grid,
+    .steps-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .filter-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-actions .btn,
+    .filter-actions button {
+        width: 100%;
+    }
+
+    .hero-section .btn,
+    .about-section .btn,
+        width: 100%;
+        text-align: center;
+    }
+
+    .camera-card {
+        min-height: auto;
+        padding: 22px;
+        border-radius: 24px;
+    }
+
+    .camera-card-image,
+    .camera-card img,
+    .card-img-top {
+        height: 165px;
+        max-height: 165px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .team-image {
+        height: 240px;
+        border-radius: 20px;
+    }
+
+    .camera-card h2,
+    .camera-card h3 {
+        font-size: 23px;
+    }
+
+    .camera-card p {
+        font-size: 15px;
+    }
+
+    .camera-card-actions .btn,
+    .camera-card .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .camera-carousel,
+    .camera-actions {
+        border-radius: 24px;
+    }
+
+    .camera-carousel-image {
+        height: 300px;
+    }
+
+    .camera-actions {
+        align-items: flex-start;
     }
 }
