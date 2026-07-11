@@ -1,18 +1,4 @@
-/* CSS Variables for Escapism Theme */
-/* The root selector defines custom properties (CSS variables) that can be reused throughout the stylesheet. These variables include colors, shadows, and border radii that are specific to the Escapism theme. */
-:root {
-    --esc-green: #53792d;
-    --esc-green-light: #6b923f;
-    --esc-dark-panel: rgba(5, 5, 5, 0.78);
-    --esc-dark-card: rgba(8, 8, 8, 0.72);
-    --esc-text: #f1e9dc;
-    --esc-white: #ffffff;
-    --esc-black: #111111;
-    --esc-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-    --esc-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
-    --esc-radius: 28px;
-    --esc-radius-small: 20px;
-}
+/* The hero-section, about-section, and filter-panel classes define the styling for the main sections of the Escapism website. These sections have a dark background, a green left border, rounded corners, padding, and a shadow effect to create a visually appealing layout. */
 
 .hero-section,
 .about-section,
@@ -25,8 +11,9 @@
     box-shadow: var(--esc-shadow);
 }
 
-.section-title,
+/* The section-title, hero-section h1, about-section h2, and filter-header h2 classes define the styling for the headings in the main sections of the Escapism website. These headings have a white color, bold font weight, and a slight negative letter spacing to create a visually appealing and readable layout. The margin-bottom property adds spacing below the headings. */
 
+.section-title,
 .hero-section h1,
 .about-section h2,
 .filter-header h2 {
@@ -45,7 +32,8 @@
     font-size: 36px;
 }
 
-.section-text,
+/* The hero-section p, about-section p, and filter-header p classes define the styling for the paragraphs in the main sections of the Escapism website. These paragraphs have a light text color, a font size of 17px, a line height of 1.75 for readability, and justified text alignment. The text-align-last property ensures that the last line of the paragraph is aligned to the left. */
+
 .hero-section p,
 .about-section p,
 .filter-header p {
@@ -71,37 +59,7 @@
     margin-bottom: 0;
 }
 
-
-/* =========================
-   Reusable buttons
-========================= */
-
-.btn,
-button,
-input[type="submit"] {
-    background-color: var(--esc-green) !important;
-    color: var(--esc-white) !important;
-    border: none !important;
-    border-radius: 28px !important;
-    font-weight: 700 !important;
-    box-shadow: none !important;
-    text-decoration: none !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn:hover,
-button:hover,
-input[type="submit"]:hover {
-    background-color: var(--esc-green-light) !important;
-    color: var(--esc-white) !important;
-}
-
-
-/* =========================
-   Search and filter bar
-========================= */
+/* The search-filter-bar class defines the styling for the search and filter bar in the Escapism website. It uses a grid layout with three columns: one for the search input and two for the filter buttons. The gap property adds spacing between the columns, and the align-items property centers the content vertically. The width is set to 100% to make it responsive, and a margin-bottom is added for spacing below the bar. */
 
 .search-filter-bar {
     display: grid;
@@ -111,6 +69,8 @@ input[type="submit"]:hover {
     width: 100%;
     margin-bottom: 28px;
 }
+
+/* The simple-search-input class defines the styling for the search input field in the Escapism website. It has a minimum width of 0, a height of 54px, rounded corners, no border, and a semi-transparent white background. The text color is set to black, and padding is added for spacing inside the input field. The font size is set to 16px, and a box shadow is applied for a subtle depth effect. */
 
 .simple-search-input {
     min-width: 0;
@@ -136,10 +96,7 @@ input[type="submit"]:hover {
     white-space: nowrap;
 }
 
-
-/* =========================
-   Hidden filter panel
-========================= */
+/* The filter-panel class defines the styling for the filter panel in the Escapism website. It spans across all columns of the grid layout, is initially hidden, and has a margin-top of 10px for spacing below the search-filter-bar. When the filter panel is open, the filter-panel-open class is applied to display it as a block element. */
 
 .filter-panel {
     grid-column: 1 / -1;
@@ -202,13 +159,9 @@ input[type="submit"]:hover {
     white-space: nowrap;
 }
 
-
-/* =========================
-   Reusable grids
-========================= */
+/* The camera-grid and team-grid classes define the styling for the grid layouts used to display cameras, steps, and team members in the Escapism website. These grids use a CSS grid layout with a specified number of columns, a gap between items, and stretch alignment for the items. The width is set to 100% to make the grids responsive. */
 
 .camera-grid,
-.steps-grid,
 .team-grid {
     display: grid;
     gap: 28px;
@@ -221,23 +174,14 @@ input[type="submit"]:hover {
     scroll-margin-top: 90px;
 }
 
-.steps-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 28px;
-}
-
 .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: 28px;
 }
 
-
-/* =========================
-   Reusable cards
-========================= */
+/* The camera-card and team-card classes define the styling for the individual cards used to display cameras and team members in the Escapism website. These cards have a dark background, rounded corners, padding, and a shadow effect. They also have a transition effect for transform, box-shadow, and border-color properties when hovered over. */
 
 .camera-card,
-.step-card,
 .team-card {
     background-color: var(--esc-dark-card);
     border-radius: var(--esc-radius);
@@ -247,7 +191,6 @@ input[type="submit"]:hover {
 }
 
 .camera-card:hover,
-.step-card:hover,
 .team-card:hover {
     transform: translateY(-4px);
     border-color: var(--esc-green-light);
@@ -260,14 +203,12 @@ input[type="submit"]:hover {
     flex-direction: column;
 }
 
-.step-card,
 .team-card {
     padding: 26px;
 }
 
 .camera-card h2,
 .camera-card h3,
-.step-card h3,
 .team-card h3 {
     color: var(--esc-white);
     font-size: 24px;
@@ -281,7 +222,6 @@ input[type="submit"]:hover {
 }
 
 .camera-card p,
-.step-card p,
 .team-card p {
     color: var(--esc-white);
     font-size: 16px;
@@ -289,7 +229,6 @@ input[type="submit"]:hover {
     margin-bottom: 10px;
 }
 
-.step-card p,
 .team-card p {
     color: var(--esc-text);
     text-align: left;
@@ -301,14 +240,7 @@ input[type="submit"]:hover {
     font-weight: 800;
 }
 
-
-/* =========================
-   Reusable images
-========================= */
-
 .camera-card-image,
-.camera-card img,
-.card-img-top,
 .team-image {
     width: 100%;
     object-position: center;
@@ -316,9 +248,7 @@ input[type="submit"]:hover {
     background-color: var(--esc-white);
 }
 
-.camera-card-image,
-.camera-card img,
-.card-img-top {
+.camera-card-image{
     height: 190px;
     max-height: 190px;
     object-fit: contain;
@@ -334,11 +264,6 @@ input[type="submit"]:hover {
     margin-bottom: 22px;
 }
 
-
-/* =========================
-   Camera card internal layout
-========================= */
-
 .camera-card-content {
     flex: 1;
 }
@@ -353,11 +278,7 @@ input[type="submit"]:hover {
     padding: 11px 28px !important;
 }
 
-
-/* =========================
-   Camera detail page
-========================= */
-
+/* Camera detail page extra CSS styling. */
 .camera-detail-top {
     margin-bottom: 40px;
 }
@@ -414,10 +335,7 @@ input[type="submit"]:hover {
     gap: 10px;
 }
 
-
-/* =========================
-   Empty message and spacing
-========================= */
+/* Empty message and spacing CSS. */
 
 .empty-message {
     grid-column: 1 / -1;
@@ -438,10 +356,7 @@ input[type="submit"]:hover {
     margin-bottom: 30px;
 }
 
-
-/* =========================
-   Tablet responsiveness
-========================= */
+/* CSS for tablet reponsiveness. */
 
 @media (max-width: 991px) {
     .search-filter-bar {
@@ -480,7 +395,6 @@ input[type="submit"]:hover {
 
     .filter-form,
     .camera-grid,
-    .steps-grid,
     .team-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -498,10 +412,7 @@ input[type="submit"]:hover {
     }
 }
 
-
-/* =========================
-   Mobile responsiveness
-========================= */
+/* CSS for mobile responsiveness. */
 
 @media (max-width: 575px) {
     .search-filter-bar {
@@ -552,7 +463,6 @@ input[type="submit"]:hover {
 
     .filter-form,
     .camera-grid,
-    .steps-grid,
     .team-grid {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -569,7 +479,7 @@ input[type="submit"]:hover {
     }
 
     .hero-section .btn,
-    .about-section .btn,
+    .about-section .btn{
         width: 100%;
         text-align: center;
     }
@@ -580,9 +490,7 @@ input[type="submit"]:hover {
         border-radius: 24px;
     }
 
-    .camera-card-image,
-    .camera-card img,
-    .card-img-top {
+    .camera-card-image{
         height: 165px;
         max-height: 165px;
         padding: 20px;
