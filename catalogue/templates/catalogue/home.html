@@ -25,7 +25,10 @@
 
 <!--- The search and filter form allows users to search for cameras by name and apply various filters to narrow down the results. The form uses the GET method to submit the search query and filter parameters, which are then processed by the view to display the relevant camera listings. -->
 
-<form method="get" action="{% url 'catalogue:home' %}#camera-list" class="search-filter-bar">
+<form 
+    method="get" 
+    action="{% url 'catalogue:home' %}#camera-list" class="search-filter-bar"
+    aria-label="Search and filter cameras">
 
     <!--- The input field allows users to enter a search query for camera names. The value attribute is set to the current search query from the request.GET object, so that the input field retains the user's search term after submitting the form. -->
 
@@ -34,13 +37,20 @@
         name="search" 
         class="simple-search-input" 
         placeholder="Search by camera name, for example Canon"
-        value="{{ request.GET.search }}">
+        value="{{ request.GET.search }}"
+        aria-label="Search cameras by name">
 
-    <button type="submit" class="btn">
+    <button 
+        type="submit" 
+        class="btn"
+        aria-label="Search button">
         Search
     </button>
 
-    <button type="button" class="btn filter-toggle-button">
+    <button 
+        type="button" 
+        class="btn filter-toggle-button"
+        aria-label="Open camera filters">
         Filters
     </button>
 
@@ -163,7 +173,7 @@
             {% if camera.main_image %}
                 <img 
                     src="{{ camera.main_image.url }}" 
-                    alt="{{ camera.name }}" 
+                    alt="{{ camera.name }} film camera" 
                     class="camera-card-image">
             {% endif %}
 

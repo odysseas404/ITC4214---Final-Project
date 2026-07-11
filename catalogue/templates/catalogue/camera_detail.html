@@ -33,7 +33,7 @@
                         <img 
                             src="{{ camera.main_image.url }}" 
                             class="d-block w-100 camera-carousel-image" 
-                            alt="{{ camera.name }}">
+                            alt="{{ camera.name }} main image">
                     </div>
                 {% endif %}
 
@@ -42,7 +42,7 @@
                         <img 
                             src="{{ image.image.url }}" 
                             class="d-block w-100 camera-carousel-image" 
-                            alt="{{ camera.name }}">
+                            alt="Additional image of {{ camera.name }}">
                     </div>
                 {% endfor %}
 
@@ -54,7 +54,8 @@
                     class="carousel-control-prev" 
                     type="button" 
                     data-bs-target="#cameraImageCarousel" 
-                    data-bs-slide="prev">
+                    data-bs-slide="prev"
+                    aria-label="Previous camera image">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
 
@@ -62,7 +63,8 @@
                     class="carousel-control-next" 
                     type="button" 
                     data-bs-target="#cameraImageCarousel" 
-                    data-bs-slide="next">
+                    data-bs-slide="next"
+                    aria-label="Next camera image">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             {% endif %}
@@ -77,7 +79,8 @@
                 <button 
                     id="like-button" 
                     class="heart-button"
-                    data-like-url="{% url 'engagement:toggle_like' camera.id %}">
+                    data-like-url="{% url 'engagement:toggle_like' camera.id %}"
+                    aria-label="Like or unlike {{ camera.name }}">
                     {% if user_liked %}
                         ♥
                     {% else %}
@@ -105,7 +108,10 @@
                 <form method="post" action="{% url 'borrowing:add_to_borrow_basket' camera.id %}">
                     {% csrf_token %}
 
-                    <button type="submit" class="btn">
+                    <button 
+                        type="submit" 
+                        class="btn"
+                        aria-label="Add {{ camera.name }} to Borrow Basket">
                         Add to Borrow Basket
                     </button>
                 </form>
@@ -167,7 +173,7 @@
                 {% if recommended_camera.main_image %}
                     <img 
                         src="{{ recommended_camera.main_image.url }}" 
-                        alt="{{ recommended_camera.name }}" 
+                        alt="{{ recommended_camera.name }}film camera" 
                         class="camera-card-image">
                 {% endif %}
 
@@ -184,7 +190,8 @@
                 <div class="camera-card-actions">
                     <a 
                         href="{% url 'catalogue:camera_detail' recommended_camera.id %}" 
-                        class="btn">
+                        class="btn"
+                        aria-label="View details for {{ camera.name }}">
                         View details
                     </a>
                 </div>
