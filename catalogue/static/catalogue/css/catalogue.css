@@ -4,8 +4,7 @@
 .about-section,
 .filter-panel {
     background-color: var(--esc-dark-panel);
-    border-left: 6px solid var(--esc-green);
-    border-radius: 0 var(--esc-radius) var(--esc-radius) 0;
+    border-radius: var(--esc-radius);
     padding: 42px 56px;
     margin-bottom: 32px;
     box-shadow: var(--esc-shadow);
@@ -291,6 +290,11 @@
     margin-bottom: 40px;
 }
 
+.camera-description {
+    text-align: justify;
+    text-align-last: left;
+}
+
 .camera-carousel,
 .camera-actions {
     background-color: var(--esc-dark-panel);
@@ -348,7 +352,6 @@
 .empty-message {
     grid-column: 1 / -1;
     background-color: var(--esc-dark-panel);
-    border: 3px solid rgba(83, 121, 45, 0.9);
     border-radius: 24px;
     padding: 28px;
     color: var(--esc-text);
@@ -380,7 +383,6 @@
     .about-section,
     .filter-panel {
         padding: 34px;
-        border-left: 5px solid var(--esc-green);
         border-radius: 0 24px 24px 0;
     }
 
@@ -445,8 +447,7 @@
     .about-section,
     .filter-panel {
         padding: 26px 22px;
-        border-left: 4px solid var(--esc-green);
-        border-radius: 0 var(--esc-radius-small) var(--esc-radius-small) 0;
+        border-radius: var(--esc-radius-small);
         margin-bottom: 28px;
     }
 
