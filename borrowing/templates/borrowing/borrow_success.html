@@ -1,24 +1,55 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
 
-<h1>Borrow Request Submitted</h1>
+    <!-- Loads the CSS file for the borrowing app. -->
+    <link rel="stylesheet" href="{% static 'borrowing/css/borrowing.css' %}">
 
-<p>
-    Your camera borrow request has been submitted successfully.
-    An administrator will review it.
-</p>
+{% endblock %}
 
-<p>
-    <a href="{% url 'accounts_app:dashboard' %}" class="btn">
-        View my dashboard
-    </a>
-</p>
+{% block content %}
 
-<p>
-    <a href="{% url 'catalogue:home' %}" class="btn">
-        Back to catalogue
-    </a>
-</p>
+<!-- Main wrapper for the borrow success page. -->
+<div class="borrow-page">
+
+    <!-- Main panel that contains the success message. -->
+    <div class="borrow-wrapper-card">
+
+        <!-- Success page heading and message. -->
+        <div class="borrow-header">
+            
+            <h1>Borrow Request Submitted</h1>
+
+            <p>
+                Your camera borrow request has been submitted successfully.
+                An administrator will review it.
+            </p>
+
+        </div>
+
+        <!-- Success page navigation buttons. -->
+        <div class="borrow-bottom-buttons">
+
+            <a 
+                href="{% url 'accounts_app:dashboard' %}" 
+                class="btn"
+                aria-label="View your user dashboard">
+                View My Dashboard
+            </a>
+
+            <a 
+                href="{% url 'catalogue:home' %}" 
+                class="btn"
+                aria-label="Return to the camera catalogue">
+                Back to Catalogue
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
