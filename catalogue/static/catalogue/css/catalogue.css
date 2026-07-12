@@ -273,8 +273,7 @@
     text-align-last: left;
 }
 
-.camera-carousel,
-.camera-actions {
+.camera-carousel{
     background-color: var(--esc-dark-panel);
     border-radius: var(--esc-radius);
     box-shadow: var(--esc-shadow);
@@ -316,13 +315,49 @@
     background-size: 55%;
 }
 
+/* Makes the two camera detail columns stretch to the same height. */
+
+.camera-detail-top {
+    align-items: stretch;
+}
+
+
+/* Left side of the camera detail page. */
+
+.camera-detail-left {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Right side of the camera detail page. */
+
+.camera-detail-right {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Makes the information card fill the full height of the right column. */
+
+.camera-detail-right .camera-card {
+    height: 100%;
+}
+
+
+/* Pushes the like and borrow buttons to the bottom of the left column. */
+
 .camera-actions {
-    padding: 16px 20px;
-    margin-top: 15px;
+    margin-top: auto;
+
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 14px;
+
+    background-color: var(--esc-dark-panel);
+    border-radius: var(--esc-radius);
+    padding: 24px 32px;
+    box-shadow: var(--esc-shadow);
 }
 
 /* Empty message and spacing CSS. */
@@ -512,8 +547,7 @@
         text-align: center;
     }
 
-    .camera-carousel,
-    .camera-actions {
+    .camera-carousel{
         border-radius: 24px;
     }
 
@@ -522,6 +556,9 @@
     }
 
     .camera-actions {
-        align-items: flex-start;
+        margin-top: 24px;
+        flex-wrap: wrap;
+        padding: 22px;
     }
 }
+
