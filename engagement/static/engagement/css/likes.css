@@ -2,27 +2,32 @@
 
 .heart-button {
     background-color: transparent !important;
-    color: #53792d !important;
+    color: var(--esc-green) !important;
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
+
     font-size: 34px;
     line-height: 1;
     cursor: pointer;
+
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
+
 /* CSS for the styling of the like button once the user hovers above it. */
+
 .heart-button:hover {
     background-color: transparent !important;
-    color: #6b923f !important;
+    color: var(--esc-green-light) !important;
     transform: scale(1.1);
 }
+
 
 /* CSS for the like count that is placed next to the heart icon. */
 
 .like-count {
-    color: #fffaf2;
+    color: var(--esc-text);
     font-size: 18px;
     font-weight: 700;
 }
