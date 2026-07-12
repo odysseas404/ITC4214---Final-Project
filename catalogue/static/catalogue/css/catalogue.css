@@ -186,9 +186,8 @@
     margin-top: 28px;
 }
 
-/* The camera-card and team-card classes define the styling for the individual cards used to display cameras and team members in the Escapism website. These cards have a dark background, rounded corners, padding, and a shadow effect. They also have a transition effect for transform, box-shadow, and border-color properties when hovered over. */
+/* The team-card class defines the styling for the individual cards used to display team members in the Escapism website. These cards have a dark background, rounded corners, padding, and a shadow effect. They also have a transition effect for transform, box-shadow, and border-color properties when hovered over. */
 
-.camera-card,
 .team-card {
     background-color: var(--esc-dark-card);
     border-radius: var(--esc-radius);
@@ -197,25 +196,16 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.camera-card:hover,
 .team-card:hover {
     transform: translateY(-4px);
     border-color: var(--esc-green-light);
     box-shadow: 0 14px 38px rgba(0, 0, 0, 0.48);
 }
 
-.camera-card {
-    min-height: 630px;
-    display: flex;
-    flex-direction: column;
-}
-
 .team-card {
     padding: 26px;
 }
 
-.camera-card h2,
-.camera-card h3,
 .team-card h3 {
     color: var(--esc-white);
     font-size: 24px;
@@ -223,12 +213,6 @@
     margin-bottom: 16px;
 }
 
-.camera-card h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-.camera-card p,
 .team-card p {
     color: var(--esc-white);
     font-size: 16px;
@@ -239,12 +223,6 @@
 .team-card p {
     color: var(--esc-text);
     text-align: left;
-}
-
-.info-label,
-.camera-card .info-label {
-    color: var(--esc-green-light) !important;
-    font-weight: 800;
 }
 
 .camera-card-image,
