@@ -1,38 +1,105 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
 
-<div class="glass-card">
+    <!-- Loads the CSS file for the borrowing app. -->
+    <link rel="stylesheet" href="{% static 'borrowing/css/borrowing.css' %}">
 
-    <h1>Place your Borrow Request</h1>
+{% endblock %}
 
-    <p>An administrator will review your request and contact you regarding the next steps.</p>
+{% block content %}
 
-    {% for camera in cameras %}
-        <p>
-            <span class="info-label">{{ camera.name }}</span> — {{ camera.manufacturer }}
-        </p>
-    {% endfor %}
+<!-- Main wrapper for the checkout page. -->
+<div class="borrow-page">
 
-    <hr>
+    <!-- Main panel that contains the checkout content. -->
+    <div class="borrow-wrapper-card">
 
-    <h2>Trip Information</h2>
+        <!-- Page heading and short explanation. -->
+        <div class="borrow-header">
 
-    <form method="post">
-        {% csrf_token %}
+            <h1>Place your Borrow Request</h1>
 
-        {{ form.as_p }}
-
-        <div class="button-row">
-            <button type="submit" class="btn">
-                Submit
-            </button>
-
-            <a href="{% url 'borrowing:borrow_basket' %}" class="btn">
-                Back to basket
-            </a>
+            <p>
+                An administrator will review your request and contact you regarding the next steps.
+            </p>
+            
         </div>
-    </form>
+
+        <!-- List of cameras included in the borrow request. -->
+        <div class="checkout-camera-list" aria-label="Selected cameras for borrowing">
+
+            {% for camera in cameras %}
+
+                <div class="checkout-camera-item">
+
+                    {% if camera.main_image %}
+                        <img 
+                            src="{{ camera.main_image.url }}" 
+                            alt="{{ camera.name }} film camera" 
+                            class="checkout-camera-image">
+                    {% endif %}
+
+                    <div class="checkout-camera-details">
+
+                        <h2>{{ camera.name }}</h2>
+
+                        <p>
+                            <span class="info-label">Manufacturer:</span>
+                            {{ camera.manufacturer }}
+                        </p>
+
+                        <p>
+                            <span class="info-label">Film format:</span>
+                            {{ camera.film_format }}
+                        </p>
+
+                        <p>
+                            <span class="info-label">Recommended for:</span>
+                            {{ camera.recommended_trip_type }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- Borrow request form. -->
+        <form method="post" aria-label="Borrow request form">
+            {% csrf_token %}
+
+            <h2>Trip Information</h2>
+
+            <!-- Django renders the form fields here. -->
+            {{ form.as_p }}
+
+            <!-- Form action buttons. -->
+            <div class="borrow-bottom-buttons">
+
+                <button 
+                    type="submit" 
+                    class="btn"
+                    aria-label="Submit borrow request">
+                    Submit Request
+                </button>
+
+                <a 
+                    href="{% url 'borrowing:borrow_basket' %}" 
+                    class="btn"
+                    aria-label="Return to Borrow Basket">
+                    Back to Basket
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
