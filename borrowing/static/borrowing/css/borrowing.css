@@ -64,15 +64,16 @@
 }
 
 .borrow-remove-button {
-    width: 46px;
     height: 46px;
-    min-width: 46px;
+    padding: 0 24px !important;
+    border-radius: var(--esc-radius-button) !important;
 
-    padding: 0 !important;
-    border-radius: 50% !important;
-
-    font-size: 28px !important;
+    font-size: 22px !important;
     line-height: 1 !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
 .borrow-details-button{
@@ -267,8 +268,20 @@
 }
 
 .borrow-remove-button {
-    width: 46px;
-    min-width: 46px;
+    width: 100% !important;
+    height: 46px !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    padding: 0 24px !important;
+    border-radius: var(--esc-radius-button) !important;
+
+    font-size: 22px !important;
+    line-height: 1 !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
 .borrow-details-button{
@@ -280,8 +293,7 @@
 
 .borrow-bottom-buttons .btn,
 .borrow-empty .btn,
-.borrow-wrapper-card form .btn,
-.borrow-wrapper-card form button:not(.borrow-remove-button) {
+.borrow-wrapper-card form button {
     width: 100%;
     text-align: center;
 }
