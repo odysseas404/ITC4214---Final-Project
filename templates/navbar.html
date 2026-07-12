@@ -1,18 +1,31 @@
+{% load static %}
+
+<!-- Main navigation bar which uses Bootstrap classes for layout and responsiveness. -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
     <div class="container">
 
+        <!-- Website logo that returns to the homepage once clicked. -->
         <a class="navbar-brand" href="{% url 'catalogue:home' %}">
-        <img src="/static/images/logo.webp" alt="Escapism logo" class="site-logo">
+
+            <img src="{% static 'images/logo.webp' %}" alt="Escapism logo" 
+            class="site-logo">
+
         </a>
 
+        <!-- Button shown on smaller screens to open and close the navigation menu. -->
         <button 
             class="navbar-toggler" 
             type="button" 
             data-bs-toggle="collapse" 
-            data-bs-target="#navbarNav">
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Collapsible navigation links. -->
         <div class="collapse navbar-collapse" id="navbarNav">
 
             <ul class="navbar-nav ms-auto">
@@ -55,15 +68,18 @@
                         </a>
                     </li>
 
+                    <!-- Logout uses POST for security and includes a CSRF token. -->
                     <li class="nav-item">
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
+
                             <button type="submit" class="btn nav-button">
                                 Logout
                             </button>
                         </form>
                     </li>
 
+                <!-- Links shown only when the user is not logged in. -->
                 {% else %}
 
                     <li class="nav-item">
