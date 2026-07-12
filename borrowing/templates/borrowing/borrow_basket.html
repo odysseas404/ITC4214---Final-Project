@@ -3,15 +3,21 @@
 
 {% block extra_css %}
     {{ block.super }}
+
+    <!-- Loads the CSS file for the borrowing app. -->
     <link rel="stylesheet" href="{% static 'borrowing/css/borrowing.css' %}">
+    
 {% endblock %}
 
 {% block content %}
 
+<!-- Main wrapper for the Borrow Basket page. -->
 <div class="borrow-page">
 
+    <!-- Main card/panel that contains the basket content. -->
     <div class="borrow-wrapper-card">
 
+        <!-- Page heading and short explanation. -->
         <div class="borrow-header">
             <h1>Borrow Basket</h1>
 
@@ -20,23 +26,29 @@
             </p>
         </div>
 
+        <!-- If the basket contains cameras, display them in a grid. -->
         {% if cameras %}
 
-            <div class="borrow-grid">
+            <!-- Reuses the global camera-grid class from the global CSS file. -->
+            <div class="camera-grid">
 
                 {% for camera in cameras %}
 
-                    <div class="borrow-card">
+                    <!-- Reuses the global camera-card class from the global CSS file. -->
+                    <div class="camera-card">
 
+                        <!-- Displays the main image of the camera, if one exists. -->
                         {% if camera.main_image %}
                             <img 
                                 src="{{ camera.main_image.url }}" 
                                 alt="{{ camera.name }} film camera" 
-                                class="borrow-card-image">
+                                class="camera-card-image">
                         {% endif %}
 
+                        <!-- Camera name. -->
                         <h2>{{ camera.name }}</h2>
 
+                        <!-- Camera basic information. -->
                         <p>
                             <span class="info-label">Manufacturer:</span>
                             {{ camera.manufacturer }}
@@ -52,19 +64,33 @@
                             {{ camera.recommended_trip_type }}
                         </p>
 
-                        <form 
-                            method="post" 
-                            action="{% url 'borrowing:remove_from_borrow_basket' camera.id %}" 
-                            class="borrow-remove-form">
-                            {% csrf_token %}
+                        <!-- Action buttons for this specific camera. -->
+                        <div class="borrow-card-actions">
 
-                            <button 
-                                type="submit" 
-                                class="btn"
-                                aria-label="Remove {{ camera.name }} from Borrow Basket">
-                                Remove
-                            </button>
-                        </form>
+                            <!-- Form used to remove this camera from the Borrow Basket. -->
+                            <form 
+                                method="post" 
+                                action="{% url 'borrowing:remove_from_borrow_basket' camera.id %}" 
+                                class="borrow-remove-form">
+                                {% csrf_token %}
+
+                                <button 
+                                    type="submit" 
+                                    class="btn borrow-remove-button"
+                                    aria-label="Remove {{ camera.name }} from Borrow Basket">
+                                    −
+                                </button>
+                            </form>
+
+                            <!-- Link to the detail page of this camera. -->
+                            <a 
+                                href="{% url 'catalogue:camera_detail' camera.id %}" 
+                                class="btn borrow-details-button"
+                                aria-label="View details for {{ camera.name }}">
+                                View Details
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -72,13 +98,14 @@
 
             </div>
 
+            <!-- Bottom page buttons for continuing or returning to the catalogue. -->
             <div class="borrow-bottom-buttons">
 
                 <a 
                     href="{% url 'borrowing:borrow_checkout' %}" 
                     class="btn"
-                    aria-label="Continue to the borrow request form">
-                    Continue to Borrow Request
+                    aria-label="Continue to checkout">
+                    Checkout
                 </a>
 
                 <a 
@@ -90,6 +117,7 @@
 
             </div>
 
+        <!-- If the basket is empty, display an empty basket message. -->
         {% else %}
 
             <div class="borrow-empty">
