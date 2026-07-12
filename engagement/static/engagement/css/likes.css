@@ -1,27 +1,28 @@
-/* =========================
-   Engagement like button
-========================= */
+/* CSS for the like button of the engagement application. */
 
 .heart-button {
-    border: none !important;
     background-color: transparent !important;
-    color: #e63946 !important;
+    color: #53792d !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
     font-size: 34px;
     line-height: 1;
     cursor: pointer;
-    padding: 0 !important;
-    box-shadow: none !important;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
+/* CSS for the styling of the like button once the user hovers above it. */
 .heart-button:hover {
     background-color: transparent !important;
-    color: #e63946 !important;
+    color: #6b923f !important;
     transform: scale(1.1);
 }
 
+/* CSS for the like count that is placed next to the heart icon. */
+
 .like-count {
+    color: #fffaf2;
     font-size: 18px;
     font-weight: 700;
-    color: #fffaf2;
 }
