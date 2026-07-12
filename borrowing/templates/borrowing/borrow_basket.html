@@ -14,7 +14,10 @@
 
         <div class="borrow-header">
             <h1>Borrow Basket</h1>
-            <p>These are the cameras you have selected for your trip.</p>
+
+            <p>
+                These are the cameras you have selected for your trip.
+            </p>
         </div>
 
         {% if cameras %}
@@ -28,15 +31,26 @@
                         {% if camera.main_image %}
                             <img 
                                 src="{{ camera.main_image.url }}" 
-                                alt="{{ camera.name }}" 
+                                alt="{{ camera.name }} film camera" 
                                 class="borrow-card-image">
                         {% endif %}
 
                         <h2>{{ camera.name }}</h2>
 
-                        <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
-                        <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
-                        <p><span class="info-label">Recommended for:</span> {{ camera.recommended_trip_type }}</p>
+                        <p>
+                            <span class="info-label">Manufacturer:</span>
+                            {{ camera.manufacturer }}
+                        </p>
+
+                        <p>
+                            <span class="info-label">Film format:</span>
+                            {{ camera.film_format }}
+                        </p>
+
+                        <p>
+                            <span class="info-label">Recommended for:</span>
+                            {{ camera.recommended_trip_type }}
+                        </p>
 
                         <form 
                             method="post" 
@@ -44,7 +58,10 @@
                             class="borrow-remove-form">
                             {% csrf_token %}
 
-                            <button type="submit" class="btn">
+                            <button 
+                                type="submit" 
+                                class="btn"
+                                aria-label="Remove {{ camera.name }} from Borrow Basket">
                                 Remove
                             </button>
                         </form>
@@ -56,23 +73,38 @@
             </div>
 
             <div class="borrow-bottom-buttons">
-                <a href="{% url 'borrowing:borrow_checkout' %}" class="btn">
+
+                <a 
+                    href="{% url 'borrowing:borrow_checkout' %}" 
+                    class="btn"
+                    aria-label="Continue to the borrow request form">
                     Continue to Borrow Request
                 </a>
 
-                <a href="{% url 'catalogue:home' %}" class="btn">
+                <a 
+                    href="{% url 'catalogue:home' %}" 
+                    class="btn"
+                    aria-label="Return to the camera catalogue">
                     Back to Catalogue
                 </a>
+
             </div>
 
         {% else %}
 
             <div class="borrow-empty">
-                <p>Your Borrow Basket is empty.</p>
 
-                <a href="{% url 'catalogue:home' %}" class="btn">
+                <p>
+                    Your Borrow Basket is empty.
+                </p>
+
+                <a 
+                    href="{% url 'catalogue:home' %}" 
+                    class="btn"
+                    aria-label="Return to the camera catalogue">
                     Back to Catalogue
                 </a>
+
             </div>
 
         {% endif %}
