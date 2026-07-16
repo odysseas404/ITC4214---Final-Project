@@ -1,58 +1,116 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
 
-<div class="glass-card form-box">
+    <!-- Loads the CSS file for the accounts app. -->
+    <link rel="stylesheet" href="{% static 'accounts_app/css/accounts.css' %}">
+{% endblock %}
 
-    <h1>Create Your Traveller Account</h1>
+{% block content %}
 
-    <form method="post">
-        {% csrf_token %}
+<!-- Main wrapper for the registration page. -->
+<div class="dashboard-page">
 
-        <div class="form-group">
-            {{ form.username.label_tag }}
-            {{ form.username }}
+    <!-- Main registration panel. -->
+    <div class="dashboard-panel">
 
-            <small class="field-help">
-                Maximum 150 characters.
-            </small>
+        <!-- Registration page heading and explanation. -->
+        <div class="dashboard-header">
+            <h1>Create Your Traveller Account</h1>
 
-            {{ form.username.errors }}
+            <p>
+                Register to borrow cameras, submit borrow requests, and save your favourite cameras.
+            </p>
         </div>
 
-        <div class="form-group">
-            {{ form.password1.label_tag }}
-            {{ form.password1 }}
+        <!-- Registration form section. -->
+        <section class="dashboard-section" aria-label="Traveller registration form">
 
-            <small class="field-help">
-                Your password must contain at least 8 characters.
-            </small>
+            <!-- Reuses the global camera-card styling for a consistent card design. -->
+            <div class="camera-card profile-card">
 
-            {{ form.password1.errors }}
-        </div>
+                <h2>Account Details</h2>
 
-        <div class="form-group">
-            {{ form.password2.label_tag }}
-            {{ form.password2 }}
+                <!-- Form used to create a new traveller account. -->
+                <form method="post" aria-label="Create traveller account form">
+                    {% csrf_token %}
 
-            <small class="field-help">
-                Enter the same password again for confirmation.
-            </small>
+                    <!-- Username field. -->
+                    <div class="form-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
 
-            {{ form.password2.errors }}
-        </div>
+                        <small class="field-help">
+                            Maximum 15 characters.
+                        </small>
 
-        <div class="button-row">
-            <button type="submit" class="btn">
-                Register
-            </button>
+                        {% if form.username.errors %}
+                            <div class="form-errors">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
 
-            <a href="{% url 'catalogue:home' %}" class="btn">
-                Back to home
-            </a>
-        </div>
+                    <!-- Password field. -->
+                    <div class="form-group">
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
 
-    </form>
+                        <small class="field-help">
+                            Your password must contain at least 8 characters.
+                        </small>
+
+                        {% if form.password1.errors %}
+                            <div class="form-errors">
+                                {{ form.password1.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password confirmation field. -->
+                    <div class="form-group">
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+
+                        <small class="field-help">
+                            Enter the same password again for confirmation.
+                        </small>
+
+                        {% if form.password2.errors %}
+                            <div class="form-errors">
+                                {{ form.password2.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Registration action buttons. -->
+                    <div class="dashboard-card-actions">
+
+                        <button 
+                            type="submit" 
+                            class="btn"
+                            aria-label="Create traveller account">
+                            Register
+                        </button>
+
+                        <a 
+                            href="{% url 'catalogue:home' %}" 
+                            class="btn"
+                            aria-label="Return to the homepage">
+                            Back to Home
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </div>
 
