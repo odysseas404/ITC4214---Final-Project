@@ -1,25 +1,86 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the accounts app. -->
+    <link rel="stylesheet" href="{% static 'accounts_app/css/accounts.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card">
+<!-- Main wrapper for the profile page. -->
+<div class="dashboard-page">
 
-    <h1>My Profile</h1>
+    <!-- Main profile panel. -->
+    <div class="dashboard-panel">
 
-    <p><span class="info-label">Username:</span> {{ user.username }}</p>
-    <p><span class="info-label">First name:</span> {{ user.first_name }}</p>
-    <p><span class="info-label">Last name:</span> {{ user.last_name }}</p>
-    <p><span class="info-label">Email:</span> {{ user.email }}</p>
-    <p><span class="info-label">Date joined:</span> {{ user.date_joined }}</p>
+        <!-- Profile page heading and explanation. -->
+        <div class="dashboard-header">
+            <h1>My Profile</h1>
 
-    <div class="button-row">
-        <a href="{% url 'accounts_app:edit_profile' %}" class="btn">
-            Edit profile
-        </a>
+            <p>
+                Here you can view your account information.
+            </p>
+        </div>
 
-        <a href="{% url 'accounts_app:dashboard' %}" class="btn">
-            Back to dashboard
-        </a>
+        <!-- Profile information section. -->
+        <section class="dashboard-section" aria-label="User profile information">
+
+            <!-- Reuses the global camera-card styling for a consistent card design. -->
+            <div class="camera-card profile-card">
+
+                <h2>Account Details</h2>
+
+                <p>
+                    <span class="info-label">Username:</span>
+                    {{ user.username }}
+                </p>
+
+                <p>
+                    <span class="info-label">First name:</span>
+                    {{ user.first_name }}
+                </p>
+
+                <p>
+                    <span class="info-label">Last name:</span>
+                    {{ user.last_name }}
+                </p>
+
+                <p>
+                    <span class="info-label">Email:</span>
+                    {{ user.email }}
+                </p>
+
+                <p>
+                    <span class="info-label">Date joined:</span>
+                    {{ user.date_joined }}
+                </p>
+
+                <!-- Profile page action buttons. -->
+                <div class="dashboard-card-actions">
+
+                    <a 
+                        href="{% url 'accounts_app:edit_profile' %}" 
+                        class="btn"
+                        aria-label="Edit your profile information">
+                        Edit Profile
+                    </a>
+
+                    <a 
+                        href="{% url 'accounts_app:dashboard' %}" 
+                        class="btn"
+                        aria-label="Return to your dashboard">
+                        Back to Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </div>
 
 </div>
