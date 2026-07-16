@@ -1,0 +1,147 @@
+/* Dashboard page wrapper. */
+
+.dashboard-page {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+/* Main dashboard panel. */
+
+.dashboard-panel {
+    width: 100%;
+    background-color: var(--esc-dark-panel);
+    border-radius: var(--esc-radius);
+    padding: 42px 56px;
+    box-shadow: var(--esc-shadow);
+}
+
+/* Dashboard page header. */
+
+.dashboard-header {
+    margin-bottom: 36px;
+}
+
+.dashboard-header h1 {
+    color: var(--esc-white);
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+}
+
+.dashboard-header p {
+    color: var(--esc-text);
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Dashboard sections. */
+
+.dashboard-section {
+    margin-top: 42px;
+}
+
+.dashboard-section h2 {
+    color: var(--esc-white);
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+/* Dashboard card buttons. */
+
+.dashboard-card-actions {
+    margin-top: auto;
+    padding-top: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.dashboard-cancel-form {
+    margin: 0;
+}
+
+/* Empty dashboard message. */
+
+.dashboard-empty {
+    background-color: var(--esc-dark-card);
+    border: 3px solid var(--esc-card-border);
+    border-radius: var(--esc-radius);
+    padding: 28px;
+    box-shadow: var(--esc-card-shadow);
+}
+
+.dashboard-empty p {
+    color: var(--esc-text);
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+/* Profile, edit profile, register, and login cards. */
+
+.profile-card {
+    min-height: auto;
+    max-width: 720px;
+}
+
+.profile-card h2 {
+    margin-bottom: 22px;
+}
+
+/* Mobile responsiveness. */
+
+@media (max-width: 575px) {
+    .dashboard-page {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .dashboard-panel {
+        padding: 26px 22px;
+        border-radius: var(--esc-radius-small);
+    }
+
+    .dashboard-header {
+        margin-bottom: 28px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    .dashboard-header p {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .dashboard-section {
+        margin-top: 34px;
+    }
+
+    .dashboard-section h2 {
+        font-size: 26px;
+    }
+
+    .dashboard-card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dashboard-card-actions .btn,
+    .dashboard-cancel-form,
+    .dashboard-empty .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dashboard-empty {
+        padding: 24px;
+        border-radius: var(--esc-radius-small);
+    }
+}
