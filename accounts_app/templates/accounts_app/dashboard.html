@@ -1,66 +1,227 @@
-{% extends "catalogue/base_catalogue.html" %}
+{% extends "base.html" %}
+{% load static %}
 
-{% block catalogue_content %}
+{% block extra_css %}
+    {{ block.super }}
 
-<div class="glass-card">
+    <!-- Loads the CSS file for the accounts app. -->
+    <link rel="stylesheet" href="{% static 'accounts_app/css/accounts.css' %}">
+{% endblock %}
 
-    <h2>Borrow Requests</h2>
+{% block content %}
 
-    {% if borrow_requests %}
+<!-- Main wrapper for the user dashboard page. -->
+<div class="dashboard-page">
 
-        {% for request_item in borrow_requests %}
+    <!-- Main dashboard panel. -->
+    <div class="dashboard-panel">
 
-                <h3>{{ request_item.camera.name }}</h3>
+        <!-- Dashboard heading and explanation. -->
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
 
-                <p><span class="info-label">Destination:</span> {{ request_item.trip_destination }}</p>
-                <p><span class="info-label">Trip start:</span> {{ request_item.trip_start_date }}</p>
-                <p><span class="info-label">Trip end:</span> {{ request_item.trip_end_date }}</p>
-                <p><span class="info-label">Status:</span> {{ request_item.status }}</p>
-                <p><span class="info-label">Submitted:</span> {{ request_item.created_at }}</p>
+            <p>
+                Here you can view your submitted borrow requests and the cameras you have liked.
+            </p>
+        </div>
 
-        {% endfor %}
 
-    {% else %}
+        <!-- Section showing the user's submitted borrow requests. -->
+        <section class="dashboard-section" aria-label="Submitted borrow requests">
 
-        <p>You have not submitted any borrow requests yet.</p>
+            <h2>Borrow Requests</h2>
 
-    {% endif %}
+            {% if borrow_requests %}
 
-</div>
+                <!-- Reuses the global camera-grid class. -->
+                <div class="camera-grid">
 
-<div class="glass-card">
+                    {% for request_item in borrow_requests %}
 
-    <h2>Liked Cameras</h2>
+                        <!-- Reuses the global camera-card class. -->
+                        <div class="camera-card">
 
-    {% if liked_cameras %}
+                            {% if request_item.camera.main_image %}
+                                <img 
+                                    src="{{ request_item.camera.main_image.url }}" 
+                                    alt="{{ request_item.camera.name }} film camera" 
+                                    class="camera-card-image">
+                            {% endif %}
 
-        <div class="camera-grid">
+                            <h3>{{ request_item.camera.name }}</h3>
 
-            {% for camera in liked_cameras %}
+                            <p>
+                                <span class="info-label">Destination:</span>
+                                {{ request_item.trip_destination }}
+                            </p>
 
-                <div class="camera-card">
+                            <p>
+                                <span class="info-label">Trip start:</span>
+                                {{ request_item.trip_start_date }}
+                            </p>
 
-                    {% if camera.main_image %}
-                        <img src="{{ camera.main_image.url }}" alt="{{ camera.name }}" class="camera-card-image">
-                    {% endif %}
+                            <p>
+                                <span class="info-label">Trip end:</span>
+                                {{ request_item.trip_end_date }}
+                            </p>
 
-                    <h3>{{ camera.name }}</h3>
+                            <p>
+                                <span class="info-label">Status:</span>
+                                {{ request_item.status }}
+                            </p>
 
-                    <a href="{% url 'catalogue:camera_detail' camera.id %}" class="btn">
-                        View details
+                            <p>
+                                <span class="info-label">Submitted:</span>
+                                {{ request_item.created_at }}
+                            </p>
+
+                            <!-- Action buttons for this borrow request. -->
+                            <div class="dashboard-card-actions">
+
+                                <a 
+                                    href="{% url 'catalogue:camera_detail' request_item.camera.id %}" 
+                                    class="btn"
+                                    aria-label="View details for {{ request_item.camera.name }}">
+                                    View Details
+                                </a>
+
+                                {% if request_item.status == "Pending" %}
+
+                                    <!-- Form used to cancel a pending borrow request. -->
+                                    <form 
+                                        method="post" 
+                                        action="{% url 'accounts_app:cancel_borrow_request' request_item.id %}" 
+                                        class="dashboard-cancel-form">
+                                        {% csrf_token %}
+
+                                        <button 
+                                            type="submit" 
+                                            class="btn"
+                                            aria-label="Cancel borrow request for {{ request_item.camera.name }}">
+                                            Cancel Request
+                                        </button>
+                                    </form>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="dashboard-empty">
+
+                    <p>
+                        You have not submitted any borrow requests yet.
+                    </p>
+
+                    <a 
+                        href="{% url 'catalogue:home' %}" 
+                        class="btn"
+                        aria-label="Go to the camera catalogue">
+                        Browse Cameras
                     </a>
 
                 </div>
 
-            {% endfor %}
+            {% endif %}
 
-        </div>
+        </section>
 
-    {% else %}
 
-        <p>You have not liked any cameras yet.</p>
+        <!-- Section showing the cameras liked by the user. -->
+        <section class="dashboard-section" aria-label="Liked cameras">
 
-    {% endif %}
+            <h2>Liked Cameras</h2>
+
+            {% if liked_cameras %}
+
+                <!-- Reuses the global camera-grid class. -->
+                <div class="camera-grid">
+
+                    {% for camera in liked_cameras %}
+
+                        <!-- Reuses the global camera-card class. -->
+                        <div class="camera-card">
+
+                            {% if camera.main_image %}
+                                <img 
+                                    src="{{ camera.main_image.url }}" 
+                                    alt="{{ camera.name }} film camera" 
+                                    class="camera-card-image">
+                            {% endif %}
+
+                            <h3>{{ camera.name }}</h3>
+
+                            <p>
+                                <span class="info-label">Manufacturer:</span>
+                                {{ camera.manufacturer }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Year:</span>
+                                {{ camera.year }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Film format:</span>
+                                {{ camera.film_format }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Condition:</span>
+                                {{ camera.condition }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Recommended for:</span>
+                                {{ camera.recommended_trip_type }}
+                            </p>
+
+                            <div class="dashboard-card-actions">
+
+                                <a 
+                                    href="{% url 'catalogue:camera_detail' camera.id %}" 
+                                    class="btn"
+                                    aria-label="View details for {{ camera.name }}">
+                                    View Details
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="dashboard-empty">
+
+                    <p>
+                        You have not liked any cameras yet.
+                    </p>
+
+                    <a 
+                        href="{% url 'catalogue:home' %}" 
+                        class="btn"
+                        aria-label="Go to the camera catalogue">
+                        Browse Cameras
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
 
 </div>
 
