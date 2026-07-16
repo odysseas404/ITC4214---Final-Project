@@ -1,27 +1,82 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the accounts app. -->
+    <link rel="stylesheet" href="{% static 'accounts_app/css/accounts.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card form-box">
+<!-- Main wrapper for the login page. -->
+<div class="dashboard-page">
 
-    <h1>Login</h1>
+    <!-- Main login panel. -->
+    <div class="dashboard-panel">
 
-    <form method="post">
-        {% csrf_token %}
+        <!-- Login page heading and explanation. -->
+        <div class="dashboard-header">
+            <h1>Login</h1>
 
-        {{ form.as_p }}
-
-        <div class="button-row">
-            <button type="submit" class="btn">
-                Login
-            </button>
-
-            <a href="{% url 'catalogue:home' %}" class="btn">
-                Back to home
-            </a>
+            <p>
+                Log in to access your dashboard, borrow cameras, and manage your saved cameras.
+            </p>
         </div>
 
-    </form>
+        <!-- Login form section. -->
+        <section class="dashboard-section" aria-label="Login form">
+
+            <!-- Reuses the global camera-card styling for a consistent card design. -->
+            <div class="camera-card profile-card">
+
+                <h2>Account Login</h2>
+
+                <!-- Form used to log in an existing user. -->
+                <form method="post" aria-label="User login form">
+                    {% csrf_token %}
+
+                    <!-- Displays login errors if the username or password is incorrect. -->
+                    {% if form.errors %}
+                        <div class="form-errors">
+                            <p>
+                                Please check your username and password.
+                            </p>
+
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Django renders the login form fields here. -->
+                    {{ form.as_p }}
+
+                    <!-- Login page action buttons. -->
+                    <div class="dashboard-card-actions">
+
+                        <button 
+                            type="submit" 
+                            class="btn"
+                            aria-label="Log in to your account">
+                            Login
+                        </button>
+
+                        <a 
+                            href="{% url 'catalogue:home' %}" 
+                            class="btn"
+                            aria-label="Return to the homepage">
+                            Back to Home
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </div>
 
