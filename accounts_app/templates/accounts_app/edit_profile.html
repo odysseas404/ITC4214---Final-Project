@@ -1,26 +1,79 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the accounts app. -->
+    <link rel="stylesheet" href="{% static 'accounts_app/css/accounts.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card form-box">
+<!-- Main wrapper for the edit profile page. -->
+<div class="dashboard-page">
 
-    <h1>Edit Profile</h1>
+    <!-- Main edit profile panel. -->
+    <div class="dashboard-panel">
 
-    <form method="post">
-        {% csrf_token %}
+        <!-- Edit profile page heading and explanation. -->
+        <div class="dashboard-header">
+            <h1>Edit Profile</h1>
 
-        {{ form.as_p }}
-
-        <div class="button-row profile-button-row">
-            <button type="submit" class="btn">
-                Save changes
-            </button>
-
-            <a href="{% url 'accounts_app:profile' %}" class="btn">
-                Back to profile
-            </a>
+            <p>
+                Update your personal account information below.
+            </p>
         </div>
-    </form>
+
+        <!-- Edit profile form section. -->
+        <section class="dashboard-section" aria-label="Edit profile form">
+
+            <!-- Reuses the global camera-card styling for a consistent card design. -->
+            <div class="camera-card profile-card">
+
+                <h2>Profile Information</h2>
+
+                <!-- Form used to update the user's profile information. -->
+                <form method="post" aria-label="Update profile information form">
+                    {% csrf_token %}
+
+                    <!-- Displays form validation errors if any field is invalid. -->
+                    {% if form.errors %}
+                        <div class="form-errors">
+                            <p>Please correct the errors below.</p>
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Django renders the profile form fields here. -->
+                    {{ form.as_p }}
+
+                    <!-- Edit profile action buttons. -->
+                    <div class="dashboard-card-actions">
+
+                        <button 
+                            type="submit" 
+                            class="btn"
+                            aria-label="Save profile changes">
+                            Save Changes
+                        </button>
+
+                        <a 
+                            href="{% url 'accounts_app:profile' %}" 
+                            class="btn"
+                            aria-label="Return to your profile page">
+                            Back to Profile
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </div>
 
