@@ -166,19 +166,13 @@
     text-align: center !important;
 }
 
-/* The camera-grid and team-grid classes define the styling for the grid layouts used to display cameras, steps, and team members in the Escapism website. These grids use a CSS grid layout with a specified number of columns, a gap between items, and stretch alignment for the items. The width is set to 100% to make the grids responsive. */
+/* The team-grid class defines the styling for the grid layouts used to display team members in the Escapism website. These grids use a CSS grid layout with a specified number of columns, a gap between items, and stretch alignment for the items. The width is set to 100% to make the grids responsive. */
 
-.camera-grid,
 .team-grid {
     display: grid;
     gap: 28px;
     align-items: stretch;
     width: 100%;
-}
-
-.camera-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    scroll-margin-top: 90px;
 }
 
 .team-grid {
@@ -225,21 +219,11 @@
     text-align: left;
 }
 
-.camera-card-image,
 .team-image {
     width: 100%;
     object-position: center;
     display: block;
     background-color: var(--esc-white);
-}
-
-.camera-card-image{
-    height: 190px;
-    max-height: 190px;
-    object-fit: contain;
-    border-radius: 24px;
-    padding: 24px;
-    margin-bottom: 24px;
 }
 
 .team-image {
@@ -417,13 +401,8 @@
     }
 
     .filter-form,
-    .camera-grid,
     .team-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .camera-card {
-        min-height: 610px;
     }
 
     .team-image {
@@ -484,7 +463,6 @@
     }
 
     .filter-form,
-    .camera-grid,
     .team-grid {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -514,31 +492,9 @@
         text-align: center;
     }
 
-    .camera-card {
-        min-height: auto;
-        padding: 22px;
-        border-radius: 24px;
-    }
-
-    .camera-card-image{
-        height: 165px;
-        max-height: 165px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
     .team-image {
         height: 240px;
         border-radius: 20px;
-    }
-
-    .camera-card h2,
-    .camera-card h3 {
-        font-size: 23px;
-    }
-
-    .camera-card p {
-        font-size: 15px;
     }
 
     .camera-card-actions .btn,
