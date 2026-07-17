@@ -1,52 +1,192 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the custom admin panel app. -->
+    <link rel="stylesheet" href="{% static 'custom_admin_panel/css/custom_admin.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card">
+<!-- Main wrapper for the borrow request management page. -->
+<div class="custom-admin-page">
 
-    <h1>Manage Borrow Requests</h1>
+    <!-- Main panel that contains all borrow request management content. -->
+    <div class="custom-admin-panel">
 
-    {% for borrow_request in borrow_requests %}
+        <!-- Page heading and short explanation for the admin user. -->
+        <div class="custom-admin-header">
+            <h1>Manage Borrow Requests</h1>
 
-        <div class="glass-card dashboard-inner-card">
-
-            <h2>{{ borrow_request.camera.name }}</h2>
-
-            <p><span class="info-label">User:</span> {{ borrow_request.user.username }}</p>
-            <p><span class="info-label">Destination:</span> {{ borrow_request.trip_destination }}</p>
-            <p><span class="info-label">Trip start:</span> {{ borrow_request.trip_start_date }}</p>
-            <p><span class="info-label">Trip end:</span> {{ borrow_request.trip_end_date }}</p>
-            <p><span class="info-label">Status:</span> {{ borrow_request.status }}</p>
-
-            <div class="button-row">
-                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Approved' %}" class="btn">
-                    Approve
-                </a>
-
-                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Rejected' %}" class="btn">
-                    Reject
-                </a>
-
-                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Borrowed' %}" class="btn">
-                    Mark Borrowed
-                </a>
-
-                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Returned' %}" class="btn">
-                    Mark Returned
-                </a>
-
-                <a href="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Completed' %}" class="btn">
-                    Complete
-                </a>
-            </div>
-
+            <p>
+                Review submitted borrow requests and update their status.
+            </p>
         </div>
 
-    {% empty %}
 
-        <p>No borrow requests found.</p>
+        <!-- Section containing all submitted borrow requests. -->
+        <section 
+            class="custom-admin-section" 
+            aria-label="Borrow request management">
 
-    {% endfor %}
+            <!-- If there are borrow requests, display them as cards. -->
+            {% if borrow_requests %}
+
+                <!-- Reuses the global camera-grid class for consistent card layout. -->
+                <div class="camera-grid">
+
+                    {% for borrow_request in borrow_requests %}
+
+                        <!-- 
+                            Reuses the global camera-card class.
+                            Each card represents one borrow request.
+                        -->
+                        <div class="camera-card">
+
+                            <!-- Displays the camera image if one exists. -->
+                            {% if borrow_request.camera.main_image %}
+                                <img 
+                                    src="{{ borrow_request.camera.main_image.url }}" 
+                                    alt="{{ borrow_request.camera.name }} film camera" 
+                                    class="camera-card-image">
+                            {% endif %}
+
+                            <!-- Camera name connected to the borrow request. -->
+                            <h3>{{ borrow_request.camera.name }}</h3>
+
+                            <!-- Borrow request details. -->
+                            <p>
+                                <span class="info-label">User:</span>
+                                {{ borrow_request.user.username }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Destination:</span>
+                                {{ borrow_request.trip_destination }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Trip start:</span>
+                                {{ borrow_request.trip_start_date }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Trip end:</span>
+                                {{ borrow_request.trip_end_date }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Status:</span>
+                                {{ borrow_request.status }}
+                            </p>
+
+                            <!-- 
+                                Status update buttons.
+                                Each button is inside a POST form for security.
+                            -->
+                            <div 
+                                class="custom-admin-card-actions" 
+                                aria-label="Update request status">
+
+                                <!-- Approves the borrow request. -->
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Approved' %}"
+                                    class="custom-admin-status-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Approve request for {{ borrow_request.camera.name }}">
+                                        Approve
+                                    </button>
+                                </form>
+
+                                <!-- Rejects the borrow request. -->
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Rejected' %}"
+                                    class="custom-admin-status-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Reject request for {{ borrow_request.camera.name }}">
+                                        Reject
+                                    </button>
+                                </form>
+
+                                <!-- Marks the camera as borrowed by the user. -->
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Borrowed' %}"
+                                    class="custom-admin-status-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Mark {{ borrow_request.camera.name }} as borrowed">
+                                        Mark Borrowed
+                                    </button>
+                                </form>
+
+                                <!-- Marks the camera as returned by the user. -->
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Returned' %}"
+                                    class="custom-admin-status-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Mark {{ borrow_request.camera.name }} as returned">
+                                        Mark Returned
+                                    </button>
+                                </form>
+
+                                <!-- Completes the borrow request after the process is finished. -->
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:update_borrow_status' borrow_request.id 'Completed' %}"
+                                    class="custom-admin-status-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Complete request for {{ borrow_request.camera.name }}">
+                                        Complete
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            <!-- If no borrow requests exist, display an empty-state message. -->
+            {% else %}
+
+                <div class="custom-admin-empty">
+                    <p>
+                        No borrow requests found.
+                    </p>
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
 
 </div>
 
