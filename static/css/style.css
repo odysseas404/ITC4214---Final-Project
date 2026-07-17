@@ -28,14 +28,14 @@
     --esc-radius-button: 28px;
 }
 
-/*Global page styling. */
+/* Global page styling. */
 
 body {
     min-height: 100vh;
     color: var(--esc-text);
     font-family: Arial, Helvetica, sans-serif;
 
-      background-image:
+    background-image:
         linear-gradient(
             rgba(10, 10, 10, 0.35),
             rgba(10, 10, 10, 0.35)
@@ -53,7 +53,7 @@ main {
     min-height: 75vh;
 }
 
-/*Global typography. */
+/* Global typography. */
 
 h1,
 h2,
@@ -72,7 +72,7 @@ a {
     text-decoration: none;
 }
 
-/*Global buttons. */
+/* Global buttons. */
 
 .btn,
 button,
@@ -110,7 +110,6 @@ input[type="submit"]:hover {
 
 .camera-card {
     min-height: 630px;
-    background-color: var(--esc-dark-card);
     border-radius: var(--esc-radius);
     padding: 24px;
     box-shadow: var(--esc-card-shadow);
@@ -126,7 +125,6 @@ input[type="submit"]:hover {
 
 .camera-card:hover {
     transform: translateY(-4px);
-    border-color: var(--esc-green-light);
     box-shadow: var(--esc-card-shadow-hover);
 }
 
@@ -275,6 +273,24 @@ form textarea:focus {
 .errorlist {
     color: var(--esc-error);
     margin-top: 8px;
+}
+
+/* Global form validation errors. */
+
+.form-errors {
+    background-color: rgba(120, 20, 20, 0.35);
+    border: 1px solid var(--esc-error);
+    border-radius: var(--esc-radius-small);
+    padding: 12px 16px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+.form-errors,
+.form-errors p,
+.form-errors li,
+.form-errors ul {
+    color: var(--esc-error);
 }
 
 /* Footer styling. */
