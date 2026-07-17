@@ -1,0 +1,204 @@
+/* Custom admin page wrapper. */
+
+.custom-admin-page {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+/* Main custom admin panel. */
+
+.custom-admin-panel {
+    width: 100%;
+    background-color: var(--esc-dark-panel);
+    border-radius: var(--esc-radius);
+    padding: 42px 56px;
+    box-shadow: var(--esc-shadow);
+}
+
+/* Custom admin page header. */
+
+.custom-admin-header {
+    margin-bottom: 36px;
+}
+
+.custom-admin-header h1 {
+    color: var(--esc-white);
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+}
+
+.custom-admin-header p {
+    color: var(--esc-text);
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* Custom admin sections. */
+
+.custom-admin-section {
+    margin-top: 42px;
+}
+
+.custom-admin-section h2 {
+    color: var(--esc-white);
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+/* Custom admin dashboard statistics. */
+
+.custom-admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.custom-admin-stat-card {
+    background-color: var(--esc-dark-card);
+    border: 3px solid var(--esc-card-border);
+    border-radius: var(--esc-radius);
+    padding: 30px;
+    box-shadow: var(--esc-card-shadow);
+}
+
+.custom-admin-stat-label {
+    color: var(--esc-text);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.custom-admin-stat-number {
+    color: var(--esc-white);
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+/* Custom admin action buttons. */
+
+.custom-admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Custom admin card buttons. */
+
+.custom-admin-card-actions {
+    margin-top: auto;
+    padding-top: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.custom-admin-delete-form,
+.custom-admin-status-form {
+    margin: 0;
+}
+
+/* Empty custom admin message. */
+
+.custom-admin-empty {
+    background-color: var(--esc-dark-card);
+    border: 3px solid var(--esc-card-border);
+    border-radius: var(--esc-radius);
+    padding: 28px;
+    box-shadow: var(--esc-card-shadow);
+}
+
+.custom-admin-empty p {
+    color: var(--esc-text);
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Add camera form card. */
+
+.custom-admin-form-card {
+    min-height: auto;
+    max-width: 760px;
+}
+
+.custom-admin-form-card h2 {
+    margin-bottom: 22px;
+}
+
+/* Mobile responsiveness. */
+
+@media (max-width: 575px) {
+    .custom-admin-page {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .custom-admin-panel {
+        padding: 26px 22px;
+        border-radius: var(--esc-radius-small);
+    }
+
+    .custom-admin-header {
+        margin-bottom: 28px;
+    }
+
+    .custom-admin-header h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    .custom-admin-header p {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .custom-admin-section {
+        margin-top: 34px;
+    }
+
+    .custom-admin-section h2 {
+        font-size: 26px;
+    }
+
+    .custom-admin-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .custom-admin-stat-card {
+        padding: 24px;
+        border-radius: var(--esc-radius-small);
+    }
+
+    .custom-admin-stat-number {
+        font-size: 44px;
+    }
+
+    .custom-admin-actions,
+    .custom-admin-card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .custom-admin-actions .btn,
+    .custom-admin-card-actions .btn,
+    .custom-admin-delete-form,
+    .custom-admin-status-form {
+        width: 100%;
+        text-align: center;
+    }
+
+    .custom-admin-empty {
+        padding: 24px;
+        border-radius: var(--esc-radius-small);
+    }
+}
