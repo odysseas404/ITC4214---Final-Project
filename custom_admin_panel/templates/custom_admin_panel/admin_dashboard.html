@@ -1,22 +1,100 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the custom admin panel app. -->
+    <link rel="stylesheet" href="{% static 'custom_admin_panel/css/custom_admin.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card">
+<!-- Main wrapper for the custom admin dashboard page. -->
+<div class="custom-admin-page">
 
-    <h1>Custom Admin Dashboard</h1>
+    <!-- Main custom admin dashboard panel. -->
+    <div class="custom-admin-panel">
 
-    <p><span class="info-label">Total cameras:</span> {{ camera_count }}</p>
-    <p><span class="info-label">Pending borrow requests:</span> {{ pending_requests_count }}</p>
+        <!-- Page heading and explanation. -->
+        <div class="custom-admin-header">
+            <h1>Custom Admin Dashboard</h1>
 
-    <div class="button-row">
-        <a href="{% url 'custom_admin_panel:manage_cameras' %}" class="btn">
-            Manage Cameras
-        </a>
+            <p>
+                Use this panel to manage camera listings and borrow requests based on your assigned role.
+            </p>
+        </div>
 
-        <a href="{% url 'custom_admin_panel:manage_borrow_requests' %}" class="btn">
-            Manage Borrow Requests
-        </a>
+
+        <!-- Admin statistics section. -->
+        <section 
+            class="custom-admin-section" 
+            aria-label="Custom admin dashboard statistics">
+
+            <div class="custom-admin-stats-grid">
+
+                <!-- Total cameras statistic card. -->
+                <div class="custom-admin-stat-card">
+
+                    <p class="custom-admin-stat-label">
+                        Total Cameras
+                    </p>
+
+                    <p class="custom-admin-stat-number">
+                        {{ camera_count }}
+                    </p>
+
+                </div>
+
+                <!-- Pending borrow requests statistic card. -->
+                <div class="custom-admin-stat-card">
+
+                    <p class="custom-admin-stat-label">
+                        Pending Borrow Requests
+                    </p>
+
+                    <p class="custom-admin-stat-number">
+                        {{ pending_requests_count }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Admin action buttons section. -->
+        <section 
+            class="custom-admin-section" 
+            aria-label="Custom admin dashboard actions">
+
+            <h2>Management Actions</h2>
+
+            <div class="custom-admin-actions">
+
+                {% if can_manage_catalogue %}
+                    <a 
+                        href="{% url 'custom_admin_panel:manage_cameras' %}" 
+                        class="btn"
+                        aria-label="Manage camera listings">
+                        Manage Cameras
+                    </a>
+                {% endif %}
+
+                {% if can_manage_borrowing %}
+                    <a 
+                        href="{% url 'custom_admin_panel:manage_borrow_requests' %}" 
+                        class="btn"
+                        aria-label="Manage borrow requests">
+                        Manage Borrow Requests
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </section>
+
     </div>
 
 </div>
