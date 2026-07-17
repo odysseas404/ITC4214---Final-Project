@@ -62,11 +62,14 @@
                         </a>
                     </li>
                     
+                    <!--Checks whether the user can view the admin button and displays it only if the condition is True.-->
+                    {% if can_view_custom_admin %}
                     <li class="nav-item">
-                        <a class="btn nav-button" href="{% url 'custom_admin_panel:admin_dashboard' %}">
+                        <a class="btn nav-button" href="{% url 'custom_admin_panel:admin_dashboard' %}        "aria-label="Open the custom admin panel">
                             Admin Panel
                         </a>
                     </li>
+                    {% endif %}
 
                     <!-- Logout uses POST for security and includes a CSRF token. -->
                     <li class="nav-item">
