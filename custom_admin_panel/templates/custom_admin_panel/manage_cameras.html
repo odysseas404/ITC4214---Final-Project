@@ -1,28 +1,150 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <!-- Loads the CSS file for the custom admin panel app. -->
+    <link rel="stylesheet" href="{% static 'custom_admin_panel/css/custom_admin.css' %}">
+{% endblock %}
 
 {% block content %}
 
-<div class="glass-card">
+<!-- Main wrapper for the camera management page. -->
+<div class="custom-admin-page">
 
-    <h1>Manage Cameras</h1>
+    <!-- Main camera management panel. -->
+    <div class="custom-admin-panel">
 
-    {% for camera in cameras %}
+        <!-- Page heading and explanation. -->
+        <div class="custom-admin-header">
+            <h1>Manage Cameras</h1>
 
-        <div class="glass-card dashboard-inner-card">
-            <h2>{{ camera.name }}</h2>
-
-            <p><span class="info-label">Manufacturer:</span> {{ camera.manufacturer }}</p>
-            <p><span class="info-label">Category:</span> {{ camera.category }}</p>
-            <p><span class="info-label">Film format:</span> {{ camera.film_format }}</p>
-            <p><span class="info-label">Condition:</span> {{ camera.condition }}</p>
-            <p><span class="info-label">Available:</span> {{ camera.available }}</p>
+            <p>
+                Add, review, and remove camera listings from the Escapism catalogue.
+            </p>
         </div>
 
-    {% empty %}
+        <!-- Page action button. -->
+        <div class="custom-admin-actions">
 
-        <p>No cameras found.</p>
+            <a 
+                href="{% url 'custom_admin_panel:add_camera' %}" 
+                class="btn"
+                aria-label="Add a new camera listing">
+                Add New Camera
+            </a>
 
-    {% endfor %}
+        </div>
+
+        <!-- Camera listing section. -->
+        <section class="custom-admin-section" aria-label="Camera listings management">
+
+            <h2>Camera Listings</h2>
+
+            {% if cameras %}
+
+                <!-- Reuses the global camera-grid class. -->
+                <div class="camera-grid">
+
+                    {% for camera in cameras %}
+
+                        <!-- Reuses the global camera-card class. -->
+                        <div class="camera-card">
+
+                            {% if camera.main_image %}
+                                <img 
+                                    src="{{ camera.main_image.url }}" 
+                                    alt="{{ camera.name }} film camera" 
+                                    class="camera-card-image">
+                            {% endif %}
+
+                            <h3>{{ camera.name }}</h3>
+
+                            <p>
+                                <span class="info-label">Manufacturer:</span>
+                                {{ camera.manufacturer }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Year:</span>
+                                {{ camera.year }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Category:</span>
+                                {{ camera.category }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Film format:</span>
+                                {{ camera.film_format }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Condition:</span>
+                                {{ camera.condition }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Recommended for:</span>
+                                {{ camera.recommended_trip_type }}
+                            </p>
+
+                            <p>
+                                <span class="info-label">Available:</span>
+                                {% if camera.available %}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </p>
+
+                            <!-- Camera management buttons. -->
+                            <div class="custom-admin-card-actions">
+
+                                <a 
+                                    href="{% url 'catalogue:camera_detail' camera.id %}" 
+                                    class="btn"
+                                    aria-label="View details for {{ camera.name }}">
+                                    View Details
+                                </a>
+
+                                <form 
+                                    method="post" 
+                                    action="{% url 'custom_admin_panel:delete_camera' camera.id %}" 
+                                    class="custom-admin-delete-form">
+                                    {% csrf_token %}
+
+                                    <button 
+                                        type="submit" 
+                                        class="btn"
+                                        aria-label="Remove {{ camera.name }} from the catalogue">
+                                        Remove
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="custom-admin-empty">
+                    <p>
+                        No cameras found.
+                    </p>
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
 
 </div>
 
