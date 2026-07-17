@@ -67,6 +67,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Makes can_view_custom_admin available in all templates.
+                'custom_admin_panel.context_processors.custom_admin_access',
             ],
         },
     },
