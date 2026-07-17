@@ -110,6 +110,7 @@ input[type="submit"]:hover {
 
 .camera-card {
     min-height: 630px;
+    background-color: rgba(0, 0, 0, 0.90) !important;
     border-radius: var(--esc-radius);
     padding: 24px;
     box-shadow: var(--esc-card-shadow);
